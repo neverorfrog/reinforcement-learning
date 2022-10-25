@@ -1,0 +1,21 @@
+\documentclass[14pt,a4paper]{extarticle}
+\usepackage[margin=2cm]{geometry}
+
+\begin{document}
+
+\paragraph{Theory 1}
+
+\paragraph{Theory 2}
+
+This problem requires to evaluate the value function using the update rule applied to the Bellman equation. Intuitively, the value at iteration $k+1$ for every state $s$ is obtained from the values at iteration $k$ of every successor state $s'$ and the immediate reward, everything weighted by the probabilities defined by the transition function. \\ Since the policy $\pi$ yields action $a_1$ for every state, the formula will be \[v_{k+1}^{\pi}(s) = \sum_{s',r}p(s',r|s,a)[r+\gamma v_{k}^{\pi}(s')]\] In the case $s=s_6$, it holds that (omitting $\pi$ in the formula) \[v_{k+1}(s_6) = p(s_6|s_6,a_1)[r + \gamma v_k(s_6)] + p(s_7|s_6,a_1)[r + \gamma v_k(s_7)] = \]  \[0.5[0 + 0.5\cdot 0] + 0.5[10 + 0.5 \cdot 10] = 7.5\] That's because the model dynamics tells us that the reachable states from $s_6$ are $s_6$ and $s_7$, and the latter gives a reward of $10$.
+ 
+
+\paragraph{Practice 1}
+
+The goal of this practical exercise is to implement the policy iteration algorithm on the grid world environment. 
+
+
+
+\paragraph{Practice 2}
+
+\end{document}
