@@ -43,6 +43,8 @@ def value_iteration(env):
                     best_a = a
             values[s] = max_va
             best_actions[s] = best_a
+    
+    print(i)
 
     return best_actions.reshape((env.height, env.width))
 
@@ -62,64 +64,70 @@ def policy_iteration(env, gamma=0.99, iters=100):
     # Initializing the policy
     policy = np.zeros(env.num_states, dtype=np.int)
     values = np.zeros(env.num_states, dtype=np.float32)
-    policy_stable = True
+    
 
     # Looping for iters iterations to find the optimal policy
     for i in range(iters):
 
+        #Termination condition
+        policy_stable = True
+
         # Looping on all states for policy evaluation until convergence
-        eps = 0.5
-        improvement = 0
-        j = 0
+        eps = 0.1
 
         while True:
-            print(j)
+
             v_old = values.copy()
+            delta = 0
+
+            # Compute the values of the states in according to the current policy
             for s in range(env.num_states):
                 # Current state
                 state = STATES[s]
-                if all(state == env.end_state) or i >= env.max_steps:
+
+                if (state == env.end_state).all() or i >= env.max_steps:
                     continue  # if we reach the termination condition, we cannot perform any action
 
-                # Compute the values of the states in according to the current policy
                 next_state_prob = env.transition_probabilities(state, policy[s]).flatten()
                 values[s] = (next_state_prob*(REWARDS + gamma*v_old)).sum()
-                
 
-                improvement = np.max([improvement, np.abs(values[s]-v_old[s])])
-                #print(improvement)
+                delta = max(delta, abs(values[s]-v_old[s]))
 
-            if improvement <= eps:
-                break   
-        
-            
+            if delta < eps:
+                break
 
         # Looping on all states for policy improvement
         for s in range(env.num_states):
 
             # Current state
             state = STATES[s]
-            if all(state == env.end_state) or i >= env.max_steps:
+
+            if (state == env.end_state).all() or i >= env.max_steps:
                 continue  # if we reach the termination condition, we cannot perform any action
 
             # Finding the action that maximises the value for the current state
-            max_va = -np.inf
-            best_action = 0
+            max_va = values[s]
+            best_action = policy[s]
+
             for a in range(env.num_actions):
-                next_state_prob = env.transition_probabilities(
-                    state, a).flatten()
+
+                next_state_prob = env.transition_probabilities(state, a).flatten()
                 va = (next_state_prob*(REWARDS + gamma*values)).sum()
+
                 if va > max_va:
                     best_action = a
                     max_va = va
 
             if policy[s] != best_action:  # checking for termination
                 policy_stable = False
-
-            policy[s] = best_action  # policy improvement
+                policy[s] = best_action  # policy improvement
 
         if policy_stable == True:
+            print("Finished")
+            print(i)
             break
-        # if all(policy - policy_old == 0): break
 
     return policy.reshape(env.height, env.width)
+    
+
+    
