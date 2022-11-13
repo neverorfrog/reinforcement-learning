@@ -10,8 +10,13 @@
 \paragraph{Theory 2}
 
 \paragraph{Practice 1}
+The problem is to implement the Sarsa($\lambda$) in the frozen lake environment. 
 
 \paragraph{Practice 2}
+The problem here is to implement the TD($\lambda$) Q-Learning algorithm with linear value function approximation in the mountain car environment. This problem can subdivided into two subproblems: how to represent the value function (in this specific case it will be a value-action function) and how to make the agent learn.
+\subparagraph{First problem: RBF} For the approximated q-function representation, it is asked to encode the state with a radial basis function, which consists in characterizing each feature as a gaussian function which takes in input the distance between the state and a feature center, and the width of the feature. For this purpose, we need to first construct the features' center states, which in this case (the state space is of dimension 2) are basically some equally distributed points in 2D. The borders of the region considered ( [0,1]x[0,1]) don't contain any centers because, by normalizing the state, there won't be any out the region considered. The \code{encode} function will return an encoded state (a column vector) with as many features as centers taken for the rbf. 
+\subparagraph{Second problem: Q-Learning with eligibility traces} After having encoded the state, the agent needs to learn at every step. Intuitively, in the update of the weights we just assign the temporal difference  error (which in Q-learning takes the max of the Q of $s'$) backwards to the previous states by multiplying it with the eligibility traces. So the traces are sort of a weight for the temporal difference error, telling us how much the past states and which feature have contributed  to the learning process.\\
+In the evaluation phase of the produced, the mean rewards oscillated between -100 and -110
 
 
 \paragraph {Resources}

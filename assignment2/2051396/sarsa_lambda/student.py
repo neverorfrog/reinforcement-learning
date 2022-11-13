@@ -9,7 +9,7 @@ def epsilon_greedy_action(env, Q, state, epsilon):
         return np.argmax(Q[state])
 
 
-def sarsa_lambda(env, alpha=0.2, gamma=0.99, lambda_= 0.8, initial_epsilon=1.0, n_episodes=10000):
+def sarsa_lambda(env, alpha=0.2, gamma=0.99, lambda_= 0.8, initial_epsilon=1.0, n_episodes=5000):
 
     ####### Hyperparameters
     # alpha = learning rate
@@ -18,16 +18,14 @@ def sarsa_lambda(env, alpha=0.2, gamma=0.99, lambda_= 0.8, initial_epsilon=1.0, 
     # initial_epsilon = initial epsilon value
     # n_episodes = number of episodes
 
-    ############# keep this shape for the Q!
-    Q = np.random.rand(env.observation_space.n, env.action_space.n)   
-    E = np.zeros((env.observation_space.n, env.action_space.n))
+    Q = np.random.rand(env.observation_space.n, env.action_space.n)
 
     # init epsilon
     epsilon = initial_epsilon
     received_first_reward = False
 
     #evaluation
-    window_dim = 100
+    window_dim = 1000
     window = 0
     victories = 0
 
@@ -35,24 +33,29 @@ def sarsa_lambda(env, alpha=0.2, gamma=0.99, lambda_= 0.8, initial_epsilon=1.0, 
     print("...")
 
     for ep in range(n_episodes+1):
+
+        E = np.zeros((env.observation_space.n, env.action_space.n))
         
         if ep % window_dim == 0 and ep != 0:
             window += 1
-            #print("\tWindow {} with success rate {}".format(window, victories/window_dim))
+            print("\tWindow {} with success rate {}".format(window, victories/window_dim))
             victories = 0
 
         state, _ = env.reset()
         action = epsilon_greedy_action(env, Q, state, epsilon)
         done = False
 
+        #cycling through the current episode
         while not done:
-            ############## simulate the action
+
+            #simulate the action
             next_state, reward, done, info, _ = env.step(action)
             next_action = epsilon_greedy_action(env, Q, next_state, epsilon)
 
-            ############## update q table and eligibility (backward)
+            #update q table and eligibility (backward)
             td_error = reward + (1-done)*gamma*Q[next_state,next_action] - Q[state,action]
             E[state,action] += 1
+
             #update for every state and action
             Q = Q + alpha * td_error * E
             E = E * gamma * lambda_

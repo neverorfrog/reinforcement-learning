@@ -10,7 +10,7 @@ import random
 def evaluate(map_env, num_episodes):
 
     env = gym.make("FrozenLake-v1", desc=map_env, render_mode="ansi")
-    env_render = gym.make("FrozenLake-v1", desc=map_env, render_mode="ansi")
+    env_render = gym.make("FrozenLake-v1", desc=map_env, render_mode="human")
 
     Q = sarsa_lambda(env)
     rewards = []

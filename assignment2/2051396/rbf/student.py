@@ -22,29 +22,37 @@ class RBFFeatureEncoder:
 
     def __init__(self, env): # modify
         self.env = env
-        self.n = 16 #number of features
+        self.tilings = 1
+        self.slices = 6
+        self.std_dev = [0.15,0.05]
+        self.n = (self.slices**2)#*self.tilings #number of features
         self.max = self.env.observation_space.high
         self.min = self.env.observation_space.low
-        self.width = (self.max - self.min) / self.n
         self.centers = self.centers()
-        # create the rbf encoder
     
     def normalize(self,state):
         return (state - self.min)/(self.max-self.min)
 
-
     def centers(self):
-        n_states = self.env.observation_space.shape[0] 
-        n_slices = int(np.sqrt(self.n))
-        n_features = self.n
 
-        c_p = np.linspace(0.2,0.8,n_slices)
-        c_v = np.linspace(0.2,0.8,n_slices)
-        
-        centers = np.zeros((n_features,n_states))
+        # min_lim = 1/(self.slices+1)
+        # max_lim = 1 - min_lim
+        min_lim = 0.15
+        max_lim = 0.85
+         
+        c_p = np.linspace(min_lim,max_lim,self.slices)
+        c_v = np.linspace(min_lim,max_lim,self.slices)
+
+        # for i in range(self.tilings-1):
+        #     c_p_next = np.linspace(min_lim,max_lim,self.slices)
+        #     c_v_next = np.linspace(min_lim,max_lim,self.slices)
+        #     c_p = np.concatenate((c_p,c_p_next))
+        #     c_v = np.concatenate((c_v,c_v_next))
+
+        centers = np.zeros((self.n,self.env.observation_space.shape[0]))
         k = 0
-        for i in range(n_slices):
-            for j in range(n_slices):
+        for i in range(self.slices):
+            for j in range(self.slices):
                 centers[k] = [c_p[i],c_v[j]]
                 k += 1
 
@@ -53,44 +61,48 @@ class RBFFeatureEncoder:
 
     def rbf(self,state,center,sigma):
         """
-        state: 2x1 vector (position along x axis and velocity)
-        center: 2x1 vector (x and y coordinate of the feature)
-        sigma: width of the feature
+        input
+            state: 2x1 vector (position along x axis and velocity)
+            center: 2x1 vector (x and y coordinate of the feature)
+            sigma: width of the feature
+        ouput
+            real number representing the "distance" between state and center
         """
-        #state = state.reshape(-1,1)
-        #center = center.reshape(-1,1)
         num = -np.power(np.linalg.norm(state - center),2)
         den = 2*np.power(sigma,2)
         return np.exp(num/den)
 
         
-    def encode(self, state): # modify
+    def encode(self, state):
+        """
+        input
+            state: 2x1 vector
+        output
+            n sized vector with features representing the state
+        """
 
         state = self.normalize(state)
+        features = np.zeros((self.n))
 
-        n_states = self.env.observation_space.shape[0]
-        n_features = self.n
-
-        features = np.zeros((n_features))
-
-        for r in range(n_features):
-            features[r] = self.rbf(state, self.centers[r] , 0.2)
+        # features_per_tiling = (self.slices**2)
+        # for i in range(self.tilings):
+        #     offset = i*features_per_tiling
+        for r in range(self.n):
+            features[r] = self.rbf(state, self.centers[r],0.15)
 
         return features
 
             
     @property
     def size(self): # modify
-        # return the correct size of the observation
-        return self.n #n é il numero di features
-        #return self.env.observation_space.shape[0]
+        return self.n #n is the number of features
 
 class TDLambda_LVFA:
     def __init__(self, env, feature_encoder_cls=RBFFeatureEncoder,
-        alpha=0.01, alpha_decay=0.99, gamma=0.9999, epsilon=0.3, epsilon_decay=0.9999, lambda_=0.8): # modify if you want
+        alpha=0.01, alpha_decay=1, gamma=0.9999, epsilon=0.3, epsilon_decay=1, lambda_=0.9): # modify if you want
         self.env = env
         self.feature_encoder = feature_encoder_cls(env)
-        self.shape = (self.env.action_space.n, self.feature_encoder.size)#3x20
+        self.shape = (self.env.action_space.n, self.feature_encoder.size)
         self.weights = np.random.random(self.shape)
         self.traces = np.zeros(self.shape)
         self.alpha = alpha
@@ -102,30 +114,28 @@ class TDLambda_LVFA:
         
     def Q(self, feats):
         feats = feats.reshape(-1,1) #column vector
-        Q = self.weights@feats
-        return Q 
+        return self.weights@feats
     
     def update_transition(self, s, action, s_prime, reward, done): # modify
-        s_feats = self.feature_encoder.encode(s) #100x1
+        s_feats = self.feature_encoder.encode(s) 
         s_prime_feats = self.feature_encoder.encode(s_prime)
 
-        td_error = reward
-        if not done:
-            td_error += self.gamma*self.Q(s_prime_feats).max()
-            
-        td_error -=  self.Q(s_feats)[action]#1
-                    
+        #update of the eligibility related to the current state,action
+        self.traces[action] += s_feats
+
+        #temporal difference error
+        td_error = reward + (1-done)*self.gamma*self.Q(s_prime_feats).max() - self.Q(s_feats)[action]
+
+        #update of the weights
+        self.weights[action] += self.alpha*td_error*self.traces[action] 
+
+        #update of all the eligibility traces
         self.traces *= self.gamma * self.lambda_
-        self.traces[action] = self.traces[action] + s_feats
-        delta_w = td_error*self.traces[action] 
-        
-        self.weights[action] += self.alpha*delta_w #1x100
 
         
     def update_alpha_epsilon(self): # modify
         self.epsilon = max(0.2, self.epsilon*self.epsilon_decay)
         self.alpha = self.alpha*self.alpha_decay
-        pass
         
         
     def policy(self, state): # do not touch
