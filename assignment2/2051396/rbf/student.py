@@ -23,31 +23,31 @@ class RBFFeatureEncoder:
     def __init__(self, env): # modify
         self.env = env
         self.tilings = 1
-        self.slices = 6
-        self.std_dev = [0.15,0.05]
-        self.n = (self.slices**2)#*self.tilings #number of features
-        self.max = self.env.observation_space.high
-        self.min = self.env.observation_space.low
+        self.slices = 7
+        self.std_dev = [1/(self.slices-1)]
+        self.n = (self.slices**2)*self.tilings #number of features
+
         self.centers = self.centers()
     
     def normalize(self,state):
-        return (state - self.min)/(self.max-self.min)
+        result = np.zeros(2)
+        max = self.env.observation_space.high
+        min = self.env.observation_space.low
+        return (state - min)/(max - min)
 
     def centers(self):
 
-        # min_lim = 1/(self.slices+1)
-        # max_lim = 1 - min_lim
-        min_lim = 0.15
-        max_lim = 0.85
+        min_lim = 1/(self.slices+1)
+        max_lim = 1 - min_lim
          
         c_p = np.linspace(min_lim,max_lim,self.slices)
         c_v = np.linspace(min_lim,max_lim,self.slices)
 
-        # for i in range(self.tilings-1):
-        #     c_p_next = np.linspace(min_lim,max_lim,self.slices)
-        #     c_v_next = np.linspace(min_lim,max_lim,self.slices)
-        #     c_p = np.concatenate((c_p,c_p_next))
-        #     c_v = np.concatenate((c_v,c_v_next))
+        for i in range(self.tilings-1):
+            c_p_next = np.linspace(min_lim,max_lim,self.slices)
+            c_v_next = np.linspace(min_lim,max_lim,self.slices)
+            c_p = np.concatenate((c_p,c_p_next))
+            c_v = np.concatenate((c_v,c_v_next))
 
         centers = np.zeros((self.n,self.env.observation_space.shape[0]))
         k = 0
@@ -68,9 +68,9 @@ class RBFFeatureEncoder:
         ouput
             real number representing the "distance" between state and center
         """
-        num = -np.power(np.linalg.norm(state - center),2)
+        num = np.power(np.linalg.norm(state - center),2)
         den = 2*np.power(sigma,2)
-        return np.exp(num/den)
+        return np.exp(-num/den)
 
         
     def encode(self, state):
@@ -84,11 +84,11 @@ class RBFFeatureEncoder:
         state = self.normalize(state)
         features = np.zeros((self.n))
 
-        # features_per_tiling = (self.slices**2)
-        # for i in range(self.tilings):
-        #     offset = i*features_per_tiling
-        for r in range(self.n):
-            features[r] = self.rbf(state, self.centers[r],0.15)
+        features_per_tiling = (self.slices**2)
+        for i in range(self.tilings):
+            offset = i*features_per_tiling
+            for r in range(features_per_tiling):
+                features[r + offset] = self.rbf(state, self.centers[r],self.std_dev[i])
 
         return features
 
@@ -120,17 +120,18 @@ class TDLambda_LVFA:
         s_feats = self.feature_encoder.encode(s) 
         s_prime_feats = self.feature_encoder.encode(s_prime)
 
-        #update of the eligibility related to the current state,action
+        #update of the traces relative to the current action, yields e_t
         self.traces[action] += s_feats
 
-        #temporal difference error
+        #temporal difference error, yields delta_t
         td_error = reward + (1-done)*self.gamma*self.Q(s_prime_feats).max() - self.Q(s_feats)[action]
 
-        #update of the weights
-        self.weights[action] += self.alpha*td_error*self.traces[action] 
+        #update of the weights, yields w_t+1
+        self.weights[action] += self.alpha*td_error*self.traces[action]
 
-        #update of all the eligibility traces
+        #update of the eligibility traces, yields part of e_t+1
         self.traces *= self.gamma * self.lambda_
+        
 
         
     def update_alpha_epsilon(self): # modify

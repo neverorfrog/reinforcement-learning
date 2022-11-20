@@ -52,17 +52,19 @@ def sarsa_lambda(env, alpha=0.2, gamma=0.99, lambda_= 0.8, initial_epsilon=1.0, 
             next_state, reward, done, info, _ = env.step(action)
             next_action = epsilon_greedy_action(env, Q, next_state, epsilon)
 
-            #update q table and eligibility (backward)
+            #update q table and eligibility (backward) for current state and action
             td_error = reward + (1-done)*gamma*Q[next_state,next_action] - Q[state,action]
             E[state,action] += 1
 
-            #update for every state and action
+            #update of the q table
             Q = Q + alpha * td_error * E
-            E = E * gamma * lambda_
 
             if not received_first_reward and reward > 0:
                 received_first_reward = True
                 print("Received first reward at episode ", ep)
+
+            #update of the eligibility traces
+            E = E * gamma * lambda_
 
             # update current state and action
             state = next_state
