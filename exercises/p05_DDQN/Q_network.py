@@ -4,7 +4,12 @@ import torch.nn as nn
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
+'''
+This class takes the number of inputs and outputs and returns a vector of dimension n_outputs, which contains
+the q-function (practically one for each action), through the forward function
 
+Practically this is an estimation of the q value through the neural network
+'''
 class Net(nn.Module):
     def __init__(self, n_inputs, n_outputs, bias=True):
         super().__init__()
@@ -27,14 +32,19 @@ class Net(nn.Module):
 
         return y
 
+
+
+'''
+This class encapsulates the neural network and the optimizer and a function which chooses an action and
+effectively calculates the q-values
+'''
 class Q_network(nn.Module):
 
     def __init__(self, env,  learning_rate=1e-4):
         super(Q_network, self).__init__()
 
-        #TODO
-        #self.network = Net( ?? , ??)
-        self.network = Net(1, 1)
+        #TODOnt
+        self.network = Net(env.observation_space._shape[0], env.action_space)
 
         print("Q network:")
         print(self.network)
@@ -42,14 +52,13 @@ class Q_network(nn.Module):
         self.optimizer = torch.optim.Adam(self.network.parameters(),lr=learning_rate)
 
     def greedy_action(self, state):
-        # TODO
-        # greedy action = ??
-        greedy_a = 0
-
+        #TODOnt
+        qvals = self.get_qvals(state)
+        #index of the action corresponding to the max q value
+        greedy_a = torch.max(qvals,dim=-1)[1].item() 
         return greedy_a
 
     def get_qvals(self, state):
-        #TODO
-        #qval = ?
-        qval = 0
+        #TODOnt
+        qval = self.network(state)
         return qval

@@ -14,8 +14,7 @@ import numpy as np
 class Policy(nn.Module):
     def __init__(self, n_frames, n_actions, hidden_size, img_size=(64,64), device=torch.device('cpu')):
         super(Policy, self).__init__()
-        #Here in the constructor we find the "theta" parameters which we need to 
-        #parametrize the policy 
+        #Here in the constructor we find the "theta" parameters which we need to parametrize the policy 
         self.hidden_size = hidden_size
         self.n_frames = n_frames
         self.conv1 = nn.Conv2d(n_frames, hidden_size, 7)

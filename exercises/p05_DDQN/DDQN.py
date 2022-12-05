@@ -1,7 +1,4 @@
-from copy import deepcopy
-
 import numpy as np
-import math
 import torch
 import torch.nn as nn
 from Q_network import Q_network
@@ -9,19 +6,14 @@ from utils import from_tuple_to_tensor
 
 import matplotlib.pyplot as plt
 
-#with warnings.catch_warnings():
-#    warnings.filterwarnings("ignore", category=UserWarning)
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-
-class DDQN_agent:
+class DDQN:
 
     def __init__(self, env, rew_thre, buffer, learning_rate=0.001, initial_epsilon=0.5, batch_size= 64):
 
         self.env = env
-
-
         self.network = Q_network(env, learning_rate)
-        #self.target_network = ???
         self.target_network = deepcopy(self.network)
         self.buffer = buffer
         self.epsilon = initial_epsilon
@@ -33,36 +25,38 @@ class DDQN_agent:
         self.episode = 0
 
 
-    def take_step(self, mode='exploit'):
-        # choose action with epsilon greedy
-        if mode == 'explore':
-                action = self.env.action_space.sample()
+    def take_step(self, state, mode='exploit'):
+        #choose action with epsilon greedy
+        #TODOnt
+        if random.random() > self.epsilon:
+            action = env.action_space.sample()
         else:
-                action = self.network.greedy_action(torch.FloatTensor(self.s_0))
+            action = self.network.greedy_action(state)
+
 
         #simulate action
-        s_1, r, done, _, _ = self.env.step(action)
+        s_next, r, done, _, _ = self.env.step(action)
 
 
         #put experience in the buffer
-        self.buffer.append(self.s_0, action, r, done, s_1)
+        #TODO
+        self.buffer.append(state,action,r,done,s_next)
 
         self.rewards += r
 
         self.s_0 = s_1.copy()
 
         self.step_count += 1
-        if done:
 
+        if done:
             self.s_0, _ = self.env.reset()
+
         return done
 
     # Implement DQN training algorithm
-    def train(self, gamma=0.99, max_episodes=10000,
-              network_update_frequency=10,
-              network_sync_frequency=200):
+    def train(self, gamma=0.99, max_episodes=10000,network_update_frequency=10,network_sync_frequency=100):
+        
         self.gamma = gamma
-
         self.loss_function = nn.MSELoss()
         self.s_0, _ = self.env.reset()
 
@@ -93,32 +87,23 @@ class DDQN_agent:
                     self.update()
                 # Sync networks
                 if self.step_count % network_sync_frequency == 0:
-                    self.target_network.load_state_dict(
-                        self.network.state_dict())
+                    # TODO: synchronize Qnet and target_net
+                    #self.target_network ???
                     self.sync_eps.append(ep)
 
                 if done:
                     if self.epsilon >= 0.05:
                         self.epsilon = self.epsilon * 0.7
                     ep += 1
-                    if self.rewards > 2000:
-                        self.training_rewards.append(2000)
-                    elif self.rewards > 1000:
-                        self.training_rewards.append(1000)
-                    elif self.rewards > 500:
-                        self.training_rewards.append(500)
-                    else:
-                        self.training_rewards.append(self.rewards)
-                    if len(self.update_loss) == 0:
-                        self.training_loss.append(0)
-                    else:
-                        self.training_loss.append(np.mean(self.update_loss))
+                    self.training_rewards.append(self.rewards)
+                    self.training_loss.append(np.mean(self.update_loss))
                     self.update_loss = []
-                    mean_rewards = np.mean(self.training_rewards[-self.window:])
+                    mean_rewards = np.mean(
+                        self.training_rewards[-self.window:])
                     mean_loss = np.mean(self.training_loss[-self.window:])
                     self.mean_training_rewards.append(mean_rewards)
                     print(
-                        "\rEpisode {:d} Mean Rewards {:.2f}  Episode reward = {:.2f}   mean loss = {:.2f}\t\t".format(
+                        "\rEpisode {:d} Mean Rewards {:.2f}  Episode reward = {:.2f}   mean loss = {:.2f} \t\t".format(
                             ep, mean_rewards, self.rewards, mean_loss), end="")
 
                     if ep >= max_episodes:
@@ -156,26 +141,30 @@ class DDQN_agent:
         states, actions, rewards, dones, next_states = list(batch)
 
         #transform in torch tensors
-        rewards = torch.FloatTensor(rewards).reshape(-1, 1)
-        actions = torch.LongTensor(np.array(actions)).reshape(-1, 1)
-        dones = torch.IntTensor(dones).reshape(-1, 1)
+        rewards = torch.FloatTensor(rewards).reshape(-1, 1).to(device)
+        actions = torch.LongTensor(np.array(actions)).reshape(-1, 1).to(device)
+        dones = torch.IntTensor(dones).reshape(-1, 1).to(device)
         states = from_tuple_to_tensor(states)
         next_states = from_tuple_to_tensor(next_states)
 
         ###############
         # DDQN Update #
         ###############
+        #TODO
         # Q(s,a) = ??
-        qvals = self.network.get_qvals(states)
-        qvals = torch.gather(qvals, 1, actions)
+        #
+        #
 
+        # TODO
         # target Q(s,a) = ??
-        next_qvals= self.target_network.get_qvals(next_states)
-        next_qvals_max = torch.max(next_qvals, dim=-1)[0].reshape(-1, 1)
-        target_qvals = rewards + (1 - dones)*self.gamma*next_qvals_max
+        #
+        #
+        #
 
-        # loss = self.loss_function( Q(s,a) , target_Q(s,a))
-        loss = self.loss_function(qvals, target_qvals)
+
+        #TODO
+        #loss = self.loss_function( Q(s,a) , target_Q(s,a))
+        loss = 0
 
         return loss
 
@@ -188,7 +177,10 @@ class DDQN_agent:
         loss.backward()
         self.network.optimizer.step()
 
-        self.update_loss.append(loss.item())
+        if device == 'cuda':
+            self.update_loss.append(loss.detach().cpu().numpy())
+        else:
+            self.update_loss.append(loss.detach().numpy())
 
     def initialize(self):
         self.training_rewards = []
