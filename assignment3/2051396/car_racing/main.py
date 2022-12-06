@@ -17,7 +17,7 @@ def evaluate(env=None, n_episodes=1, render=False):
         total_reward = 0
         done = False
         s, _ = env.reset()
-        for i in range(max_steps_per_episode):
+        while not done:
             action = agent.act(s)
             
             s, reward, done, truncated, info = env.step(action)
