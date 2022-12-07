@@ -4,7 +4,7 @@ import numpy as np
 from student import Policy
 import gym
 
-def evaluate(env=None, n_episodes=1, render=False):
+def evaluate(env=None, n_episodes=1, render=True):
     agent = Policy()
     agent.load()
 

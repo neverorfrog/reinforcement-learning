@@ -3,8 +3,9 @@ import torch
 import torch.nn as nn
 import numpy as np
 import random
-from Network import Network
-from ReplayMemory import ReplayMemory
+from Network import DQN
+from ReplayMemory import UniformER
+from copy import deepcopy
 
 class Policy(nn.Module):
 
@@ -16,63 +17,65 @@ class Policy(nn.Module):
         self.continuous = False
         self.env = gym.make('CarRacing-v2', continuous=self.continuous)
         self.gamma = 0.9
-        self.epsilon = 0
-        self.n_episodes = 500
+        self.epsilon = 0.9
+        self.n_episodes = 5
 
         # Neural network
-        self.network = Network(4,self.env.action_space.n)
+        self.network = DQN(4,self.env.action_space.n)
+        self.target_network = deepcopy(self.network)
         #Optimizer for gradient descent
         self.optimizer = torch.optim.Adam(self.network.parameters(),lr=1e-4)
         self.loss_fn = torch.nn.MSELoss()
 
         #Experience replay memory
-        self.memory = ReplayMemory()
+        self.memory = UniformER(self.env)
 
     def train(self):
         for episode in range(self.n_episodes):
-            state = self.env.reset() 
+
             self.memory.clear()
+            self.memory = UniformER(self.env)
+            self.epsilon = 0.9
+            
+            for j in range(32):
+                observation,reward,done,_,_ = self.env.step(1)
+                self.memory.store(observation,0,reward,done,observation)
 
-            # perform noop for 4 steps
             observation,reward,done,_,_ = self.env.step(0)
-            # observation = self.preprocessing(observation)
-            action = 0
-            reward = 0.0
-            for i in range(4):
-                self.memory.update(observation,observation)
-            # self.memory.store(state,action,reward,done,state)
-
             done = False
-            iteration = 0
+            steps = 0
+            max_steps = 500
 
             #Main Training Loop
-            while not done:
+            while not done and steps < max_steps:
                 #Action selection and simulation
-                action = self.act(self.memory.getState)
+                action = self.act(self.memory.getState())
                 next_observation, reward, done, _, _ = self.env.step(action)
-
-                # next_observation = self.preprocessing(next_observation)
-
-                # self.memory.update(observation,next_observation)
 
                 #experience goes into the memory
                 self.memory.store(observation,action,reward,done,next_observation)
 
-                if len(self.memory) > 32:
-                    self.update() #updating the neural network weights
+                #Network update
+                self.update() 
+                #Target network update
+                if steps % 100:
+                    self.target_network.load_state_dict(self.network.state_dict())
 
                 observation = next_observation
+                steps = steps + 1
+                self.epsilon = self.epsilon * 0.99
+
+        # save models
+        self.save_models()
         return
     
     def act(self, state):
-        #State is actually made of the last 4 frames, so I preprocess and stack them on top of each other
-        # print(state[0].shape) #(96,96,3)
-        # state = torch.vstack([observation for observation in state]).to(self.device)#.unsqueeze(0)
-        # state = torch.tensor([observation for observation in self.memory.state])
-        # state = torch.vstack([observation for observation in self.memory.state]).to(self.device)
-        # print("Preprocessed state"); print(state.shape) #needs to be (64,64,4)?
-
         #epsilon-greedy action selection
+        state = self.memory.getState()
+        # print("State shape {0}".format(state.shape))
+        # if (state.shape == (96,96,3)):
+        #     self.memory.preprocessing(state)
+
         if random.random() > self.epsilon:
             action = self.env.action_space.sample()
         else:
@@ -92,41 +95,45 @@ class Policy(nn.Module):
 
     def calculate_loss(self,batch):
         #transform in torch tensors
-        rewards = torch.FloatTensor(batch.reward).to(self.device)
-        actions = torch.LongTensor(batch.action).to(self.device)
-        dones = torch.IntTensor(batch.done).to(self.device)
-        # states = self.tuple2tensor(batch.state).to(self.device)
-        # next_states = self.tuple2tensor(batch.next_state).to(self.device)
+        rewards = torch.FloatTensor(batch.reward).to(self.device).reshape(-1,1)
+        actions = torch.LongTensor(batch.action).to(self.device).reshape(-1,1)
+        dones = torch.IntTensor(batch.done).to(self.device).reshape(-1,1)
         states = torch.stack(batch.state,0).to(self.device)
         next_states = torch.stack(batch.next_state,0).to(self.device)
 
+        # print(rewards[-1])
+
         #estimated q values
         q_estimated = self.network(states)
-        # print("q"); print(q_estimated.shape) 5
-        estimation = torch.gather(q_estimated, 0, actions).unsqueeze(0)
+        # print("q"); print(q_estimated.shape) # (32,5)
+        # print("actions"); print(actions.shape) #(32,1)
+        estimation = torch.gather(q_estimated, 0, actions) #(32,1)
 
         #target q values
         with torch.no_grad():
-            q_next = self.network(next_states)
-        q_next_max = torch.max(q_next, dim=-1)[0].reshape(-1, 1)
-        target = rewards + (1 - dones)*self.gamma*q_next_max
-        # print(target.shape)
+            q_estimated_next = self.network(next_states)
+            q_target = self.target_network(next_states)
+
+        # print("q_estimated_next"); print(q_estimated_next.shape) #(32,5)
+        best_actions = torch.argmax(q_estimated_next,dim=-1).reshape(-1,1)
+        # print("best action"); print(best_actions.shape) #(32,1)
+        q_target_max = torch.gather(q_target,0,best_actions)
+        # print("Q target max = {0}".format(q_target_max.shape)) #(32,1)
+        # q_target_max = torch.max(q_next, dim=-1)[0].reshape(-1, 1)
+
+        target = rewards + (1 - dones)*self.gamma*q_target_max
+        # print("Target shape = {0}".format(target.shape)) #(32,1)
         
         return self.loss_fn(estimation, target)
-    
-    # def tuple2tensor(self,tuple):
-    #     tensorShape = (len(tuple),*[i for i in tuple[0].shape])
-    #     tensor = torch.zeros(tensorShape)
-    #     for i, x in enumerate(tuple):
-    #         tensor[i] = torch.FloatTensor(x)
-    #     tensor.unsqueeze(0).squeeze(1)
-    #     return tensor
+
+    def save_models(self):
+        torch.save(self.network, "Q_net")
         
     def save(self):
         torch.save(self.state_dict(), 'model.pt')
 
     def load(self):
-        self.load_state_dict(torch.load('model.pt'), map_location=self.device)
+        self.load_state_dict(torch.load('model.pt'))
 
     def to(self, device):
         ret = super().to(device)

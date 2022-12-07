@@ -4,9 +4,9 @@ from torchvision import transforms
 import torch
 
 
-class ReplayMemory:
+class UniformER:
 
-    def __init__(self, capacity=50000, burn_in=10000, device=torch.device('cpu')):
+    def __init__(self, env, capacity=50000, burn_in=10000, device=torch.device('cpu')):
         self.capacity = capacity
         self.burn_in = burn_in
 
@@ -21,6 +21,16 @@ class ReplayMemory:
         self.rs = transforms.Resize((84,84))
         self.device = device
 
+        #I want to construct it already full (with dummy transitions)
+        #So i perform noop for 40 steps
+        env.reset()
+        for i in range(3):
+            observation,reward,done,_,_ = env.step(0)
+            self.state.append(self.preprocessing(observation).to(self.device))
+            self.next_state.append(self.preprocessing(observation).to(self.device))
+        observation,reward,done,_,_ = env.step(0)
+        self.store(observation,0,reward,done,observation)
+
     def sample_batch(self, batch_size=32):
         transitions = random.sample(self.buffer,batch_size) #that's a list
         batch = self.transition(*zip(*transitions)) #that's a gigantic transition in which every element is actually a list
@@ -31,7 +41,7 @@ class ReplayMemory:
         Input:
             a frame, i.e. a (96,96,3)~(height,width,channels) tensor 
         Output:
-            the same frame, but with shape (1,84,84,1) greyscale and normalized
+            the same frame, but with shape (1,84,84) greyscale and normalized
         '''
         observation = observation.transpose(2,0,1) #Torch wants images in format (channels, height, width)
         observation = torch.from_numpy(observation).float()
@@ -39,17 +49,11 @@ class ReplayMemory:
         observation = self.gs(observation) # grayscale
         return (observation/255) # normalize
     
-    def update(self,observation,next_observation):
-        '''
-        param args: 
-            observation(1 frame)
-            next_observation(1 frame) 
-        '''
-        self.state.append(self.preprocessing(observation).to(self.device))
-        self.next_state.append(self.preprocessing(next_observation).to(self.device))
-    
     def getState(self):
-        return self.buffer[-1].state
+        # print(len(self.buffer))
+        state = self.buffer[-1].state.unsqueeze(0)
+        # print("State {0}".format(state.shape)) 
+        return state
 
     def getNextState(self):
         return self.buffer[-1].next_state
@@ -58,13 +62,8 @@ class ReplayMemory:
         '''
         Add an experience
         :param args: 
-            state(4 frames) already preprocessed, 
-            action, 
-            reward, 
-            done, 
-            next_state(4 frames) already preprocessed
+            observation(1frame),action,reward,done,next_observation(1frame)
         '''
-
         self.state.append(self.preprocessing(observation))
         self.next_state.append(self.preprocessing(next_observation))
 
