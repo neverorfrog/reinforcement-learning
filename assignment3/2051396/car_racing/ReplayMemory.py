@@ -6,29 +6,28 @@ import torch
 
 class UniformER:
 
-    def __init__(self, env, capacity=50000, burn_in=10000, device=torch.device('cpu')):
+    def __init__(self, env, n_frames, capacity=50000, burn_in=10000, device=torch.device('cpu')):
         self.capacity = capacity
         self.burn_in = burn_in
 
         #Deques for storing
         self.transition = namedtuple('transition',('state', 'action', 'reward', 'done', 'next_state'))
         self.buffer = deque(maxlen=capacity)
-        self.state = deque(maxlen=4)
-        self.next_state = deque(maxlen=4)
+        self.state = deque(maxlen=n_frames)
+        self.next_state = deque(maxlen=n_frames)
+        self.n_frames = n_frames
 
         #Transforms for preprocessing before storing
         self.gs = transforms.Grayscale()
         self.rs = transforms.Resize((84,84))
         self.device = device
 
-        #I want to construct it already full (with dummy transitions)
-        #So i perform noop for 40 steps
+        #I want to construct it with an already full state (with noop transitions)
         env.reset()
-        for i in range(3):
-            observation,reward,done,_,_ = env.step(0)
+        observation,reward,done,_,_ = env.step(0)
+        for i in range(n_frames):
             self.state.append(self.preprocessing(observation).to(self.device))
             self.next_state.append(self.preprocessing(observation).to(self.device))
-        observation,reward,done,_,_ = env.step(0)
         self.store(observation,0,reward,done,observation)
 
     def sample_batch(self, batch_size=32):
@@ -36,7 +35,7 @@ class UniformER:
         batch = self.transition(*zip(*transitions)) #that's a gigantic transition in which every element is actually a list
         return batch
 
-    def preprocessing(self, observation):
+    def preprocessing(self, observation, vanilla=True):
         '''
         Input:
             a frame, i.e. a (96,96,3)~(height,width,channels) tensor 
@@ -52,7 +51,7 @@ class UniformER:
     def getState(self):
         # print(len(self.buffer))
         state = self.buffer[-1].state.unsqueeze(0)
-        # print("State {0}".format(state.shape)) 
+        # print("State {}".format(state.shape)) 
         return state
 
     def getNextState(self):
@@ -89,5 +88,5 @@ class UniformER:
     
     def clear(self):
         self.buffer.clear()
-        self.state.clear()
-        self.next_state.clear()
+        # self.state.clear()
+        # self.next_state.clear()

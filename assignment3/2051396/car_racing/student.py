@@ -13,57 +13,72 @@ class Policy(nn.Module):
         super().__init__()
         self.device = device
 
-        #Environment
+        #Training Environment
+        self.n_frames = 4
         self.continuous = False
         self.env = gym.make('CarRacing-v2', continuous=self.continuous)
         self.gamma = 0.9
         self.epsilon = 0.9
-        self.n_episodes = 5
-
+        self.n_episodes = 10
+        self.max_steps = 200
+        self.target_update_frequency = 10
+        
         # Neural network
-        self.network = DQN(4,self.env.action_space.n)
+        self.network = DQN(self.n_frames,self.env.action_space.n)
         self.target_network = deepcopy(self.network)
         #Optimizer for gradient descent
-        self.optimizer = torch.optim.Adam(self.network.parameters(),lr=1e-4)
+        self.optimizer = torch.optim.Adam(self.network.parameters(),lr=1e-3)
         self.loss_fn = torch.nn.MSELoss()
+        # self.loss_fn = torch.nn.SmoothL1Loss()
 
         #Experience replay memory
-        self.memory = UniformER(self.env)
+        self.memory = UniformER(self.env,n_frames=self.n_frames) 
 
     def train(self):
+        #stats
+        episode_rewards = []
+        
         for episode in range(self.n_episodes):
 
             self.memory.clear()
-            self.memory = UniformER(self.env)
-            self.epsilon = 0.9
-            
-            for j in range(32):
-                observation,reward,done,_,_ = self.env.step(1)
-                self.memory.store(observation,0,reward,done,observation)
+            self.memory = UniformER(self.env,n_frames=self.n_frames)
+            self.epsilon = 0.3
 
             observation,reward,done,_,_ = self.env.step(0)
             done = False
+            
+            # stats
+            rewards_ep = 0
             steps = 0
-            max_steps = 500
 
             #Main Training Loop
-            while not done and steps < max_steps:
+            while not done and steps < self.max_steps:
                 #Action selection and simulation
-                action = self.act(self.memory.getState())
+                # print("ACTING")
+                action = self.act(None)
                 next_observation, reward, done, _, _ = self.env.step(action)
+                
+                # stats
+                rewards_ep += reward
 
                 #experience goes into the memory
                 self.memory.store(observation,action,reward,done,next_observation)
 
                 #Network update
-                self.update() 
+                if len(self.memory) > 32:
+                    # print("UPDATING THE WEIGHTS")
+                    self.update() 
                 #Target network update
-                if steps % 100:
+                if steps % self.target_update_frequency == 0:
                     self.target_network.load_state_dict(self.network.state_dict())
 
                 observation = next_observation
                 steps = steps + 1
-                self.epsilon = self.epsilon * 0.99
+                # print("STEPS PASSED={}".format(steps))
+                self.epsilon = self.epsilon * 0.999
+                
+            episode_rewards.append(rewards_ep)
+            print("Reward {0} at episode {1} in {2} steps".format(rewards_ep, episode, steps))
 
         # save models
         self.save_models()
@@ -73,14 +88,15 @@ class Policy(nn.Module):
         #epsilon-greedy action selection
         state = self.memory.getState()
         # print("State shape {0}".format(state.shape))
-        # if (state.shape == (96,96,3)):
-        #     self.memory.preprocessing(state)
 
         if random.random() > self.epsilon:
             action = self.env.action_space.sample()
         else:
-            qvals = self.network(state)
-            action = torch.max(qvals,dim=-1)[1].item() #index of the action corresponding to the max q value
+            # print("State {0}".format(state.shape)) 
+            qvals = self.network(state).cpu()
+            # print("qvals={0}".format(qvals))
+            action = torch.argmax(qvals).item() #index of the action corresponding to the max q value
+            # print("action={0}".format(action))
         return action
     
     
@@ -101,24 +117,23 @@ class Policy(nn.Module):
         states = torch.stack(batch.state,0).to(self.device)
         next_states = torch.stack(batch.next_state,0).to(self.device)
 
-        # print(rewards[-1])
-
         #estimated q values
-        q_estimated = self.network(states)
+        q_estimated = self.network(states).cpu()
         # print("q"); print(q_estimated.shape) # (32,5)
         # print("actions"); print(actions.shape) #(32,1)
-        estimation = torch.gather(q_estimated, 0, actions) #(32,1)
+        estimation = torch.gather(q_estimated, -1, actions) #(32,1)
 
         #target q values
         with torch.no_grad():
-            q_estimated_next = self.network(next_states)
+            q_double = self.network(next_states)
             q_target = self.target_network(next_states)
 
-        # print("q_estimated_next"); print(q_estimated_next.shape) #(32,5)
-        best_actions = torch.argmax(q_estimated_next,dim=-1).reshape(-1,1)
-        # print("best action"); print(best_actions.shape) #(32,1)
-        q_target_max = torch.gather(q_target,0,best_actions)
-        # print("Q target max = {0}".format(q_target_max.shape)) #(32,1)
+        # print("q_double {0}".format(q_double)) #(32,5)
+        best_actions = torch.argmax(q_double,dim=-1).reshape(-1,1)
+        # print("best actions"); print(best_actions) #(32,1)
+        q_target_max = torch.gather(q_target,-1,best_actions)
+        # print("Q target = {0}".format(q_target)) #(32,1)
+        # print("Q target max = {0}".format(q_target_max)) #(32,1)
         # q_target_max = torch.max(q_next, dim=-1)[0].reshape(-1, 1)
 
         target = rewards + (1 - dones)*self.gamma*q_target_max
