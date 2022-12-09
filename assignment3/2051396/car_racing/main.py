@@ -17,9 +17,7 @@ def evaluate(env=None, n_episodes=5, render=True):
         total_reward = 0
         done = False
         s, _ = env.reset()
-        
-        steps = 0
-        
+                
         while not done:
             action = agent.act(s)
             
@@ -27,10 +25,7 @@ def evaluate(env=None, n_episodes=5, render=True):
             if render: env.render()
             total_reward += reward
             if done or truncated: break
-            
-            steps = steps + 1
-            print("STEPS={}".format(steps))
-        
+                    
         rewards.append(total_reward)
         
     print('Mean Reward:', np.mean(rewards))

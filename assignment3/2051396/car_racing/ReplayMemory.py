@@ -26,16 +26,16 @@ class UniformER:
         env.reset()
         observation,reward,done,_,_ = env.step(0)
         for i in range(n_frames):
-            self.state.append(self.preprocessing(observation).to(self.device))
-            self.next_state.append(self.preprocessing(observation).to(self.device))
-        self.store(observation,0,reward,done,observation)
+            self.addObservation(observation)
+            self.addNextObservation(observation)
+        self.store(self.getState(),0,reward,done,self.getNextState())
 
     def sample_batch(self, batch_size=32):
         transitions = random.sample(self.buffer,batch_size) #that's a list
         batch = self.transition(*zip(*transitions)) #that's a gigantic transition in which every element is actually a list
         return batch
 
-    def preprocessing(self, observation, vanilla=True):
+    def preprocessing(self, observation):
         '''
         Input:
             a frame, i.e. a (96,96,3)~(height,width,channels) tensor 
@@ -48,29 +48,31 @@ class UniformER:
         observation = self.gs(observation) # grayscale
         return (observation/255) # normalize
     
+    def addObservation(self,observation):
+        self.state.append(self.preprocessing(observation))
+    
+    def addNextObservation(self,next_observation):
+        self.next_state.append(self.preprocessing(next_observation))
+
     def getState(self):
-        # print(len(self.buffer))
-        state = self.buffer[-1].state.unsqueeze(0)
-        # print("State {}".format(state.shape)) 
+        state = torch.stack([observation for observation in self.state],0).squeeze()
         return state
-
+    
     def getNextState(self):
-        return self.buffer[-1].next_state
+        next_state = torch.stack([observation for observation in self.next_state],0).squeeze()
+        return next_state
 
-    def store(self,observation,action,reward,done,next_observation):
+    def store(self,state,action,reward,done,next_state):
         '''
         Add an experience
         :param args: 
-            observation(1frame),action,reward,done,next_observation(1frame)
+            observation(4frame),action,reward,done,next_observation(4frame)
         '''
-        self.state.append(self.preprocessing(observation))
-        self.next_state.append(self.preprocessing(next_observation))
-
-        # print("Single observation"); print(self.state[-1].shape)#torch.Size([1, 84, 84])
-        state = torch.stack([observation for observation in self.state],0).squeeze().to(self.device)
-        # print("Stacked observations"); print(state.shape)#torch.Size([4, 84, 84])
-        next_state = torch.stack([observation for observation in self.next_state],0).squeeze().to(self.device)
-
+        # self.addNextObservation(next_observation)
+        # # print("Single observation"); print(self.state[-1].shape)#torch.Size([1, 84, 84])
+        # state = torch.stack([observation for observation in self.state],0).squeeze()
+        # # print("Stacked observations"); print(state.shape)#torch.Size([4, 84, 84])
+        # next_state = torch.stack([observation for observation in self.next_state],0).squeeze()
         self.buffer.append(self.transition(state,action,reward,done,next_state))
 
     def burn_in_capacity(self):
@@ -80,13 +82,7 @@ class UniformER:
         return len(self.buffer) / self.memory_size
 
     def __iter__(self):
-       ''' Returns the Iterator object '''
        return iter(self.buffer)
     
     def __len__(self):
         return len(self.buffer)
-    
-    def clear(self):
-        self.buffer.clear()
-        # self.state.clear()
-        # self.next_state.clear()

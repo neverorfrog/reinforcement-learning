@@ -4,7 +4,7 @@ import torch.nn as nn
 import numpy as np
 import random
 from Network import DQN
-from ReplayMemory import UniformER
+from ReplayMemory import UniformER,PrioritizedER
 from copy import deepcopy
 
 class Policy:
@@ -19,7 +19,8 @@ class Policy:
         self.target_network = deepcopy(self.network)
 
         #Experience replay memory
-        self.memory = UniformER(self.env,n_frames=1) 
+        # self.memory = UniformER(self.env,n_frames=1) 
+        self.memory = PrioritizedER(self.env,n_frames=1)
 
     def train(self):
         #stats
@@ -32,7 +33,7 @@ class Policy:
         for i in range(10000):
             action = self.act(observation)
             next_observation, reward, done, _, _ = self.env.step(action)
-            self.memory.store(observation,action,reward,done,next_observation)
+            self.memory.store(observation,action,reward,done,next_observation,0)
             observation = next_observation.copy()
             if done: self.env.reset()
         
@@ -58,7 +59,7 @@ class Policy:
             while not done:
                 #Taking a step
                 action = self.act(self.observation)
-                #experience goes into the memory
+                #transition goes into the memory
                 next_observation, reward, done, _, _ = self.env.step(action)
                 self.memory.store(self.observation,action,reward,done,next_observation)
                 self.observation = next_observation.copy()
@@ -69,7 +70,7 @@ class Policy:
                 #Network update
                 if steps % self.network_update_frequency == 0:
                     self.update() 
-                    # losses.append(loss)
+
                 #Target network sync
                 if steps % self.target_sync_frequency == 0:
                     self.target_network.load_state_dict(self.network.state_dict())
@@ -86,10 +87,7 @@ class Policy:
         return
     
     def act(self, state):
-        #current state extraction
-        # state = self.memory.getState()
-        # print("State shape {0}".format(state.shape))
-
+        
         #epsilon greedy action selection
         with torch.no_grad():
             if random.random() <= self.epsilon:
@@ -97,37 +95,31 @@ class Policy:
             else:
                 return self.network.greedy_action(torch.FloatTensor(state))
             
-        # print("State {0}".format(state.shape)) 
-        # print("qvals={0}".format(Q))
-        # print("action={0}".format(action))
-    
     
     def update(self):
+        #Sampling and loss function
         self.network.optimizer.zero_grad()
         batch = self.memory.sample_batch()
         loss = self.calculate_loss(batch)
 
         #Backpropagation
         loss.backward()
-        # for param in self.network.parameters():
-        #     param.grad.data.clamp_(-1, 1)
         self.network.optimizer.step()
 
     def calculate_loss(self,batch):   
           
-        #transform in torch tensors
+        #Transform batch into torch tensors
         rewards = torch.FloatTensor(batch.reward).reshape(-1,1)
         actions = torch.LongTensor(batch.action).reshape(-1,1)
         dones = torch.IntTensor(batch.done).reshape(-1,1)
         states = torch.stack(batch.state)
         next_states = torch.stack(batch.next_state)
-        # print("States={}".format(states))
 
-        #estimated q values
+        #Estimate q values
         q_estimated = self.network.Q(states)
-        estimation = torch.gather(q_estimated, 1, actions) #(32,1)
+        estimations = torch.gather(q_estimated, 1, actions) #(32,1)
 
-        #target q values
+        #Target q values
         with torch.no_grad():
             q_double = self.network.Q(next_states)
             q_target = self.target_network.Q(next_states)
@@ -135,11 +127,15 @@ class Policy:
         #Double DQN
         best_actions = torch.argmax(q_double,1).reshape(-1,1)
         q_target_max = torch.gather(q_target,1,best_actions)
-        # q_target_max = torch.max(q_target, dim=-1)[0].reshape(-1,1)
-        target = rewards + (1 - dones) * self.gamma * q_target_max
+        #q_target_max = torch.max(q_target, dim=-1)[0].reshape(-1,1)
+        targets = rewards + (1 - dones) * self.gamma * q_target_max
+        
+        #Priorities
+        errors = torch.abs(targets - estimations)
+        self.memory.update_priorities(errors)
         
         #loss function
-        loss = self.loss_fn(estimation, target)
+        loss = self.loss_fn(estimations, targets)
 
         return loss
         
