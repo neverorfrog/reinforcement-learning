@@ -1,4 +1,4 @@
-from env import *
+import numpy as np
 
 '''
 - Initializtation: all actions are equiprobable in each state
@@ -8,23 +8,13 @@ we are folllowing
 function by applying the Bellman optimality operator
 '''
 
-def policy_iteration(env, gamma=0.99, iters=100):
 
-    # Initializing the states
-    STATES = np.zeros((env.num_states, 2), dtype=np.uint8)
-    REWARDS = env.reward_probabilities()
-    i = 0
-    for r in range(env.height):
-        for c in range(env.width):
-            state = np.array([r, c], dtype=np.uint8)
-            STATES[i] = state
-            i += 1
+def policy_iteration(env, gamma=0.99, iters=100):
 
     # Initializing the policy
     policy = np.zeros(env.num_states, dtype=np.int)
     values = np.zeros(env.num_states, dtype=np.float32)
     
-
     # Looping for iters iterations to find the optimal policy
     for i in range(iters):
 
@@ -41,7 +31,7 @@ def policy_iteration(env, gamma=0.99, iters=100):
             # Compute the values of the states according to the current policy
             for s in range(env.num_states):
                 # Current state
-                state = STATES[s]
+                state = env.states[s]
 
                 if (state == env.end_state).all() or i >= env.max_steps:
                     continue  # if we reach the termination condition, we cannot perform any action
@@ -50,7 +40,7 @@ def policy_iteration(env, gamma=0.99, iters=100):
                 next_state_prob = env.transition_probabilities(state, policy[s]).flatten()
                 
                 #EXPECTED UPDATE: value of current policy for the current state, bases on precedent policy on all states
-                values[s] = (next_state_prob*(REWARDS + gamma*v_old)).sum()
+                values[s] = (next_state_prob*(env.rewards + gamma*v_old)).sum()
 
                 #difference from one policy value to the other, until convergence
                 delta = max(delta, abs(values[s]-v_old[s]))
@@ -62,7 +52,7 @@ def policy_iteration(env, gamma=0.99, iters=100):
         for s in range(env.num_states):
 
             # Current state
-            state = STATES[s]
+            state = env.states[s]
 
             if (state == env.end_state).all() or i >= env.max_steps:
                 continue  # if we reach the termination condition, we cannot perform any action
@@ -76,7 +66,7 @@ def policy_iteration(env, gamma=0.99, iters=100):
                 next_state_prob = env.transition_probabilities(state, a).flatten()
                 
                 #value after selecting current action (q function)
-                va = (next_state_prob*(REWARDS + gamma*values)).sum()
+                va = (next_state_prob*(env.rewards + gamma*values)).sum()
 
                 #if, selecting this action, we get a better best value, the policy gets changed
                 if va > max_va:
@@ -92,3 +82,7 @@ def policy_iteration(env, gamma=0.99, iters=100):
             break
 
     return policy.reshape(env.height, env.width)
+
+
+if __name__ == "__main__":
+    print("hi")

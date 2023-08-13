@@ -1,4 +1,4 @@
-from env import *
+from tools.gridworld import *
     
 '''
 - What we do in value iteration is that we continuously apply the Bellman optimality operator

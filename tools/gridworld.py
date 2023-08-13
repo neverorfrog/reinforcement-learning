@@ -1,7 +1,9 @@
 import random
+from typing import Any
 import numpy as np
 import gymnasium as gym
 from gymnasium import spaces
+from tabulate import tabulate
 
 
 # custom 2d grid world enviroment
@@ -20,7 +22,7 @@ class GridWorld(gym.Env):
         
         # action space of agents : up, down, left and right
         self.ACTION_NAMES = ["UP", "LEFT", "DOWN", "RIGHT"]
-        self.num_actions = 4
+        self.num_actions = len(self.ACTION_NAMES)
         self.action_space = spaces.Discrete(self.num_actions)
         
         #agent space
@@ -30,8 +32,10 @@ class GridWorld(gym.Env):
         self.height = height
         self.observation_space = spaces.MultiDiscrete([self.height, self.width])
         
+
         #obstacles in the grid world
-        self.num_obstacles = int((width+height)/2)
+        self.num_obstacles = int((width))
+        # self.num_obstacles = 1
         self.obstacles = np.zeros((height, width))
         for i in range(self.num_obstacles):
             self.obstacles[ random.randrange(height) , random.randrange(width)] = 1
@@ -44,14 +48,34 @@ class GridWorld(gym.Env):
         #End state situation
         self.end_state = np.array([height - 1, width - 1], dtype=np.uint8) # goal state = bottom right cell
         self.max_steps = height*width
+        
+        # Initializing the states and actions
+        self.states = np.zeros((self.num_states, 2), dtype=np.uint8)
+        self.rewards = self.reward_probabilities()
+        i = 0
+        for r in range(height):
+            for c in range(width):
+                state = np.array([r, c], dtype=np.uint8)
+                self.states[i] = state
+                i += 1
 
         self.directions = np.array([
             [-1,0], #UP
             [0,-1], #LEFT
             [1,0], #DOWN
-            [0,1] #RIGHT
+            [0,1], #RIGHT
         ])
         
+        self.symbols = np.array([
+            "^",
+            "<",
+            "v",
+            ">",
+        ])
+        
+    def __call__(self, *args: Any, **kwds: Any) -> Any:
+        return self.__init__(*args, **kwds)
+ 
     def step(self, action):
         s_prime = self.transition_function(self.current_state, action)
         reward = self.reward_function(s_prime)
@@ -73,7 +97,7 @@ class GridWorld(gym.Env):
         return s
     
     def reward_function(self,s):
-        '''Returns 1 only if the agnet is in the end state'''
+        '''Returns 1 only if the agent is in the end state'''
         r = 0
         if (s == self.end_state).all(): r = 1
         return r
@@ -107,9 +131,20 @@ class GridWorld(gym.Env):
                         print('|___', end='')
             print('|')
         print('\n')
+        
+    def renderpolicy(self, policy):
+        '''
+            render the policy
+        '''
+        for r in range(self.height):
+            for c in range(self.width):
+                print(f"| {self.symbols[policy[r,c]]} ", end='')
+            print('|')
+        print('\n')
 
     def reset(self):
         self.current_state = np.zeros((2), np.uint8)
+        self.num_steps = 0
         return self.current_state
 
     def reward_probabilities(self):
@@ -125,6 +160,10 @@ class GridWorld(gym.Env):
 
     def close(self):
         pass
+    
+    def state2index(self, state):
+        offset = state[0] * self.width 
+        return offset + state[1]
     
     
        
