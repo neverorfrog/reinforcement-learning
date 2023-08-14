@@ -4,7 +4,6 @@ def montecarlo(env, gamma = 0.99, epochs = 3, steps = 100):
     
     # Initializing the states
     states = np.zeros((env.num_states, 2), dtype=np.uint8)
-    rewards = env.reward_probabilities()
     i = 0
     for r in range(env.height):
         for c in range(env.width):
@@ -19,7 +18,6 @@ def montecarlo(env, gamma = 0.99, epochs = 3, steps = 100):
     for epoch in range(epochs):
         #Generate a complete episode
         episode = []
-        rewards = []
         new_state = env.reset()
         for step in range(steps):
             state = new_state

@@ -1,15 +1,20 @@
 import random
 import numpy as np
+from tools.plotting import *
+import gymnasium as gym
 
 
-def sarsa(env, epochs, alpha = 0.01, eps = 0.5, gamma = 0.99):
+def sarsa(env: gym.Env, episodes: int, alpha: float = 0.1, eps: float = 0.2, gamma: float = 0.99):
     # Initializing the policy randomly (Q incarnates the policy right now because we choos the action maximising the action-value)
-    action_values = np.random.rand(env.num_states, env.num_actions)
-    action_values[-1,:] = np.zeros((1, env.num_actions))
+    board = ProgressBoard(episodes)
+    num_states = env.observation_space.n
+    num_actions = env.action_space.n
+    action_values = np.zeros((num_states, num_actions))
         
-    for epoch in range(epochs):
-        new_state = env.state2index(env.reset()) #initialize S
+    for episode in range(episodes):
+        new_state = env.reset()[0] #initialize S: state from reset is a tuple
         new_action = np.argmax(action_values[new_state,:]) #take greedy action
+        total_reward = 0
 
         terminated = False
         while not terminated:
@@ -18,22 +23,23 @@ def sarsa(env, epochs, alpha = 0.01, eps = 0.5, gamma = 0.99):
             action = new_action
             
             #Step in the MDP
-            new_state, reward, terminated, _ = env.step(action)
-            new_state = env.state2index(new_state)
+            new_state, reward, terminated, truncated, info = env.step(action)
+            total_reward += reward
             
             #Estimation of the action-value when selecting an eps-greedy action and then following the same policy afterwards (ON POLICY) 
-            new_action = eps_greedy(eps, action_values, new_state)
+            new_action = eps_greedy(eps, action_values, new_state)            
             old_estimate = action_values[state,action]
             target = reward + gamma*action_values[new_state, new_action]
             action_values[state,action] = old_estimate + alpha*(target - old_estimate)
-    
+        
+        board.draw(episode, total_reward, "reward", every_n = 10)
+        
     policy = np.argmax(action_values, axis = 1)
-    policy = policy.reshape(env.height, env.width)
     
     return policy, action_values
 
 def eps_greedy(eps, action_values, state):
-    if random.random() < eps:
+    if random.random() > eps:
         return np.argmax(action_values[state,:]) 
     else:
         return random.randint(0,3)
