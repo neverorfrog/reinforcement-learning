@@ -35,7 +35,7 @@ class CliffWalkingEnv(discrete.DiscreteEnv):
         nA = 4
 
         # Cliff Location
-        self._cliff = np.zeros(self.shape, dtype=np.bool)
+        self._cliff = np.zeros(self.shape, dtype=bool)
         self._cliff[3, 1:-1] = True
 
         # Calculate transition probabilities

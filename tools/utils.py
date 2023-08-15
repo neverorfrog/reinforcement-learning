@@ -1,22 +1,50 @@
 import numpy as np
 
 
-def test(env, policy, episodes = 5):
+def make_epsilon_greedy_policy(Q, epsilon, nA):
+    """
+    Creates an epsilon-greedy policy based on a given Q-function and epsilon.
     
-    rewards = []
-    for i in range(episodes):
-        print(f"Starting game {i+1}")
+    Args:
+        Q: A dictionary that maps from state -> action-values.
+            Each value is a numpy array of length nA (see below)
+        epsilon: The probability to select a random action. Float between 0 and 1.
+        nA: Number of actions in the environment.
+    
+    Returns:
+        A function that takes the observation as an argument and returns
+        the probabilities for each action in the form of a numpy array of length nA.
+    
+    """
+    def policy_fn(observation):
+        A = np.ones(nA, dtype=float) * epsilon / nA
+        best_action = np.argmax(Q[observation])
+        A[best_action] += (1.0 - epsilon)
+        return A
+    return policy_fn
+
+def test_policy(env, policy, render:bool = True, episodes = 5, max_steps: int = 100):
+    
+    mean_reward = 0.
+    
+    for i in range(1, episodes+1):
+        if render: print(f"Starting game {i}")
 
         state = env.reset()[0]
-        total_reward = 0.
+        
         terminated = False
-        truncated = False
-        while not terminated or truncated:
+        total_reward = 0
+        steps = 0
+        
+        while not terminated and steps < max_steps:
             action = policy[state]
             state, reward, terminated, truncated, info = env.step(action)
             total_reward += reward
-            env.render()
-        print("\tTotal Reward:", total_reward)
-        rewards.append(total_reward)
+            if render: env.render()
+            steps += 1
+            
+        if render: print("\tTotal Reward:", total_reward)
+        mean_reward = mean_reward + (1/i)*(total_reward - mean_reward)
 
-    print("Mean Reward: ", np.mean(rewards))
+    if render: print("Mean Reward: ", mean_reward)
+    return mean_reward

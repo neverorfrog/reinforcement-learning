@@ -1,8 +1,8 @@
 import numpy as np
 
-from gym import Env, spaces
-from gym.utils import seeding
-from gym.envs.toy_text.utils import categorical_sample
+from gymnasium import Env, spaces
+from gymnasium.utils import seeding
+from gymnasium.envs.toy_text.utils import categorical_sample
 
 class DiscreteEnv(Env):
 
