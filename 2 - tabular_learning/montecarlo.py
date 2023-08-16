@@ -1,5 +1,19 @@
 import numpy as np
 
+'''
+Unknown model
+- In dynamic programming we had the model, here we don't
+- It means that in the Bellman equation (page 59) we don't have the transition probabilities and the value for s'
+- What we do is sampling the return instead of explicitly computing it
+
+How do we sample the return?
+- We do a big number of episodes, generating the entire episode
+- After that, we iterate over the state-action pairs backwards in time
+- Every time we encounter a state-action pair, we sample its return by summing the rewards
+- For eache state-action pair, there is an entry in a tensor of shape (#ep, #states, #actions)
+- We then estimate the value of a state-action pair by averaging along the first dimension of the tensor
+'''
+
 def montecarlo(env, gamma = 0.99, epochs = 3, steps = 100):
     
     # Initializing the states

@@ -161,6 +161,65 @@ def double_qlearning(env: gym.Env, episodes: int, alpha: float = 0.7, eps: float
     return policy
 
 
+def sarsa_lambda(env, alpha=0.2, gamma=0.99, lambda_= 0.8, initial_epsilon=1.0, n_episodes=5000):
+
+    ####### Hyperparameters
+    # alpha = learning rate
+    # gamma = discount factor
+    # lambda_ = elegibility trace decay
+    # initial_epsilon = initial epsilon value
+    # n_episodes = number of episodes
+
+    Q = np.random.rand(env.observation_space.n, env.action_space.n)
+    policy = make_epsilon_greedy_policy(Q, initial_epsilon, env.action_space.n)
+    num_states = env.observation_space.n
+    num_actions = env.action_space.n
+
+    # init epsilon
+    epsilon = initial_epsilon
+    received_first_reward = False
+
+
+    for ep in range(n_episodes+1):
+
+        E = np.zeros((env.observation_space.n, env.action_space.n))
+
+        state, _ = env.reset()
+        action = np.random.choice(np.arange(num_actions), p = policy(state))
+        done = False
+
+        #cycling through the current episode
+        while not done:
+
+            #simulate the action
+            new_state, reward, done, info, _ = env.step(action)
+            total_reward += reward
+            
+            #update q table and eligibility (backward) for current state and action
+            new_action = np.random.choice(np.arange(num_actions), p = policy(state))
+            td_error = reward + (1-done)*gamma*Q[new_state,new_action] - Q[state,action]
+            E[state,action] += 1
+            Q = Q + alpha * td_error * E
+
+            if not received_first_reward and reward > 0:
+                received_first_reward = True
+
+            #update of the eligibility traces
+            E = E * gamma * lambda_
+
+            # update current state and action
+            state = new_state
+            action = new_action
+
+        # update current epsilon
+        if received_first_reward:
+            epsilon = 0.99 * epsilon
+            
+    policy = np.argmax(Q, axis = 1)
+    
+    return policy
+
+
 
 def test_policy(env, policy, episodes = 5):
     mean_reward = 0.

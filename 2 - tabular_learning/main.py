@@ -1,6 +1,4 @@
-import sys
-sys.path.insert(0,"..")
-from algorithms import *
+import TD as td
 import gymnasium as gym
 from tools.utils import *
 from tools.plotting import *
@@ -9,10 +7,10 @@ from tools.plotting import *
 env = gym.make('CliffWalking-v0')
 episodes = 80
 board = ProgressBoard(episodes, n = max(episodes / 100, 1))
-policy1 = qlearning(env, episodes, eps = 0.8, board = board)
-policy2 = sarsa(env, episodes, eps = 0.8, board = board)
-policy3 = expected_sarsa(env, episodes, eps = 0.8, board = board)
-policy4 = double_qlearning(env, episodes, eps = 0.8, board = board)
+policy1 = td.qlearning(env, episodes, eps = 0.8, board = board)
+policy2 = td.sarsa(env, episodes, eps = 0.8, board = board)
+policy3 = td.expected_sarsa(env, episodes, eps = 0.8, board = board)
+policy4 = td.double_qlearning(env, episodes, eps = 0.8, board = board)
 
 #Testing
 env = gym.make('CliffWalking-v0', render_mode = "human")
