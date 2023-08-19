@@ -1,9 +1,8 @@
 import numpy as np
-import random
 import gymnasium as gym
 from tools.plotting import ProgressBoard
+from encoder import *
 from tools.agent import *
-from tools.encoders import *
 
     
 class Qlearning(Agent):
@@ -55,7 +54,7 @@ class TDLambda(Agent):
 if __name__ == "__main__":
     # env = gym.make('CliffWalking-v0')
     env = gym.make("MountainCar-v0", render_mode = "rgb_array")
-    n_episodes = 2
+    n_episodes = 90
     board = ProgressBoard(n_episodes, n = max(n_episodes / 100, 1))
     encoder = RBFFeatureEncoder(env)
     Q = Estimator(env, encoder)

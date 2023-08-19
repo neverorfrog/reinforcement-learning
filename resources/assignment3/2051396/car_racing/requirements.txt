@@ -1,0 +1,6 @@
+numpy
+scipy
+gym
+gym[box2d]
+sklearn
+torch

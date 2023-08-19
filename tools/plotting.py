@@ -2,18 +2,8 @@ from matplotlib import pyplot as plt
 import collections
 from IPython import display
 from matplotlib_inline import backend_inline
-import numpy as np
-import inspect
+from tools.utils import *
 
-class HyperParameters:
-    def save_hyperparameters(self, ignore=[]):
-        """Save function arguments into class attributes"""
-        frame = inspect.currentframe().f_back
-        _, _, _, local_vars = inspect.getargvalues(frame)
-        self.hparams = {k:v for k, v in local_vars.items()
-                        if k not in set(ignore+['self']) and not k.startswith('_')}
-        for k, v in self.hparams.items():
-            setattr(self, k, v)
 
 class ProgressBoard(HyperParameters):
     """The board that plots data points in animation."""

@@ -1,5 +1,34 @@
 import numpy as np
+import inspect
+import torch
 
+class HyperParameters:
+    def save_hyperparameters(self, ignore=[]):
+        """Save function arguments into class attributes"""
+        frame = inspect.currentframe().f_back
+        _, _, _, local_vars = inspect.getargvalues(frame)
+        self.hparams = {k:v for k, v in local_vars.items()
+                        if k not in set(ignore+['self']) and not k.startswith('_')}
+        for k, v in self.hparams.items():
+            setattr(self, k, v)
+            
+class EpsGreedyPolicy:
+    """Creates an epsilon-greedy policy based on a given Q-function and epsilon."""
+    def __init__(self, Q, eps, num_actions):
+        self.Q = Q
+        self.eps = eps
+        self.num_actions = num_actions
+        
+    def action_probs(self, state):
+        action_p = np.ones(self.num_actions, dtype=float) * self.eps / self.num_actions
+        with torch.no_grad(): best_action = torch.argmax(self.Q(state))
+        action_p[best_action] += (1.0 - self.eps)
+        return action_p
+        
+    def __call__(self, state):
+        probs = self.action_probs(state)
+        actions = np.arange(self.num_actions, dtype = int)
+        return np.random.choice(actions, p = probs)
 
 def make_epsilon_greedy_policy(Q, epsilon, nA):
     """

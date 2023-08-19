@@ -1,15 +1,5 @@
 import numpy as np
-
-class FeatureEncoder:
-    def __init__(self, env):
-        self.env = env
-        
-    def __call__(self, state):
-        return state
-    
-    @property
-    def size(self):
-        return self.env.observation_space.shape[0]
+from tools.utils import *
 
 class RBFFeatureEncoder:
     def __init__(self, env): # modify
@@ -88,3 +78,5 @@ class RBFFeatureEncoder:
     @property
     def size(self): # modify
         return self.n #n is the number of features
+    
+
