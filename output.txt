@@ -1,1023 +1,0 @@
-Episode 1 Mean Reward: 77.00 Ep_Reward: 77.0 Mean Loss: 1.15		
-Episode 2 Mean Reward: 44.00 Ep_Reward: 11.0 Mean Loss: 0.85		
-Episode 3 Mean Reward: 35.00 Ep_Reward: 17.0 Mean Loss: 0.69		
-Episode 4 Mean Reward: 31.75 Ep_Reward: 22.0 Mean Loss: 0.65		
-Episode 5 Mean Reward: 29.60 Ep_Reward: 21.0 Mean Loss: 0.60		
-Episode 6 Mean Reward: 26.67 Ep_Reward: 12.0 Mean Loss: 0.53		
-Episode 7 Mean Reward: 27.71 Ep_Reward: 34.0 Mean Loss: 0.51		
-Episode 8 Mean Reward: 26.25 Ep_Reward: 16.0 Mean Loss: 0.46		
-Episode 9 Mean Reward: 24.67 Ep_Reward: 12.0 Mean Loss: 0.42		
-Episode 10 Mean Reward: 23.80 Ep_Reward: 16.0 Mean Loss: 0.39		
-Episode 11 Mean Reward: 23.00 Ep_Reward: 15.0 Mean Loss: 0.37		
-Episode 12 Mean Reward: 22.50 Ep_Reward: 17.0 Mean Loss: 0.34		
-Episode 13 Mean Reward: 21.92 Ep_Reward: 15.0 Mean Loss: 0.32		
-Episode 14 Mean Reward: 22.64 Ep_Reward: 32.0 Mean Loss: 0.32		
-Episode 15 Mean Reward: 23.20 Ep_Reward: 31.0 Mean Loss: 0.31		
-Episode 16 Mean Reward: 23.56 Ep_Reward: 29.0 Mean Loss: 0.30		
-Episode 17 Mean Reward: 23.82 Ep_Reward: 28.0 Mean Loss: 0.29		
-Episode 18 Mean Reward: 23.83 Ep_Reward: 24.0 Mean Loss: 0.28		
-Episode 19 Mean Reward: 23.68 Ep_Reward: 21.0 Mean Loss: 0.27		
-Episode 20 Mean Reward: 23.70 Ep_Reward: 24.0 Mean Loss: 0.26		
-Episode 21 Mean Reward: 23.10 Ep_Reward: 11.0 Mean Loss: 0.25		
-Episode 22 Mean Reward: 23.09 Ep_Reward: 23.0 Mean Loss: 0.25		
-Episode 23 Mean Reward: 22.57 Ep_Reward: 11.0 Mean Loss: 0.24		
-Episode 24 Mean Reward: 22.17 Ep_Reward: 13.0 Mean Loss: 0.23		
-Episode 25 Mean Reward: 21.68 Ep_Reward: 10.0 Mean Loss: 0.22		
-Episode 26 Mean Reward: 21.23 Ep_Reward: 10.0 Mean Loss: 0.22		
-Episode 27 Mean Reward: 20.93 Ep_Reward: 13.0 Mean Loss: 0.21		
-Episode 28 Mean Reward: 20.61 Ep_Reward: 12.0 Mean Loss: 0.20		
-Episode 29 Mean Reward: 20.34 Ep_Reward: 13.0 Mean Loss: 0.20		
-Episode 30 Mean Reward: 20.13 Ep_Reward: 14.0 Mean Loss: 0.19		
-Episode 31 Mean Reward: 19.77 Ep_Reward: 9.0 Mean Loss: 0.19		
-Episode 32 Mean Reward: 19.50 Ep_Reward: 11.0 Mean Loss: 0.18		
-Episode 33 Mean Reward: 19.61 Ep_Reward: 23.0 Mean Loss: 0.18		
-Episode 34 Mean Reward: 19.53 Ep_Reward: 17.0 Mean Loss: 0.18		
-Episode 35 Mean Reward: 19.43 Ep_Reward: 16.0 Mean Loss: 0.17		
-Episode 36 Mean Reward: 19.50 Ep_Reward: 22.0 Mean Loss: 0.17		
-Episode 37 Mean Reward: 19.30 Ep_Reward: 12.0 Mean Loss: 0.17		
-Episode 38 Mean Reward: 19.03 Ep_Reward: 9.0 Mean Loss: 0.16		
-Episode 39 Mean Reward: 18.90 Ep_Reward: 14.0 Mean Loss: 0.16		
-Episode 40 Mean Reward: 18.82 Ep_Reward: 16.0 Mean Loss: 0.16		
-Episode 41 Mean Reward: 18.66 Ep_Reward: 12.0 Mean Loss: 0.15		
-Episode 42 Mean Reward: 18.76 Ep_Reward: 23.0 Mean Loss: 0.15		
-Episode 43 Mean Reward: 18.67 Ep_Reward: 15.0 Mean Loss: 0.15		
-Episode 44 Mean Reward: 18.59 Ep_Reward: 15.0 Mean Loss: 0.15		
-Episode 45 Mean Reward: 18.40 Ep_Reward: 10.0 Mean Loss: 0.15		
-Episode 46 Mean Reward: 18.37 Ep_Reward: 17.0 Mean Loss: 0.14		
-Episode 47 Mean Reward: 18.36 Ep_Reward: 18.0 Mean Loss: 0.14		
-Episode 48 Mean Reward: 18.21 Ep_Reward: 11.0 Mean Loss: 0.14		
-Episode 49 Mean Reward: 18.06 Ep_Reward: 11.0 Mean Loss: 0.14		
-Episode 50 Mean Reward: 18.16 Ep_Reward: 23.0 Mean Loss: 0.14		
-Episode 51 Mean Reward: 16.94 Ep_Reward: 16.0 Mean Loss: 0.12		
-Episode 52 Mean Reward: 17.16 Ep_Reward: 22.0 Mean Loss: 0.11		
-Episode 53 Mean Reward: 17.14 Ep_Reward: 16.0 Mean Loss: 0.10		
-Episode 54 Mean Reward: 16.96 Ep_Reward: 13.0 Mean Loss: 0.09		
-Episode 55 Mean Reward: 16.90 Ep_Reward: 18.0 Mean Loss: 0.09		
-Episode 56 Mean Reward: 16.86 Ep_Reward: 10.0 Mean Loss: 0.09		
-Episode 57 Mean Reward: 16.52 Ep_Reward: 17.0 Mean Loss: 0.08		
-Episode 58 Mean Reward: 16.48 Ep_Reward: 14.0 Mean Loss: 0.08		
-Episode 59 Mean Reward: 16.48 Ep_Reward: 12.0 Mean Loss: 0.08		
-Episode 60 Mean Reward: 16.36 Ep_Reward: 10.0 Mean Loss: 0.08		
-Episode 61 Mean Reward: 16.42 Ep_Reward: 18.0 Mean Loss: 0.08		
-Episode 62 Mean Reward: 16.44 Ep_Reward: 18.0 Mean Loss: 0.07		
-Episode 63 Mean Reward: 16.34 Ep_Reward: 10.0 Mean Loss: 0.07		
-Episode 64 Mean Reward: 15.94 Ep_Reward: 12.0 Mean Loss: 0.07		
-Episode 65 Mean Reward: 15.52 Ep_Reward: 10.0 Mean Loss: 0.07		
-Episode 66 Mean Reward: 15.12 Ep_Reward: 9.0 Mean Loss: 0.07		
-Episode 67 Mean Reward: 14.74 Ep_Reward: 9.0 Mean Loss: 0.06		
-Episode 68 Mean Reward: 14.44 Ep_Reward: 9.0 Mean Loss: 0.06		
-Episode 69 Mean Reward: 14.42 Ep_Reward: 20.0 Mean Loss: 0.06		
-Episode 70 Mean Reward: 14.34 Ep_Reward: 20.0 Mean Loss: 0.06		
-Episode 71 Mean Reward: 14.46 Ep_Reward: 17.0 Mean Loss: 0.06		
-Episode 72 Mean Reward: 14.22 Ep_Reward: 11.0 Mean Loss: 0.06		
-Episode 73 Mean Reward: 14.22 Ep_Reward: 11.0 Mean Loss: 0.06		
-Episode 74 Mean Reward: 14.22 Ep_Reward: 13.0 Mean Loss: 0.07		
-Episode 75 Mean Reward: 14.28 Ep_Reward: 13.0 Mean Loss: 0.07		
-Episode 76 Mean Reward: 14.26 Ep_Reward: 9.0 Mean Loss: 0.07		
-Episode 77 Mean Reward: 14.28 Ep_Reward: 14.0 Mean Loss: 0.07		
-Episode 78 Mean Reward: 14.36 Ep_Reward: 16.0 Mean Loss: 0.07		
-Episode 79 Mean Reward: 14.42 Ep_Reward: 16.0 Mean Loss: 0.07		
-Episode 80 Mean Reward: 14.44 Ep_Reward: 15.0 Mean Loss: 0.07		
-Episode 81 Mean Reward: 14.54 Ep_Reward: 14.0 Mean Loss: 0.07		
-Episode 82 Mean Reward: 14.56 Ep_Reward: 12.0 Mean Loss: 0.07		
-Episode 83 Mean Reward: 14.28 Ep_Reward: 9.0 Mean Loss: 0.07		
-Episode 84 Mean Reward: 14.22 Ep_Reward: 14.0 Mean Loss: 0.07		
-Episode 85 Mean Reward: 14.26 Ep_Reward: 18.0 Mean Loss: 0.07		
-Episode 86 Mean Reward: 14.00 Ep_Reward: 9.0 Mean Loss: 0.07		
-Episode 87 Mean Reward: 13.98 Ep_Reward: 11.0 Mean Loss: 0.07		
-Episode 88 Mean Reward: 13.98 Ep_Reward: 9.0 Mean Loss: 0.07		
-Episode 89 Mean Reward: 14.02 Ep_Reward: 16.0 Mean Loss: 0.07		
-Episode 90 Mean Reward: 13.98 Ep_Reward: 14.0 Mean Loss: 0.07		
-Episode 91 Mean Reward: 13.92 Ep_Reward: 9.0 Mean Loss: 0.07		
-Episode 92 Mean Reward: 13.76 Ep_Reward: 15.0 Mean Loss: 0.07		
-Episode 93 Mean Reward: 13.78 Ep_Reward: 16.0 Mean Loss: 0.07		
-Episode 94 Mean Reward: 13.70 Ep_Reward: 11.0 Mean Loss: 0.07		
-Episode 95 Mean Reward: 13.76 Ep_Reward: 13.0 Mean Loss: 0.07		
-Episode 96 Mean Reward: 13.74 Ep_Reward: 16.0 Mean Loss: 0.07		
-Episode 97 Mean Reward: 13.62 Ep_Reward: 12.0 Mean Loss: 0.08		
-Episode 98 Mean Reward: 13.64 Ep_Reward: 12.0 Mean Loss: 0.08		
-Episode 99 Mean Reward: 13.62 Ep_Reward: 10.0 Mean Loss: 0.08		
-Episode 100 Mean Reward: 13.40 Ep_Reward: 12.0 Mean Loss: 0.08		
-Episode 101 Mean Reward: 13.26 Ep_Reward: 9.0 Mean Loss: 0.08		
-Episode 102 Mean Reward: 13.02 Ep_Reward: 10.0 Mean Loss: 0.07		
-Episode 103 Mean Reward: 13.00 Ep_Reward: 15.0 Mean Loss: 0.07		
-Episode 104 Mean Reward: 13.00 Ep_Reward: 13.0 Mean Loss: 0.07		
-Episode 105 Mean Reward: 12.90 Ep_Reward: 13.0 Mean Loss: 0.07		
-Episode 106 Mean Reward: 12.94 Ep_Reward: 12.0 Mean Loss: 0.07		
-Episode 107 Mean Reward: 12.82 Ep_Reward: 11.0 Mean Loss: 0.07		
-Episode 108 Mean Reward: 12.70 Ep_Reward: 8.0 Mean Loss: 0.07		
-Episode 109 Mean Reward: 12.72 Ep_Reward: 13.0 Mean Loss: 0.07		
-Episode 110 Mean Reward: 12.74 Ep_Reward: 11.0 Mean Loss: 0.07		
-Episode 111 Mean Reward: 12.66 Ep_Reward: 14.0 Mean Loss: 0.07		
-Episode 112 Mean Reward: 12.68 Ep_Reward: 19.0 Mean Loss: 0.07		
-Episode 113 Mean Reward: 12.70 Ep_Reward: 11.0 Mean Loss: 0.07		
-Episode 114 Mean Reward: 12.70 Ep_Reward: 12.0 Mean Loss: 0.07		
-Episode 115 Mean Reward: 12.74 Ep_Reward: 12.0 Mean Loss: 0.07		
-Episode 116 Mean Reward: 12.78 Ep_Reward: 11.0 Mean Loss: 0.08		
-Episode 117 Mean Reward: 12.84 Ep_Reward: 12.0 Mean Loss: 0.08		
-Episode 118 Mean Reward: 12.84 Ep_Reward: 9.0 Mean Loss: 0.08		
-Episode 119 Mean Reward: 12.70 Ep_Reward: 13.0 Mean Loss: 0.08		
-Episode 120 Mean Reward: 12.56 Ep_Reward: 13.0 Mean Loss: 0.07		
-Episode 121 Mean Reward: 12.44 Ep_Reward: 11.0 Mean Loss: 0.07		
-Episode 122 Mean Reward: 12.50 Ep_Reward: 14.0 Mean Loss: 0.07		
-Episode 123 Mean Reward: 12.46 Ep_Reward: 9.0 Mean Loss: 0.07		
-Episode 124 Mean Reward: 12.46 Ep_Reward: 13.0 Mean Loss: 0.07		
-Episode 125 Mean Reward: 12.42 Ep_Reward: 11.0 Mean Loss: 0.07		
-Episode 126 Mean Reward: 12.44 Ep_Reward: 10.0 Mean Loss: 0.07		
-Episode 127 Mean Reward: 12.38 Ep_Reward: 11.0 Mean Loss: 0.07		
-Episode 128 Mean Reward: 12.24 Ep_Reward: 9.0 Mean Loss: 0.07		
-Episode 129 Mean Reward: 12.18 Ep_Reward: 13.0 Mean Loss: 0.07		
-Episode 130 Mean Reward: 12.12 Ep_Reward: 12.0 Mean Loss: 0.07		
-Episode 131 Mean Reward: 12.08 Ep_Reward: 12.0 Mean Loss: 0.07		
-Episode 132 Mean Reward: 12.06 Ep_Reward: 11.0 Mean Loss: 0.07		
-Episode 133 Mean Reward: 12.08 Ep_Reward: 10.0 Mean Loss: 0.08		
-Episode 134 Mean Reward: 11.98 Ep_Reward: 9.0 Mean Loss: 0.08		
-Episode 135 Mean Reward: 12.02 Ep_Reward: 20.0 Mean Loss: 0.08		
-Episode 136 Mean Reward: 12.08 Ep_Reward: 12.0 Mean Loss: 0.08		
-Episode 137 Mean Reward: 12.06 Ep_Reward: 10.0 Mean Loss: 0.08		
-Episode 138 Mean Reward: 12.06 Ep_Reward: 9.0 Mean Loss: 0.08		
-Episode 139 Mean Reward: 11.96 Ep_Reward: 11.0 Mean Loss: 0.08		
-Episode 140 Mean Reward: 11.86 Ep_Reward: 9.0 Mean Loss: 0.08		
-Episode 141 Mean Reward: 11.86 Ep_Reward: 9.0 Mean Loss: 0.08		
-Episode 142 Mean Reward: 11.78 Ep_Reward: 11.0 Mean Loss: 0.08		
-Episode 143 Mean Reward: 11.62 Ep_Reward: 8.0 Mean Loss: 0.08		
-Episode 144 Mean Reward: 11.60 Ep_Reward: 10.0 Mean Loss: 0.08		
-Episode 145 Mean Reward: 11.54 Ep_Reward: 10.0 Mean Loss: 0.08		
-Episode 146 Mean Reward: 11.42 Ep_Reward: 10.0 Mean Loss: 0.08		
-Episode 147 Mean Reward: 11.46 Ep_Reward: 14.0 Mean Loss: 0.08		
-Episode 148 Mean Reward: 11.42 Ep_Reward: 10.0 Mean Loss: 0.08		
-Episode 149 Mean Reward: 11.38 Ep_Reward: 8.0 Mean Loss: 0.08		
-Episode 150 Mean Reward: 11.34 Ep_Reward: 10.0 Mean Loss: 0.08		
-Episode 151 Mean Reward: 11.36 Ep_Reward: 10.0 Mean Loss: 0.08		
-Episode 152 Mean Reward: 11.34 Ep_Reward: 9.0 Mean Loss: 0.08		
-Episode 153 Mean Reward: 11.24 Ep_Reward: 10.0 Mean Loss: 0.08		
-Episode 154 Mean Reward: 11.16 Ep_Reward: 9.0 Mean Loss: 0.08		
-Episode 155 Mean Reward: 11.18 Ep_Reward: 14.0 Mean Loss: 0.08		
-Episode 156 Mean Reward: 11.16 Ep_Reward: 11.0 Mean Loss: 0.08		
-Episode 157 Mean Reward: 11.12 Ep_Reward: 9.0 Mean Loss: 0.08		
-Episode 158 Mean Reward: 11.20 Ep_Reward: 12.0 Mean Loss: 0.08		
-Episode 159 Mean Reward: 11.12 Ep_Reward: 9.0 Mean Loss: 0.08		
-Episode 160 Mean Reward: 11.08 Ep_Reward: 9.0 Mean Loss: 0.07		
-Episode 161 Mean Reward: 11.00 Ep_Reward: 10.0 Mean Loss: 0.07		
-Episode 162 Mean Reward: 10.82 Ep_Reward: 10.0 Mean Loss: 0.08		
-Episode 163 Mean Reward: 10.80 Ep_Reward: 10.0 Mean Loss: 0.08		
-Episode 164 Mean Reward: 10.86 Ep_Reward: 15.0 Mean Loss: 0.08		
-Episode 165 Mean Reward: 10.86 Ep_Reward: 12.0 Mean Loss: 0.08		
-Episode 166 Mean Reward: 10.82 Ep_Reward: 9.0 Mean Loss: 0.08		
-Episode 167 Mean Reward: 10.80 Ep_Reward: 11.0 Mean Loss: 0.08		
-Episode 168 Mean Reward: 10.84 Ep_Reward: 11.0 Mean Loss: 0.08		
-Episode 169 Mean Reward: 10.76 Ep_Reward: 9.0 Mean Loss: 0.08		
-Episode 170 Mean Reward: 10.70 Ep_Reward: 10.0 Mean Loss: 0.08		
-Episode 171 Mean Reward: 10.68 Ep_Reward: 10.0 Mean Loss: 0.09		
-Episode 172 Mean Reward: 10.60 Ep_Reward: 10.0 Mean Loss: 0.09		
-Episode 173 Mean Reward: 10.60 Ep_Reward: 9.0 Mean Loss: 0.09		
-Episode 174 Mean Reward: 10.54 Ep_Reward: 10.0 Mean Loss: 0.09		
-Episode 175 Mean Reward: 10.52 Ep_Reward: 10.0 Mean Loss: 0.09		
-Episode 176 Mean Reward: 10.50 Ep_Reward: 9.0 Mean Loss: 0.08		
-Episode 177 Mean Reward: 10.48 Ep_Reward: 10.0 Mean Loss: 0.08		
-Episode 178 Mean Reward: 10.48 Ep_Reward: 9.0 Mean Loss: 0.08		
-Episode 179 Mean Reward: 10.42 Ep_Reward: 10.0 Mean Loss: 0.08		
-Episode 180 Mean Reward: 10.36 Ep_Reward: 9.0 Mean Loss: 0.08		
-Episode 181 Mean Reward: 10.30 Ep_Reward: 9.0 Mean Loss: 0.08		
-Episode 182 Mean Reward: 10.26 Ep_Reward: 9.0 Mean Loss: 0.08		
-Episode 183 Mean Reward: 10.24 Ep_Reward: 9.0 Mean Loss: 0.07		
-Episode 184 Mean Reward: 10.26 Ep_Reward: 10.0 Mean Loss: 0.08		
-Episode 185 Mean Reward: 10.04 Ep_Reward: 9.0 Mean Loss: 0.07		
-Episode 186 Mean Reward: 9.98 Ep_Reward: 9.0 Mean Loss: 0.07		
-Episode 187 Mean Reward: 9.98 Ep_Reward: 10.0 Mean Loss: 0.07		
-Episode 188 Mean Reward: 9.98 Ep_Reward: 9.0 Mean Loss: 0.07		
-Episode 189 Mean Reward: 10.00 Ep_Reward: 12.0 Mean Loss: 0.07		
-Episode 190 Mean Reward: 10.04 Ep_Reward: 11.0 Mean Loss: 0.08		
-Episode 191 Mean Reward: 10.08 Ep_Reward: 11.0 Mean Loss: 0.08		
-Episode 192 Mean Reward: 10.04 Ep_Reward: 9.0 Mean Loss: 0.08		
-Episode 193 Mean Reward: 10.06 Ep_Reward: 9.0 Mean Loss: 0.08		
-Episode 194 Mean Reward: 10.10 Ep_Reward: 12.0 Mean Loss: 0.07		
-Episode 195 Mean Reward: 10.10 Ep_Reward: 10.0 Mean Loss: 0.08		
-Episode 196 Mean Reward: 10.14 Ep_Reward: 12.0 Mean Loss: 0.07		
-Episode 197 Mean Reward: 10.06 Ep_Reward: 10.0 Mean Loss: 0.07		
-Episode 198 Mean Reward: 10.04 Ep_Reward: 9.0 Mean Loss: 0.07		
-Episode 199 Mean Reward: 10.12 Ep_Reward: 12.0 Mean Loss: 0.08		
-Episode 200 Mean Reward: 10.12 Ep_Reward: 10.0 Mean Loss: 0.08		
-Episode 201 Mean Reward: 10.10 Ep_Reward: 9.0 Mean Loss: 0.07		
-Episode 202 Mean Reward: 10.18 Ep_Reward: 13.0 Mean Loss: 0.08		
-Episode 203 Mean Reward: 10.20 Ep_Reward: 11.0 Mean Loss: 0.08		
-Episode 204 Mean Reward: 10.20 Ep_Reward: 9.0 Mean Loss: 0.08		
-Episode 205 Mean Reward: 10.26 Ep_Reward: 17.0 Mean Loss: 0.08		
-Episode 206 Mean Reward: 10.30 Ep_Reward: 13.0 Mean Loss: 0.08		
-Episode 207 Mean Reward: 10.34 Ep_Reward: 11.0 Mean Loss: 0.08		
-Episode 208 Mean Reward: 10.38 Ep_Reward: 14.0 Mean Loss: 0.09		
-Episode 209 Mean Reward: 10.46 Ep_Reward: 13.0 Mean Loss: 0.09		
-Episode 210 Mean Reward: 10.50 Ep_Reward: 11.0 Mean Loss: 0.09		
-Episode 211 Mean Reward: 10.62 Ep_Reward: 16.0 Mean Loss: 0.10		
-Episode 212 Mean Reward: 10.64 Ep_Reward: 11.0 Mean Loss: 0.09		
-Episode 213 Mean Reward: 10.86 Ep_Reward: 21.0 Mean Loss: 0.10		
-Episode 214 Mean Reward: 11.30 Ep_Reward: 37.0 Mean Loss: 0.11		
-Episode 215 Mean Reward: 11.46 Ep_Reward: 20.0 Mean Loss: 0.12		
-Episode 216 Mean Reward: 11.46 Ep_Reward: 9.0 Mean Loss: 0.12		
-Episode 217 Mean Reward: 11.42 Ep_Reward: 9.0 Mean Loss: 0.11		
-Episode 218 Mean Reward: 11.38 Ep_Reward: 9.0 Mean Loss: 0.11		
-Episode 219 Mean Reward: 11.44 Ep_Reward: 12.0 Mean Loss: 0.11		
-Episode 220 Mean Reward: 11.42 Ep_Reward: 9.0 Mean Loss: 0.11		
-Episode 221 Mean Reward: 11.42 Ep_Reward: 10.0 Mean Loss: 0.11		
-Episode 222 Mean Reward: 11.38 Ep_Reward: 8.0 Mean Loss: 0.11		
-Episode 223 Mean Reward: 11.44 Ep_Reward: 12.0 Mean Loss: 0.11		
-Episode 224 Mean Reward: 11.44 Ep_Reward: 10.0 Mean Loss: 0.11		
-Episode 225 Mean Reward: 11.44 Ep_Reward: 10.0 Mean Loss: 0.12		
-Episode 226 Mean Reward: 11.44 Ep_Reward: 9.0 Mean Loss: 0.12		
-Episode 227 Mean Reward: 11.44 Ep_Reward: 10.0 Mean Loss: 0.12		
-Episode 228 Mean Reward: 11.46 Ep_Reward: 10.0 Mean Loss: 0.13		
-Episode 229 Mean Reward: 11.44 Ep_Reward: 9.0 Mean Loss: 0.12		
-Episode 230 Mean Reward: 11.46 Ep_Reward: 10.0 Mean Loss: 0.13		
-Episode 231 Mean Reward: 11.46 Ep_Reward: 9.0 Mean Loss: 0.13		
-Episode 232 Mean Reward: 11.46 Ep_Reward: 9.0 Mean Loss: 0.13		
-Episode 233 Mean Reward: 11.50 Ep_Reward: 11.0 Mean Loss: 0.13		
-Episode 234 Mean Reward: 11.46 Ep_Reward: 8.0 Mean Loss: 0.13		
-Episode 235 Mean Reward: 11.48 Ep_Reward: 10.0 Mean Loss: 0.14		
-Episode 236 Mean Reward: 11.48 Ep_Reward: 9.0 Mean Loss: 0.14		
-Episode 237 Mean Reward: 11.48 Ep_Reward: 10.0 Mean Loss: 0.14		
-Episode 238 Mean Reward: 11.50 Ep_Reward: 10.0 Mean Loss: 0.15		
-Episode 239 Mean Reward: 11.46 Ep_Reward: 10.0 Mean Loss: 0.15		
-Episode 240 Mean Reward: 11.44 Ep_Reward: 10.0 Mean Loss: 0.15		
-Episode 241 Mean Reward: 11.40 Ep_Reward: 9.0 Mean Loss: 0.15		
-Episode 242 Mean Reward: 11.44 Ep_Reward: 11.0 Mean Loss: 0.15		
-Episode 243 Mean Reward: 11.44 Ep_Reward: 9.0 Mean Loss: 0.15		
-Episode 244 Mean Reward: 11.40 Ep_Reward: 10.0 Mean Loss: 0.16		
-Episode 245 Mean Reward: 11.40 Ep_Reward: 10.0 Mean Loss: 0.16		
-Episode 246 Mean Reward: 11.36 Ep_Reward: 10.0 Mean Loss: 0.16		
-Episode 247 Mean Reward: 11.38 Ep_Reward: 11.0 Mean Loss: 0.17		
-Episode 248 Mean Reward: 11.40 Ep_Reward: 10.0 Mean Loss: 0.17		
-Episode 249 Mean Reward: 11.38 Ep_Reward: 11.0 Mean Loss: 0.17		
-Episode 250 Mean Reward: 11.36 Ep_Reward: 9.0 Mean Loss: 0.17		
-Episode 251 Mean Reward: 11.40 Ep_Reward: 11.0 Mean Loss: 0.17		
-Episode 252 Mean Reward: 11.34 Ep_Reward: 10.0 Mean Loss: 0.18		
-Episode 253 Mean Reward: 11.30 Ep_Reward: 9.0 Mean Loss: 0.17		
-Episode 254 Mean Reward: 11.30 Ep_Reward: 9.0 Mean Loss: 0.17		
-Episode 255 Mean Reward: 11.14 Ep_Reward: 9.0 Mean Loss: 0.17		
-Episode 256 Mean Reward: 11.08 Ep_Reward: 10.0 Mean Loss: 0.17		
-Episode 257 Mean Reward: 11.02 Ep_Reward: 8.0 Mean Loss: 0.17		
-Episode 258 Mean Reward: 10.96 Ep_Reward: 11.0 Mean Loss: 0.17		
-Episode 259 Mean Reward: 10.86 Ep_Reward: 8.0 Mean Loss: 0.16		
-Episode 260 Mean Reward: 10.84 Ep_Reward: 10.0 Mean Loss: 0.16		
-Episode 261 Mean Reward: 10.78 Ep_Reward: 13.0 Mean Loss: 0.16		
-Episode 262 Mean Reward: 10.74 Ep_Reward: 9.0 Mean Loss: 0.16		
-Episode 263 Mean Reward: 10.50 Ep_Reward: 9.0 Mean Loss: 0.15		
-Episode 264 Mean Reward: 9.96 Ep_Reward: 10.0 Mean Loss: 0.14		
-Episode 265 Mean Reward: 9.90 Ep_Reward: 17.0 Mean Loss: 0.14		
-Episode 266 Mean Reward: 9.90 Ep_Reward: 9.0 Mean Loss: 0.14		
-Episode 267 Mean Reward: 9.96 Ep_Reward: 12.0 Mean Loss: 0.14		
-Episode 268 Mean Reward: 9.98 Ep_Reward: 10.0 Mean Loss: 0.15		
-Episode 269 Mean Reward: 9.94 Ep_Reward: 10.0 Mean Loss: 0.15		
-Episode 270 Mean Reward: 9.92 Ep_Reward: 8.0 Mean Loss: 0.15		
-Episode 271 Mean Reward: 9.92 Ep_Reward: 10.0 Mean Loss: 0.15		
-Episode 272 Mean Reward: 9.96 Ep_Reward: 10.0 Mean Loss: 0.15		
-Episode 273 Mean Reward: 9.90 Ep_Reward: 9.0 Mean Loss: 0.14		
-Episode 274 Mean Reward: 9.90 Ep_Reward: 10.0 Mean Loss: 0.14		
-Episode 275 Mean Reward: 9.90 Ep_Reward: 10.0 Mean Loss: 0.14		
-Episode 276 Mean Reward: 9.90 Ep_Reward: 9.0 Mean Loss: 0.14		
-Episode 277 Mean Reward: 9.96 Ep_Reward: 13.0 Mean Loss: 0.14		
-Episode 278 Mean Reward: 9.96 Ep_Reward: 10.0 Mean Loss: 0.13		
-Episode 279 Mean Reward: 9.96 Ep_Reward: 9.0 Mean Loss: 0.13		
-Episode 280 Mean Reward: 10.00 Ep_Reward: 12.0 Mean Loss: 0.13		
-Episode 281 Mean Reward: 9.98 Ep_Reward: 8.0 Mean Loss: 0.13		
-Episode 282 Mean Reward: 10.00 Ep_Reward: 10.0 Mean Loss: 0.13		
-Episode 283 Mean Reward: 9.96 Ep_Reward: 9.0 Mean Loss: 0.13		
-Episode 284 Mean Reward: 10.02 Ep_Reward: 11.0 Mean Loss: 0.13		
-Episode 285 Mean Reward: 10.00 Ep_Reward: 9.0 Mean Loss: 0.13		
-Episode 286 Mean Reward: 10.02 Ep_Reward: 10.0 Mean Loss: 0.13		
-Episode 287 Mean Reward: 10.14 Ep_Reward: 16.0 Mean Loss: 0.13		
-Episode 288 Mean Reward: 10.16 Ep_Reward: 11.0 Mean Loss: 0.13		
-Episode 289 Mean Reward: 10.14 Ep_Reward: 9.0 Mean Loss: 0.12		
-Episode 290 Mean Reward: 10.10 Ep_Reward: 8.0 Mean Loss: 0.12		
-Episode 291 Mean Reward: 10.12 Ep_Reward: 10.0 Mean Loss: 0.12		
-Episode 292 Mean Reward: 10.10 Ep_Reward: 10.0 Mean Loss: 0.13		
-Episode 293 Mean Reward: 10.18 Ep_Reward: 13.0 Mean Loss: 0.13		
-Episode 294 Mean Reward: 10.22 Ep_Reward: 12.0 Mean Loss: 0.13		
-Episode 295 Mean Reward: 10.22 Ep_Reward: 10.0 Mean Loss: 0.14		
-Episode 296 Mean Reward: 10.20 Ep_Reward: 9.0 Mean Loss: 0.13		
-Episode 297 Mean Reward: 10.18 Ep_Reward: 10.0 Mean Loss: 0.13		
-Episode 298 Mean Reward: 10.18 Ep_Reward: 10.0 Mean Loss: 0.14		
-Episode 299 Mean Reward: 10.14 Ep_Reward: 9.0 Mean Loss: 0.13		
-Episode 300 Mean Reward: 10.16 Ep_Reward: 10.0 Mean Loss: 0.14		
-Episode 301 Mean Reward: 10.14 Ep_Reward: 10.0 Mean Loss: 0.15		
-Episode 302 Mean Reward: 10.14 Ep_Reward: 10.0 Mean Loss: 0.15		
-Episode 303 Mean Reward: 10.16 Ep_Reward: 10.0 Mean Loss: 0.16		
-Episode 304 Mean Reward: 10.20 Ep_Reward: 11.0 Mean Loss: 0.17		
-Episode 305 Mean Reward: 10.22 Ep_Reward: 10.0 Mean Loss: 0.18		
-Episode 306 Mean Reward: 10.22 Ep_Reward: 10.0 Mean Loss: 0.17		
-Episode 307 Mean Reward: 10.32 Ep_Reward: 13.0 Mean Loss: 0.18		
-Episode 308 Mean Reward: 10.32 Ep_Reward: 11.0 Mean Loss: 0.19		
-Episode 309 Mean Reward: 10.36 Ep_Reward: 10.0 Mean Loss: 0.20		
-Episode 310 Mean Reward: 10.36 Ep_Reward: 10.0 Mean Loss: 0.20		
-Episode 311 Mean Reward: 10.30 Ep_Reward: 10.0 Mean Loss: 0.20		
-Episode 312 Mean Reward: 10.34 Ep_Reward: 11.0 Mean Loss: 0.21		
-Episode 313 Mean Reward: 10.34 Ep_Reward: 9.0 Mean Loss: 0.21		
-Episode 314 Mean Reward: 10.32 Ep_Reward: 9.0 Mean Loss: 0.21		
-Episode 315 Mean Reward: 10.20 Ep_Reward: 11.0 Mean Loss: 0.21		
-Episode 316 Mean Reward: 10.22 Ep_Reward: 10.0 Mean Loss: 0.22		
-Episode 317 Mean Reward: 10.14 Ep_Reward: 8.0 Mean Loss: 0.21		
-Episode 318 Mean Reward: 10.18 Ep_Reward: 12.0 Mean Loss: 0.22		
-Episode 319 Mean Reward: 10.16 Ep_Reward: 9.0 Mean Loss: 0.21		
-Episode 320 Mean Reward: 10.22 Ep_Reward: 11.0 Mean Loss: 0.22		
-Episode 321 Mean Reward: 10.18 Ep_Reward: 8.0 Mean Loss: 0.22		
-Episode 322 Mean Reward: 10.18 Ep_Reward: 10.0 Mean Loss: 0.22		
-Episode 323 Mean Reward: 10.20 Ep_Reward: 10.0 Mean Loss: 0.23		
-Episode 324 Mean Reward: 10.16 Ep_Reward: 8.0 Mean Loss: 0.22		
-Episode 325 Mean Reward: 10.16 Ep_Reward: 10.0 Mean Loss: 0.22		
-Episode 326 Mean Reward: 10.16 Ep_Reward: 9.0 Mean Loss: 0.22		
-Episode 327 Mean Reward: 10.10 Ep_Reward: 10.0 Mean Loss: 0.22		
-Episode 328 Mean Reward: 10.08 Ep_Reward: 9.0 Mean Loss: 0.22		
-Episode 329 Mean Reward: 10.08 Ep_Reward: 9.0 Mean Loss: 0.22		
-Episode 330 Mean Reward: 10.04 Ep_Reward: 10.0 Mean Loss: 0.22		
-Episode 331 Mean Reward: 10.08 Ep_Reward: 10.0 Mean Loss: 0.22		
-Episode 332 Mean Reward: 10.10 Ep_Reward: 11.0 Mean Loss: 0.22		
-Episode 333 Mean Reward: 10.08 Ep_Reward: 8.0 Mean Loss: 0.22		
-Episode 334 Mean Reward: 10.06 Ep_Reward: 10.0 Mean Loss: 0.22		
-Episode 335 Mean Reward: 10.08 Ep_Reward: 10.0 Mean Loss: 0.23		
-Episode 336 Mean Reward: 10.08 Ep_Reward: 10.0 Mean Loss: 0.23		
-Episode 337 Mean Reward: 10.00 Ep_Reward: 12.0 Mean Loss: 0.23		
-Episode 338 Mean Reward: 9.98 Ep_Reward: 10.0 Mean Loss: 0.23		
-Episode 339 Mean Reward: 9.98 Ep_Reward: 9.0 Mean Loss: 0.23		
-Episode 340 Mean Reward: 10.10 Ep_Reward: 14.0 Mean Loss: 0.23		
-Episode 341 Mean Reward: 10.10 Ep_Reward: 10.0 Mean Loss: 0.23		
-Episode 342 Mean Reward: 10.12 Ep_Reward: 11.0 Mean Loss: 0.22		
-Episode 343 Mean Reward: 10.04 Ep_Reward: 9.0 Mean Loss: 0.21		
-Episode 344 Mean Reward: 10.04 Ep_Reward: 12.0 Mean Loss: 0.21		
-Episode 345 Mean Reward: 10.10 Ep_Reward: 13.0 Mean Loss: 0.20		
-Episode 346 Mean Reward: 10.48 Ep_Reward: 28.0 Mean Loss: 0.21		
-Episode 347 Mean Reward: 10.50 Ep_Reward: 11.0 Mean Loss: 0.21		
-Episode 348 Mean Reward: 10.46 Ep_Reward: 8.0 Mean Loss: 0.20		
-Episode 349 Mean Reward: 10.48 Ep_Reward: 10.0 Mean Loss: 0.20		
-Episode 350 Mean Reward: 10.46 Ep_Reward: 9.0 Mean Loss: 0.19		
-Episode 351 Mean Reward: 10.42 Ep_Reward: 8.0 Mean Loss: 0.18		
-Episode 352 Mean Reward: 10.42 Ep_Reward: 10.0 Mean Loss: 0.17		
-Episode 353 Mean Reward: 10.42 Ep_Reward: 10.0 Mean Loss: 0.17		
-Episode 354 Mean Reward: 10.38 Ep_Reward: 9.0 Mean Loss: 0.16		
-Episode 355 Mean Reward: 10.38 Ep_Reward: 10.0 Mean Loss: 0.16		
-Episode 356 Mean Reward: 10.36 Ep_Reward: 9.0 Mean Loss: 0.16		
-Episode 357 Mean Reward: 10.28 Ep_Reward: 9.0 Mean Loss: 0.15		
-Episode 358 Mean Reward: 10.26 Ep_Reward: 10.0 Mean Loss: 0.14		
-Episode 359 Mean Reward: 10.24 Ep_Reward: 9.0 Mean Loss: 0.14		
-Episode 360 Mean Reward: 10.34 Ep_Reward: 15.0 Mean Loss: 0.14		
-Episode 361 Mean Reward: 10.32 Ep_Reward: 9.0 Mean Loss: 0.13		
-Episode 362 Mean Reward: 10.30 Ep_Reward: 10.0 Mean Loss: 0.12		
-Episode 363 Mean Reward: 10.34 Ep_Reward: 11.0 Mean Loss: 0.13		
-Episode 364 Mean Reward: 10.36 Ep_Reward: 10.0 Mean Loss: 0.13		
-Episode 365 Mean Reward: 10.42 Ep_Reward: 14.0 Mean Loss: 0.14		
-Episode 366 Mean Reward: 10.38 Ep_Reward: 8.0 Mean Loss: 0.13		
-Episode 367 Mean Reward: 10.38 Ep_Reward: 8.0 Mean Loss: 0.13		
-Episode 368 Mean Reward: 10.30 Ep_Reward: 8.0 Mean Loss: 0.12		
-Episode 369 Mean Reward: 10.34 Ep_Reward: 11.0 Mean Loss: 0.13		
-Episode 370 Mean Reward: 10.34 Ep_Reward: 11.0 Mean Loss: 0.13		
-Episode 371 Mean Reward: 10.38 Ep_Reward: 10.0 Mean Loss: 0.13		
-Episode 372 Mean Reward: 10.38 Ep_Reward: 10.0 Mean Loss: 0.14		
-Episode 373 Mean Reward: 10.34 Ep_Reward: 8.0 Mean Loss: 0.13		
-Episode 374 Mean Reward: 10.36 Ep_Reward: 9.0 Mean Loss: 0.13		
-Episode 375 Mean Reward: 10.36 Ep_Reward: 10.0 Mean Loss: 0.14		
-Episode 376 Mean Reward: 10.38 Ep_Reward: 10.0 Mean Loss: 0.14		
-Episode 377 Mean Reward: 10.38 Ep_Reward: 10.0 Mean Loss: 0.15		
-Episode 378 Mean Reward: 10.42 Ep_Reward: 11.0 Mean Loss: 0.15		
-Episode 379 Mean Reward: 10.46 Ep_Reward: 11.0 Mean Loss: 0.16		
-Episode 380 Mean Reward: 10.46 Ep_Reward: 10.0 Mean Loss: 0.16		
-Episode 381 Mean Reward: 10.50 Ep_Reward: 12.0 Mean Loss: 0.17		
-Episode 382 Mean Reward: 10.48 Ep_Reward: 10.0 Mean Loss: 0.17		
-Episode 383 Mean Reward: 10.52 Ep_Reward: 10.0 Mean Loss: 0.18		
-Episode 384 Mean Reward: 10.54 Ep_Reward: 11.0 Mean Loss: 0.18		
-Episode 385 Mean Reward: 10.52 Ep_Reward: 9.0 Mean Loss: 0.18		
-Episode 386 Mean Reward: 10.54 Ep_Reward: 11.0 Mean Loss: 0.18		
-Episode 387 Mean Reward: 10.48 Ep_Reward: 9.0 Mean Loss: 0.18		
-Episode 388 Mean Reward: 10.44 Ep_Reward: 8.0 Mean Loss: 0.17		
-Episode 389 Mean Reward: 10.42 Ep_Reward: 8.0 Mean Loss: 0.17		
-Episode 390 Mean Reward: 10.32 Ep_Reward: 9.0 Mean Loss: 0.17		
-Episode 391 Mean Reward: 10.30 Ep_Reward: 9.0 Mean Loss: 0.17		
-Episode 392 Mean Reward: 10.26 Ep_Reward: 9.0 Mean Loss: 0.17		
-Episode 393 Mean Reward: 10.30 Ep_Reward: 11.0 Mean Loss: 0.17		
-Episode 394 Mean Reward: 10.28 Ep_Reward: 11.0 Mean Loss: 0.18		
-Episode 395 Mean Reward: 10.24 Ep_Reward: 11.0 Mean Loss: 0.18		
-Episode 396 Mean Reward: 9.92 Ep_Reward: 12.0 Mean Loss: 0.18		
-Episode 397 Mean Reward: 9.88 Ep_Reward: 9.0 Mean Loss: 0.18		
-Episode 398 Mean Reward: 9.92 Ep_Reward: 10.0 Mean Loss: 0.19		
-Episode 399 Mean Reward: 9.92 Ep_Reward: 10.0 Mean Loss: 0.19		
-Episode 400 Mean Reward: 9.92 Ep_Reward: 9.0 Mean Loss: 0.19		
-Episode 401 Mean Reward: 10.00 Ep_Reward: 12.0 Mean Loss: 0.20		
-Episode 402 Mean Reward: 9.98 Ep_Reward: 9.0 Mean Loss: 0.20		
-Episode 403 Mean Reward: 9.98 Ep_Reward: 10.0 Mean Loss: 0.19		
-Episode 404 Mean Reward: 9.98 Ep_Reward: 9.0 Mean Loss: 0.19		
-Episode 405 Mean Reward: 10.02 Ep_Reward: 12.0 Mean Loss: 0.20		
-Episode 406 Mean Reward: 10.00 Ep_Reward: 8.0 Mean Loss: 0.20		
-Episode 407 Mean Reward: 10.04 Ep_Reward: 11.0 Mean Loss: 0.20		
-Episode 408 Mean Reward: 10.04 Ep_Reward: 10.0 Mean Loss: 0.20		
-Episode 409 Mean Reward: 10.04 Ep_Reward: 9.0 Mean Loss: 0.20		
-Episode 410 Mean Reward: 9.94 Ep_Reward: 10.0 Mean Loss: 0.20		
-Episode 411 Mean Reward: 9.92 Ep_Reward: 8.0 Mean Loss: 0.20		
-Episode 412 Mean Reward: 9.92 Ep_Reward: 10.0 Mean Loss: 0.20		
-Episode 413 Mean Reward: 9.88 Ep_Reward: 9.0 Mean Loss: 0.19		
-Episode 414 Mean Reward: 9.86 Ep_Reward: 9.0 Mean Loss: 0.19		
-Episode 415 Mean Reward: 9.78 Ep_Reward: 10.0 Mean Loss: 0.19		
-Episode 416 Mean Reward: 9.84 Ep_Reward: 11.0 Mean Loss: 0.19		
-Episode 417 Mean Reward: 9.86 Ep_Reward: 9.0 Mean Loss: 0.19		
-Episode 418 Mean Reward: 9.90 Ep_Reward: 10.0 Mean Loss: 0.19		
-Episode 419 Mean Reward: 9.90 Ep_Reward: 11.0 Mean Loss: 0.19		
-Episode 420 Mean Reward: 9.86 Ep_Reward: 9.0 Mean Loss: 0.18		
-Episode 421 Mean Reward: 9.88 Ep_Reward: 11.0 Mean Loss: 0.18		
-Episode 422 Mean Reward: 9.88 Ep_Reward: 10.0 Mean Loss: 0.18		
-Episode 423 Mean Reward: 9.92 Ep_Reward: 10.0 Mean Loss: 0.18		
-Episode 424 Mean Reward: 9.94 Ep_Reward: 10.0 Mean Loss: 0.18		
-Episode 425 Mean Reward: 9.98 Ep_Reward: 12.0 Mean Loss: 0.18		
-Episode 426 Mean Reward: 10.00 Ep_Reward: 11.0 Mean Loss: 0.17		
-Episode 427 Mean Reward: 10.00 Ep_Reward: 10.0 Mean Loss: 0.17		
-Episode 428 Mean Reward: 10.00 Ep_Reward: 11.0 Mean Loss: 0.16		
-Episode 429 Mean Reward: 9.98 Ep_Reward: 10.0 Mean Loss: 0.16		
-Episode 430 Mean Reward: 9.96 Ep_Reward: 9.0 Mean Loss: 0.15		
-Episode 431 Mean Reward: 9.92 Ep_Reward: 10.0 Mean Loss: 0.14		
-Episode 432 Mean Reward: 9.92 Ep_Reward: 10.0 Mean Loss: 0.14		
-Episode 433 Mean Reward: 9.92 Ep_Reward: 10.0 Mean Loss: 0.13		
-Episode 434 Mean Reward: 9.98 Ep_Reward: 14.0 Mean Loss: 0.13		
-Episode 435 Mean Reward: 10.00 Ep_Reward: 10.0 Mean Loss: 0.13		
-Episode 436 Mean Reward: 10.02 Ep_Reward: 12.0 Mean Loss: 0.12		
-Episode 437 Mean Reward: 10.00 Ep_Reward: 8.0 Mean Loss: 0.12		
-Episode 438 Mean Reward: 10.02 Ep_Reward: 9.0 Mean Loss: 0.12		
-Episode 439 Mean Reward: 10.02 Ep_Reward: 8.0 Mean Loss: 0.12		
-Episode 440 Mean Reward: 10.04 Ep_Reward: 10.0 Mean Loss: 0.12		
-Episode 441 Mean Reward: 10.04 Ep_Reward: 9.0 Mean Loss: 0.12		
-Episode 442 Mean Reward: 10.08 Ep_Reward: 11.0 Mean Loss: 0.12		
-Episode 443 Mean Reward: 10.04 Ep_Reward: 9.0 Mean Loss: 0.12		
-Episode 444 Mean Reward: 10.02 Ep_Reward: 10.0 Mean Loss: 0.11		
-Episode 445 Mean Reward: 10.00 Ep_Reward: 10.0 Mean Loss: 0.11		
-Episode 446 Mean Reward: 9.94 Ep_Reward: 9.0 Mean Loss: 0.10		
-Episode 447 Mean Reward: 9.94 Ep_Reward: 9.0 Mean Loss: 0.10		
-Episode 448 Mean Reward: 9.94 Ep_Reward: 10.0 Mean Loss: 0.09		
-Episode 449 Mean Reward: 9.92 Ep_Reward: 9.0 Mean Loss: 0.09		
-Episode 450 Mean Reward: 9.92 Ep_Reward: 9.0 Mean Loss: 0.09		
-Episode 451 Mean Reward: 9.88 Ep_Reward: 10.0 Mean Loss: 0.08		
-Episode 452 Mean Reward: 9.88 Ep_Reward: 9.0 Mean Loss: 0.08		
-Episode 453 Mean Reward: 9.86 Ep_Reward: 9.0 Mean Loss: 0.07		
-Episode 454 Mean Reward: 9.84 Ep_Reward: 8.0 Mean Loss: 0.07		
-Episode 455 Mean Reward: 9.80 Ep_Reward: 10.0 Mean Loss: 0.07		
-Episode 456 Mean Reward: 9.88 Ep_Reward: 12.0 Mean Loss: 0.07		
-Episode 457 Mean Reward: 9.84 Ep_Reward: 9.0 Mean Loss: 0.07		
-Episode 458 Mean Reward: 9.84 Ep_Reward: 10.0 Mean Loss: 0.06		
-Episode 459 Mean Reward: 9.86 Ep_Reward: 10.0 Mean Loss: 0.06		
-Episode 460 Mean Reward: 9.82 Ep_Reward: 8.0 Mean Loss: 0.06		
-Episode 461 Mean Reward: 9.86 Ep_Reward: 10.0 Mean Loss: 0.06		
-Episode 462 Mean Reward: 9.86 Ep_Reward: 10.0 Mean Loss: 0.05		
-Episode 463 Mean Reward: 9.92 Ep_Reward: 12.0 Mean Loss: 0.05		
-Episode 464 Mean Reward: 9.94 Ep_Reward: 10.0 Mean Loss: 0.05		
-Episode 465 Mean Reward: 9.92 Ep_Reward: 9.0 Mean Loss: 0.05		
-Episode 466 Mean Reward: 9.90 Ep_Reward: 10.0 Mean Loss: 0.05		
-Episode 467 Mean Reward: 9.92 Ep_Reward: 10.0 Mean Loss: 0.05		
-Episode 468 Mean Reward: 9.92 Ep_Reward: 10.0 Mean Loss: 0.04		
-Episode 469 Mean Reward: 9.96 Ep_Reward: 13.0 Mean Loss: 0.04		
-Episode 470 Mean Reward: 9.98 Ep_Reward: 10.0 Mean Loss: 0.04		
-Episode 471 Mean Reward: 9.94 Ep_Reward: 9.0 Mean Loss: 0.04		
-Episode 472 Mean Reward: 9.94 Ep_Reward: 10.0 Mean Loss: 0.04		
-Episode 473 Mean Reward: 9.94 Ep_Reward: 10.0 Mean Loss: 0.03		
-Episode 474 Mean Reward: 9.94 Ep_Reward: 10.0 Mean Loss: 0.03		
-Episode 475 Mean Reward: 9.96 Ep_Reward: 13.0 Mean Loss: 0.03		
-Episode 476 Mean Reward: 9.92 Ep_Reward: 9.0 Mean Loss: 0.03		
-Episode 477 Mean Reward: 9.94 Ep_Reward: 11.0 Mean Loss: 0.03		
-Episode 478 Mean Reward: 9.96 Ep_Reward: 12.0 Mean Loss: 0.02		
-Episode 479 Mean Reward: 9.96 Ep_Reward: 10.0 Mean Loss: 0.02		
-Episode 480 Mean Reward: 10.00 Ep_Reward: 11.0 Mean Loss: 0.02		
-Episode 481 Mean Reward: 10.02 Ep_Reward: 11.0 Mean Loss: 0.02		
-Episode 482 Mean Reward: 10.00 Ep_Reward: 9.0 Mean Loss: 0.02		
-Episode 483 Mean Reward: 10.00 Ep_Reward: 10.0 Mean Loss: 0.02		
-Episode 484 Mean Reward: 9.92 Ep_Reward: 10.0 Mean Loss: 0.02		
-Episode 485 Mean Reward: 9.92 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 486 Mean Reward: 9.90 Ep_Reward: 11.0 Mean Loss: 0.01		
-Episode 487 Mean Reward: 9.94 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 488 Mean Reward: 9.96 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 489 Mean Reward: 10.04 Ep_Reward: 12.0 Mean Loss: 0.01		
-Episode 490 Mean Reward: 10.04 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 491 Mean Reward: 10.06 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 492 Mean Reward: 10.04 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 493 Mean Reward: 10.06 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 494 Mean Reward: 10.10 Ep_Reward: 12.0 Mean Loss: 0.01		
-Episode 495 Mean Reward: 10.16 Ep_Reward: 13.0 Mean Loss: 0.01		
-Episode 496 Mean Reward: 10.22 Ep_Reward: 12.0 Mean Loss: 0.01		
-Episode 497 Mean Reward: 10.32 Ep_Reward: 14.0 Mean Loss: 0.01		
-Episode 498 Mean Reward: 10.42 Ep_Reward: 15.0 Mean Loss: 0.01		
-Episode 499 Mean Reward: 10.50 Ep_Reward: 13.0 Mean Loss: 0.01		
-Episode 500 Mean Reward: 10.54 Ep_Reward: 11.0 Mean Loss: 0.01		
-Episode 501 Mean Reward: 10.62 Ep_Reward: 14.0 Mean Loss: 0.01		
-Episode 502 Mean Reward: 10.74 Ep_Reward: 15.0 Mean Loss: 0.01		
-Episode 503 Mean Reward: 10.82 Ep_Reward: 13.0 Mean Loss: 0.01		
-Episode 504 Mean Reward: 10.98 Ep_Reward: 16.0 Mean Loss: 0.01		
-Episode 505 Mean Reward: 11.16 Ep_Reward: 19.0 Mean Loss: 0.01		
-Episode 506 Mean Reward: 11.28 Ep_Reward: 18.0 Mean Loss: 0.01		
-Episode 507 Mean Reward: 11.46 Ep_Reward: 18.0 Mean Loss: 0.01		
-Episode 508 Mean Reward: 11.56 Ep_Reward: 15.0 Mean Loss: 0.01		
-Episode 509 Mean Reward: 11.72 Ep_Reward: 18.0 Mean Loss: 0.01		
-Episode 510 Mean Reward: 12.02 Ep_Reward: 23.0 Mean Loss: 0.01		
-Episode 511 Mean Reward: 12.18 Ep_Reward: 18.0 Mean Loss: 0.01		
-Episode 512 Mean Reward: 12.38 Ep_Reward: 20.0 Mean Loss: 0.01		
-Episode 513 Mean Reward: 12.56 Ep_Reward: 21.0 Mean Loss: 0.01		
-Episode 514 Mean Reward: 12.94 Ep_Reward: 29.0 Mean Loss: 0.01		
-Episode 515 Mean Reward: 13.22 Ep_Reward: 23.0 Mean Loss: 0.01		
-Episode 516 Mean Reward: 13.52 Ep_Reward: 25.0 Mean Loss: 0.01		
-Episode 517 Mean Reward: 13.74 Ep_Reward: 21.0 Mean Loss: 0.01		
-Episode 518 Mean Reward: 14.46 Ep_Reward: 46.0 Mean Loss: 0.01		
-Episode 519 Mean Reward: 14.72 Ep_Reward: 26.0 Mean Loss: 0.01		
-Episode 520 Mean Reward: 14.72 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 521 Mean Reward: 14.72 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 522 Mean Reward: 14.70 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 523 Mean Reward: 14.68 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 524 Mean Reward: 14.64 Ep_Reward: 8.0 Mean Loss: 0.01		
-Episode 525 Mean Reward: 14.58 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 526 Mean Reward: 14.62 Ep_Reward: 11.0 Mean Loss: 0.01		
-Episode 527 Mean Reward: 14.56 Ep_Reward: 8.0 Mean Loss: 0.01		
-Episode 528 Mean Reward: 14.50 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 529 Mean Reward: 14.50 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 530 Mean Reward: 14.48 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 531 Mean Reward: 14.46 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 532 Mean Reward: 14.46 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 533 Mean Reward: 14.44 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 534 Mean Reward: 14.44 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 535 Mean Reward: 14.42 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 536 Mean Reward: 14.38 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 537 Mean Reward: 14.40 Ep_Reward: 11.0 Mean Loss: 0.01		
-Episode 538 Mean Reward: 14.38 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 539 Mean Reward: 14.32 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 540 Mean Reward: 14.32 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 541 Mean Reward: 14.32 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 542 Mean Reward: 14.36 Ep_Reward: 12.0 Mean Loss: 0.01		
-Episode 543 Mean Reward: 14.32 Ep_Reward: 8.0 Mean Loss: 0.01		
-Episode 544 Mean Reward: 14.26 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 545 Mean Reward: 14.26 Ep_Reward: 13.0 Mean Loss: 0.01		
-Episode 546 Mean Reward: 14.18 Ep_Reward: 8.0 Mean Loss: 0.01		
-Episode 547 Mean Reward: 14.10 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 548 Mean Reward: 14.00 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 549 Mean Reward: 13.94 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 550 Mean Reward: 13.94 Ep_Reward: 11.0 Mean Loss: 0.01		
-Episode 551 Mean Reward: 13.88 Ep_Reward: 11.0 Mean Loss: 0.01		
-Episode 552 Mean Reward: 13.80 Ep_Reward: 11.0 Mean Loss: 0.01		
-Episode 553 Mean Reward: 13.74 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 554 Mean Reward: 13.60 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 555 Mean Reward: 13.46 Ep_Reward: 12.0 Mean Loss: 0.01		
-Episode 556 Mean Reward: 13.36 Ep_Reward: 13.0 Mean Loss: 0.01		
-Episode 557 Mean Reward: 13.22 Ep_Reward: 11.0 Mean Loss: 0.01		
-Episode 558 Mean Reward: 13.14 Ep_Reward: 11.0 Mean Loss: 0.01		
-Episode 559 Mean Reward: 12.98 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 560 Mean Reward: 12.72 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 561 Mean Reward: 12.52 Ep_Reward: 8.0 Mean Loss: 0.01		
-Episode 562 Mean Reward: 12.32 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 563 Mean Reward: 12.10 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 564 Mean Reward: 11.70 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 565 Mean Reward: 11.42 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 566 Mean Reward: 11.10 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 567 Mean Reward: 10.86 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 568 Mean Reward: 10.10 Ep_Reward: 8.0 Mean Loss: 0.01		
-Episode 569 Mean Reward: 9.82 Ep_Reward: 12.0 Mean Loss: 0.01		
-Episode 570 Mean Reward: 9.82 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 571 Mean Reward: 9.80 Ep_Reward: 8.0 Mean Loss: 0.01		
-Episode 572 Mean Reward: 9.86 Ep_Reward: 12.0 Mean Loss: 0.01		
-Episode 573 Mean Reward: 9.86 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 574 Mean Reward: 9.94 Ep_Reward: 12.0 Mean Loss: 0.01		
-Episode 575 Mean Reward: 9.92 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 576 Mean Reward: 9.90 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 577 Mean Reward: 9.94 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 578 Mean Reward: 9.92 Ep_Reward: 8.0 Mean Loss: 0.01		
-Episode 579 Mean Reward: 9.92 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 580 Mean Reward: 9.98 Ep_Reward: 13.0 Mean Loss: 0.01		
-Episode 581 Mean Reward: 9.98 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 582 Mean Reward: 10.00 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 583 Mean Reward: 10.00 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 584 Mean Reward: 9.98 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 585 Mean Reward: 9.98 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 586 Mean Reward: 10.00 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 587 Mean Reward: 9.98 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 588 Mean Reward: 10.00 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 589 Mean Reward: 10.08 Ep_Reward: 13.0 Mean Loss: 0.01		
-Episode 590 Mean Reward: 10.08 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 591 Mean Reward: 10.10 Ep_Reward: 11.0 Mean Loss: 0.01		
-Episode 592 Mean Reward: 10.04 Ep_Reward: 9.0 Mean Loss: 0.00		
-Episode 593 Mean Reward: 10.06 Ep_Reward: 9.0 Mean Loss: 0.00		
-Episode 594 Mean Reward: 10.12 Ep_Reward: 12.0 Mean Loss: 0.01		
-Episode 595 Mean Reward: 10.04 Ep_Reward: 9.0 Mean Loss: 0.00		
-Episode 596 Mean Reward: 10.08 Ep_Reward: 10.0 Mean Loss: 0.00		
-Episode 597 Mean Reward: 10.10 Ep_Reward: 11.0 Mean Loss: 0.00		
-Episode 598 Mean Reward: 10.10 Ep_Reward: 10.0 Mean Loss: 0.00		
-Episode 599 Mean Reward: 10.06 Ep_Reward: 8.0 Mean Loss: 0.00		
-Episode 600 Mean Reward: 10.04 Ep_Reward: 10.0 Mean Loss: 0.00		
-Episode 601 Mean Reward: 10.04 Ep_Reward: 11.0 Mean Loss: 0.00		
-Episode 602 Mean Reward: 10.04 Ep_Reward: 11.0 Mean Loss: 0.00		
-Episode 603 Mean Reward: 10.02 Ep_Reward: 9.0 Mean Loss: 0.00		
-Episode 604 Mean Reward: 10.06 Ep_Reward: 11.0 Mean Loss: 0.00		
-Episode 605 Mean Reward: 10.06 Ep_Reward: 12.0 Mean Loss: 0.00		
-Episode 606 Mean Reward: 10.12 Ep_Reward: 16.0 Mean Loss: 0.00		
-Episode 607 Mean Reward: 10.12 Ep_Reward: 11.0 Mean Loss: 0.00		
-Episode 608 Mean Reward: 10.32 Ep_Reward: 21.0 Mean Loss: 0.00		
-Episode 609 Mean Reward: 10.86 Ep_Reward: 37.0 Mean Loss: 0.00		
-Episode 610 Mean Reward: 10.84 Ep_Reward: 9.0 Mean Loss: 0.00		
-Episode 611 Mean Reward: 10.86 Ep_Reward: 9.0 Mean Loss: 0.00		
-Episode 612 Mean Reward: 10.86 Ep_Reward: 10.0 Mean Loss: 0.00		
-Episode 613 Mean Reward: 11.12 Ep_Reward: 23.0 Mean Loss: 0.00		
-Episode 614 Mean Reward: 11.12 Ep_Reward: 9.0 Mean Loss: 0.00		
-Episode 615 Mean Reward: 11.12 Ep_Reward: 9.0 Mean Loss: 0.00		
-Episode 616 Mean Reward: 11.12 Ep_Reward: 9.0 Mean Loss: 0.00		
-Episode 617 Mean Reward: 11.12 Ep_Reward: 9.0 Mean Loss: 0.00		
-Episode 618 Mean Reward: 11.14 Ep_Reward: 9.0 Mean Loss: 0.00		
-Episode 619 Mean Reward: 11.10 Ep_Reward: 10.0 Mean Loss: 0.00		
-Episode 620 Mean Reward: 11.10 Ep_Reward: 10.0 Mean Loss: 0.00		
-Episode 621 Mean Reward: 11.12 Ep_Reward: 9.0 Mean Loss: 0.00		
-Episode 622 Mean Reward: 11.08 Ep_Reward: 10.0 Mean Loss: 0.00		
-Episode 623 Mean Reward: 11.10 Ep_Reward: 10.0 Mean Loss: 0.00		
-Episode 624 Mean Reward: 11.06 Ep_Reward: 10.0 Mean Loss: 0.00		
-Episode 625 Mean Reward: 11.18 Ep_Reward: 15.0 Mean Loss: 0.00		
-Episode 626 Mean Reward: 11.18 Ep_Reward: 10.0 Mean Loss: 0.00		
-Episode 627 Mean Reward: 11.16 Ep_Reward: 9.0 Mean Loss: 0.00		
-Episode 628 Mean Reward: 11.26 Ep_Reward: 13.0 Mean Loss: 0.01		
-Episode 629 Mean Reward: 11.26 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 630 Mean Reward: 11.18 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 631 Mean Reward: 11.16 Ep_Reward: 9.0 Mean Loss: 0.00		
-Episode 632 Mean Reward: 11.16 Ep_Reward: 10.0 Mean Loss: 0.00		
-Episode 633 Mean Reward: 11.16 Ep_Reward: 9.0 Mean Loss: 0.00		
-Episode 634 Mean Reward: 11.18 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 635 Mean Reward: 11.18 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 636 Mean Reward: 11.18 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 637 Mean Reward: 11.16 Ep_Reward: 9.0 Mean Loss: 0.00		
-Episode 638 Mean Reward: 11.16 Ep_Reward: 10.0 Mean Loss: 0.00		
-Episode 639 Mean Reward: 11.06 Ep_Reward: 8.0 Mean Loss: 0.00		
-Episode 640 Mean Reward: 11.04 Ep_Reward: 9.0 Mean Loss: 0.00		
-Episode 641 Mean Reward: 11.02 Ep_Reward: 10.0 Mean Loss: 0.00		
-Episode 642 Mean Reward: 11.08 Ep_Reward: 12.0 Mean Loss: 0.00		
-Episode 643 Mean Reward: 11.10 Ep_Reward: 10.0 Mean Loss: 0.00		
-Episode 644 Mean Reward: 11.04 Ep_Reward: 9.0 Mean Loss: 0.00		
-Episode 645 Mean Reward: 11.04 Ep_Reward: 9.0 Mean Loss: 0.00		
-Episode 646 Mean Reward: 11.08 Ep_Reward: 12.0 Mean Loss: 0.00		
-Episode 647 Mean Reward: 11.06 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 648 Mean Reward: 11.06 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 649 Mean Reward: 11.10 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 650 Mean Reward: 11.08 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 651 Mean Reward: 11.04 Ep_Reward: 9.0 Mean Loss: 0.00		
-Episode 652 Mean Reward: 10.98 Ep_Reward: 8.0 Mean Loss: 0.00		
-Episode 653 Mean Reward: 10.98 Ep_Reward: 9.0 Mean Loss: 0.00		
-Episode 654 Mean Reward: 10.96 Ep_Reward: 10.0 Mean Loss: 0.00		
-Episode 655 Mean Reward: 10.90 Ep_Reward: 9.0 Mean Loss: 0.00		
-Episode 656 Mean Reward: 10.78 Ep_Reward: 10.0 Mean Loss: 0.00		
-Episode 657 Mean Reward: 10.74 Ep_Reward: 9.0 Mean Loss: 0.00		
-Episode 658 Mean Reward: 10.58 Ep_Reward: 13.0 Mean Loss: 0.00		
-Episode 659 Mean Reward: 10.04 Ep_Reward: 10.0 Mean Loss: 0.00		
-Episode 660 Mean Reward: 10.04 Ep_Reward: 9.0 Mean Loss: 0.00		
-Episode 661 Mean Reward: 10.06 Ep_Reward: 10.0 Mean Loss: 0.00		
-Episode 662 Mean Reward: 10.06 Ep_Reward: 10.0 Mean Loss: 0.00		
-Episode 663 Mean Reward: 9.82 Ep_Reward: 11.0 Mean Loss: 0.00		
-Episode 664 Mean Reward: 9.84 Ep_Reward: 10.0 Mean Loss: 0.00		
-Episode 665 Mean Reward: 9.82 Ep_Reward: 8.0 Mean Loss: 0.00		
-Episode 666 Mean Reward: 9.80 Ep_Reward: 8.0 Mean Loss: 0.00		
-Episode 667 Mean Reward: 9.80 Ep_Reward: 9.0 Mean Loss: 0.00		
-Episode 668 Mean Reward: 9.88 Ep_Reward: 13.0 Mean Loss: 0.01		
-Episode 669 Mean Reward: 9.88 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 670 Mean Reward: 9.88 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 671 Mean Reward: 9.90 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 672 Mean Reward: 9.88 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 673 Mean Reward: 9.96 Ep_Reward: 14.0 Mean Loss: 0.01		
-Episode 674 Mean Reward: 9.96 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 675 Mean Reward: 9.88 Ep_Reward: 11.0 Mean Loss: 0.01		
-Episode 676 Mean Reward: 9.92 Ep_Reward: 12.0 Mean Loss: 0.01		
-Episode 677 Mean Reward: 9.98 Ep_Reward: 12.0 Mean Loss: 0.01		
-Episode 678 Mean Reward: 9.90 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 679 Mean Reward: 9.90 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 680 Mean Reward: 9.90 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 681 Mean Reward: 9.92 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 682 Mean Reward: 9.90 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 683 Mean Reward: 9.92 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 684 Mean Reward: 9.90 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 685 Mean Reward: 9.92 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 686 Mean Reward: 9.90 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 687 Mean Reward: 9.92 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 688 Mean Reward: 9.90 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 689 Mean Reward: 9.96 Ep_Reward: 11.0 Mean Loss: 0.01		
-Episode 690 Mean Reward: 9.98 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 691 Mean Reward: 9.96 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 692 Mean Reward: 9.92 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 693 Mean Reward: 9.88 Ep_Reward: 8.0 Mean Loss: 0.01		
-Episode 694 Mean Reward: 9.90 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 695 Mean Reward: 9.94 Ep_Reward: 11.0 Mean Loss: 0.01		
-Episode 696 Mean Reward: 9.92 Ep_Reward: 11.0 Mean Loss: 0.01		
-Episode 697 Mean Reward: 9.90 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 698 Mean Reward: 9.92 Ep_Reward: 11.0 Mean Loss: 0.01		
-Episode 699 Mean Reward: 9.88 Ep_Reward: 8.0 Mean Loss: 0.01		
-Episode 700 Mean Reward: 9.92 Ep_Reward: 11.0 Mean Loss: 0.01		
-Episode 701 Mean Reward: 9.94 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 702 Mean Reward: 10.00 Ep_Reward: 11.0 Mean Loss: 0.01		
-Episode 703 Mean Reward: 10.00 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 704 Mean Reward: 9.96 Ep_Reward: 8.0 Mean Loss: 0.01		
-Episode 705 Mean Reward: 9.98 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 706 Mean Reward: 10.02 Ep_Reward: 12.0 Mean Loss: 0.01		
-Episode 707 Mean Reward: 10.04 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 708 Mean Reward: 9.98 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 709 Mean Reward: 9.94 Ep_Reward: 8.0 Mean Loss: 0.01		
-Episode 710 Mean Reward: 9.94 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 711 Mean Reward: 9.92 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 712 Mean Reward: 9.92 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 713 Mean Reward: 9.90 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 714 Mean Reward: 9.88 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 715 Mean Reward: 9.96 Ep_Reward: 12.0 Mean Loss: 0.01		
-Episode 716 Mean Reward: 9.98 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 717 Mean Reward: 9.98 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 718 Mean Reward: 9.90 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 719 Mean Reward: 9.94 Ep_Reward: 12.0 Mean Loss: 0.01		
-Episode 720 Mean Reward: 9.94 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 721 Mean Reward: 9.94 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 722 Mean Reward: 9.92 Ep_Reward: 8.0 Mean Loss: 0.01		
-Episode 723 Mean Reward: 9.88 Ep_Reward: 12.0 Mean Loss: 0.01		
-Episode 724 Mean Reward: 9.84 Ep_Reward: 8.0 Mean Loss: 0.01		
-Episode 725 Mean Reward: 9.80 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 726 Mean Reward: 9.76 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 727 Mean Reward: 9.70 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 728 Mean Reward: 9.70 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 729 Mean Reward: 9.70 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 730 Mean Reward: 9.72 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 731 Mean Reward: 9.68 Ep_Reward: 8.0 Mean Loss: 0.01		
-Episode 732 Mean Reward: 9.66 Ep_Reward: 8.0 Mean Loss: 0.01		
-Episode 733 Mean Reward: 9.66 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 734 Mean Reward: 9.66 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 735 Mean Reward: 9.68 Ep_Reward: 11.0 Mean Loss: 0.01		
-Episode 736 Mean Reward: 9.74 Ep_Reward: 12.0 Mean Loss: 0.01		
-Episode 737 Mean Reward: 9.76 Ep_Reward: 11.0 Mean Loss: 0.01		
-Episode 738 Mean Reward: 9.78 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 739 Mean Reward: 9.76 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 740 Mean Reward: 9.76 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 741 Mean Reward: 9.78 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 742 Mean Reward: 9.80 Ep_Reward: 11.0 Mean Loss: 0.01		
-Episode 743 Mean Reward: 9.84 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 744 Mean Reward: 9.82 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 745 Mean Reward: 9.82 Ep_Reward: 11.0 Mean Loss: 0.01		
-Episode 746 Mean Reward: 9.78 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 747 Mean Reward: 9.80 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 748 Mean Reward: 9.78 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 749 Mean Reward: 9.80 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 750 Mean Reward: 9.78 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 751 Mean Reward: 9.76 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 752 Mean Reward: 9.74 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 753 Mean Reward: 9.76 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 754 Mean Reward: 9.78 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 755 Mean Reward: 9.76 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 756 Mean Reward: 9.72 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 757 Mean Reward: 9.70 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 758 Mean Reward: 9.70 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 759 Mean Reward: 9.72 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 760 Mean Reward: 9.72 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 761 Mean Reward: 9.74 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 762 Mean Reward: 9.72 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 763 Mean Reward: 9.68 Ep_Reward: 8.0 Mean Loss: 0.01		
-Episode 764 Mean Reward: 9.74 Ep_Reward: 12.0 Mean Loss: 0.01		
-Episode 765 Mean Reward: 9.70 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 766 Mean Reward: 9.76 Ep_Reward: 12.0 Mean Loss: 0.01		
-Episode 767 Mean Reward: 9.78 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 768 Mean Reward: 9.80 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 769 Mean Reward: 9.76 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 770 Mean Reward: 9.80 Ep_Reward: 12.0 Mean Loss: 0.01		
-Episode 771 Mean Reward: 9.80 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 772 Mean Reward: 9.86 Ep_Reward: 11.0 Mean Loss: 0.01		
-Episode 773 Mean Reward: 9.82 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 774 Mean Reward: 10.58 Ep_Reward: 46.0 Mean Loss: 0.02		
-Episode 775 Mean Reward: 10.64 Ep_Reward: 12.0 Mean Loss: 0.02		
-Episode 776 Mean Reward: 10.64 Ep_Reward: 10.0 Mean Loss: 0.02		
-Episode 777 Mean Reward: 10.64 Ep_Reward: 9.0 Mean Loss: 0.02		
-Episode 778 Mean Reward: 10.64 Ep_Reward: 9.0 Mean Loss: 0.02		
-Episode 779 Mean Reward: 10.64 Ep_Reward: 10.0 Mean Loss: 0.02		
-Episode 780 Mean Reward: 10.66 Ep_Reward: 11.0 Mean Loss: 0.02		
-Episode 781 Mean Reward: 10.68 Ep_Reward: 9.0 Mean Loss: 0.02		
-Episode 782 Mean Reward: 10.68 Ep_Reward: 8.0 Mean Loss: 0.02		
-Episode 783 Mean Reward: 10.70 Ep_Reward: 11.0 Mean Loss: 0.02		
-Episode 784 Mean Reward: 10.72 Ep_Reward: 10.0 Mean Loss: 0.02		
-Episode 785 Mean Reward: 10.66 Ep_Reward: 8.0 Mean Loss: 0.02		
-Episode 786 Mean Reward: 10.66 Ep_Reward: 12.0 Mean Loss: 0.02		
-Episode 787 Mean Reward: 10.64 Ep_Reward: 10.0 Mean Loss: 0.02		
-Episode 788 Mean Reward: 10.64 Ep_Reward: 10.0 Mean Loss: 0.02		
-Episode 789 Mean Reward: 10.64 Ep_Reward: 10.0 Mean Loss: 0.02		
-Episode 790 Mean Reward: 10.60 Ep_Reward: 8.0 Mean Loss: 0.02		
-Episode 791 Mean Reward: 10.58 Ep_Reward: 9.0 Mean Loss: 0.02		
-Episode 792 Mean Reward: 10.60 Ep_Reward: 12.0 Mean Loss: 0.02		
-Episode 793 Mean Reward: 10.60 Ep_Reward: 10.0 Mean Loss: 0.02		
-Episode 794 Mean Reward: 10.64 Ep_Reward: 11.0 Mean Loss: 0.02		
-Episode 795 Mean Reward: 10.64 Ep_Reward: 11.0 Mean Loss: 0.02		
-Episode 796 Mean Reward: 10.68 Ep_Reward: 11.0 Mean Loss: 0.02		
-Episode 797 Mean Reward: 10.68 Ep_Reward: 10.0 Mean Loss: 0.02		
-Episode 798 Mean Reward: 10.66 Ep_Reward: 9.0 Mean Loss: 0.02		
-Episode 799 Mean Reward: 10.66 Ep_Reward: 9.0 Mean Loss: 0.02		
-Episode 800 Mean Reward: 10.64 Ep_Reward: 9.0 Mean Loss: 0.02		
-Episode 801 Mean Reward: 10.62 Ep_Reward: 8.0 Mean Loss: 0.02		
-Episode 802 Mean Reward: 10.60 Ep_Reward: 9.0 Mean Loss: 0.02		
-Episode 803 Mean Reward: 10.58 Ep_Reward: 9.0 Mean Loss: 0.02		
-Episode 804 Mean Reward: 10.64 Ep_Reward: 12.0 Mean Loss: 0.02		
-Episode 805 Mean Reward: 10.68 Ep_Reward: 11.0 Mean Loss: 0.02		
-Episode 806 Mean Reward: 10.68 Ep_Reward: 10.0 Mean Loss: 0.02		
-Episode 807 Mean Reward: 10.72 Ep_Reward: 11.0 Mean Loss: 0.02		
-Episode 808 Mean Reward: 10.74 Ep_Reward: 11.0 Mean Loss: 0.02		
-Episode 809 Mean Reward: 10.78 Ep_Reward: 11.0 Mean Loss: 0.02		
-Episode 810 Mean Reward: 10.78 Ep_Reward: 9.0 Mean Loss: 0.02		
-Episode 811 Mean Reward: 10.84 Ep_Reward: 13.0 Mean Loss: 0.02		
-Episode 812 Mean Reward: 10.86 Ep_Reward: 10.0 Mean Loss: 0.02		
-Episode 813 Mean Reward: 10.88 Ep_Reward: 9.0 Mean Loss: 0.02		
-Episode 814 Mean Reward: 10.80 Ep_Reward: 8.0 Mean Loss: 0.02		
-Episode 815 Mean Reward: 10.78 Ep_Reward: 9.0 Mean Loss: 0.02		
-Episode 816 Mean Reward: 10.74 Ep_Reward: 10.0 Mean Loss: 0.02		
-Episode 817 Mean Reward: 10.76 Ep_Reward: 11.0 Mean Loss: 0.02		
-Episode 818 Mean Reward: 10.80 Ep_Reward: 12.0 Mean Loss: 0.02		
-Episode 819 Mean Reward: 10.80 Ep_Reward: 10.0 Mean Loss: 0.02		
-Episode 820 Mean Reward: 10.74 Ep_Reward: 9.0 Mean Loss: 0.02		
-Episode 821 Mean Reward: 10.74 Ep_Reward: 10.0 Mean Loss: 0.02		
-Episode 822 Mean Reward: 10.68 Ep_Reward: 8.0 Mean Loss: 0.02		
-Episode 823 Mean Reward: 10.70 Ep_Reward: 11.0 Mean Loss: 0.02		
-Episode 824 Mean Reward: 9.98 Ep_Reward: 10.0 Mean Loss: 0.02		
-Episode 825 Mean Reward: 9.94 Ep_Reward: 10.0 Mean Loss: 0.02		
-Episode 826 Mean Reward: 9.98 Ep_Reward: 12.0 Mean Loss: 0.02		
-Episode 827 Mean Reward: 10.00 Ep_Reward: 10.0 Mean Loss: 0.02		
-Episode 828 Mean Reward: 9.98 Ep_Reward: 8.0 Mean Loss: 0.02		
-Episode 829 Mean Reward: 9.96 Ep_Reward: 9.0 Mean Loss: 0.02		
-Episode 830 Mean Reward: 9.94 Ep_Reward: 10.0 Mean Loss: 0.02		
-Episode 831 Mean Reward: 9.98 Ep_Reward: 11.0 Mean Loss: 0.02		
-Episode 832 Mean Reward: 10.02 Ep_Reward: 10.0 Mean Loss: 0.02		
-Episode 833 Mean Reward: 10.00 Ep_Reward: 10.0 Mean Loss: 0.02		
-Episode 834 Mean Reward: 10.00 Ep_Reward: 10.0 Mean Loss: 0.02		
-Episode 835 Mean Reward: 10.04 Ep_Reward: 10.0 Mean Loss: 0.02		
-Episode 836 Mean Reward: 10.00 Ep_Reward: 10.0 Mean Loss: 0.02		
-Episode 837 Mean Reward: 9.96 Ep_Reward: 8.0 Mean Loss: 0.02		
-Episode 838 Mean Reward: 9.96 Ep_Reward: 10.0 Mean Loss: 0.02		
-Episode 839 Mean Reward: 9.94 Ep_Reward: 9.0 Mean Loss: 0.02		
-Episode 840 Mean Reward: 10.04 Ep_Reward: 13.0 Mean Loss: 0.02		
-Episode 841 Mean Reward: 10.04 Ep_Reward: 9.0 Mean Loss: 0.02		
-Episode 842 Mean Reward: 10.02 Ep_Reward: 11.0 Mean Loss: 0.02		
-Episode 843 Mean Reward: 10.08 Ep_Reward: 13.0 Mean Loss: 0.02		
-Episode 844 Mean Reward: 10.02 Ep_Reward: 8.0 Mean Loss: 0.02		
-Episode 845 Mean Reward: 9.98 Ep_Reward: 9.0 Mean Loss: 0.02		
-Episode 846 Mean Reward: 9.94 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 847 Mean Reward: 10.02 Ep_Reward: 14.0 Mean Loss: 0.02		
-Episode 848 Mean Reward: 10.04 Ep_Reward: 10.0 Mean Loss: 0.02		
-Episode 849 Mean Reward: 10.04 Ep_Reward: 9.0 Mean Loss: 0.02		
-Episode 850 Mean Reward: 10.04 Ep_Reward: 9.0 Mean Loss: 0.02		
-Episode 851 Mean Reward: 10.08 Ep_Reward: 10.0 Mean Loss: 0.02		
-Episode 852 Mean Reward: 10.10 Ep_Reward: 10.0 Mean Loss: 0.02		
-Episode 853 Mean Reward: 10.12 Ep_Reward: 10.0 Mean Loss: 0.02		
-Episode 854 Mean Reward: 10.06 Ep_Reward: 9.0 Mean Loss: 0.02		
-Episode 855 Mean Reward: 10.02 Ep_Reward: 9.0 Mean Loss: 0.02		
-Episode 856 Mean Reward: 10.10 Ep_Reward: 14.0 Mean Loss: 0.02		
-Episode 857 Mean Reward: 10.08 Ep_Reward: 10.0 Mean Loss: 0.02		
-Episode 858 Mean Reward: 10.04 Ep_Reward: 9.0 Mean Loss: 0.02		
-Episode 859 Mean Reward: 10.00 Ep_Reward: 9.0 Mean Loss: 0.02		
-Episode 860 Mean Reward: 10.04 Ep_Reward: 11.0 Mean Loss: 0.02		
-Episode 861 Mean Reward: 9.98 Ep_Reward: 10.0 Mean Loss: 0.02		
-Episode 862 Mean Reward: 9.96 Ep_Reward: 9.0 Mean Loss: 0.02		
-Episode 863 Mean Reward: 9.96 Ep_Reward: 9.0 Mean Loss: 0.02		
-Episode 864 Mean Reward: 9.98 Ep_Reward: 9.0 Mean Loss: 0.02		
-Episode 865 Mean Reward: 10.00 Ep_Reward: 10.0 Mean Loss: 0.02		
-Episode 866 Mean Reward: 9.98 Ep_Reward: 9.0 Mean Loss: 0.02		
-Episode 867 Mean Reward: 9.92 Ep_Reward: 8.0 Mean Loss: 0.01		
-Episode 868 Mean Reward: 9.84 Ep_Reward: 8.0 Mean Loss: 0.01		
-Episode 869 Mean Reward: 9.82 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 870 Mean Reward: 9.82 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 871 Mean Reward: 9.82 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 872 Mean Reward: 9.94 Ep_Reward: 14.0 Mean Loss: 0.01		
-Episode 873 Mean Reward: 9.90 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 874 Mean Reward: 9.88 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 875 Mean Reward: 9.84 Ep_Reward: 8.0 Mean Loss: 0.01		
-Episode 876 Mean Reward: 9.78 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 877 Mean Reward: 9.76 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 878 Mean Reward: 9.80 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 879 Mean Reward: 9.90 Ep_Reward: 14.0 Mean Loss: 0.01		
-Episode 880 Mean Reward: 9.90 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 881 Mean Reward: 9.86 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 882 Mean Reward: 9.86 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 883 Mean Reward: 9.84 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 884 Mean Reward: 9.80 Ep_Reward: 8.0 Mean Loss: 0.01		
-Episode 885 Mean Reward: 9.80 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 886 Mean Reward: 9.78 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 887 Mean Reward: 9.84 Ep_Reward: 11.0 Mean Loss: 0.01		
-Episode 888 Mean Reward: 9.82 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 889 Mean Reward: 9.84 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 890 Mean Reward: 9.78 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 891 Mean Reward: 9.80 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 892 Mean Reward: 9.82 Ep_Reward: 12.0 Mean Loss: 0.01		
-Episode 893 Mean Reward: 9.76 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 894 Mean Reward: 9.78 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 895 Mean Reward: 9.80 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 896 Mean Reward: 9.82 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 897 Mean Reward: 9.72 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 898 Mean Reward: 9.74 Ep_Reward: 11.0 Mean Loss: 0.01		
-Episode 899 Mean Reward: 9.72 Ep_Reward: 8.0 Mean Loss: 0.01		
-Episode 900 Mean Reward: 9.74 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 901 Mean Reward: 9.72 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 902 Mean Reward: 9.72 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 903 Mean Reward: 9.70 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 904 Mean Reward: 9.72 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 905 Mean Reward: 9.72 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 906 Mean Reward: 9.68 Ep_Reward: 12.0 Mean Loss: 0.01		
-Episode 907 Mean Reward: 9.68 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 908 Mean Reward: 9.70 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 909 Mean Reward: 9.72 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 910 Mean Reward: 9.70 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 911 Mean Reward: 9.72 Ep_Reward: 11.0 Mean Loss: 0.01		
-Episode 912 Mean Reward: 9.76 Ep_Reward: 11.0 Mean Loss: 0.01		
-Episode 913 Mean Reward: 9.78 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 914 Mean Reward: 9.82 Ep_Reward: 11.0 Mean Loss: 0.01		
-Episode 915 Mean Reward: 9.78 Ep_Reward: 8.0 Mean Loss: 0.01		
-Episode 916 Mean Reward: 9.78 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 917 Mean Reward: 9.78 Ep_Reward: 8.0 Mean Loss: 0.01		
-Episode 918 Mean Reward: 9.82 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 919 Mean Reward: 9.82 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 920 Mean Reward: 9.82 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 921 Mean Reward: 9.78 Ep_Reward: 8.0 Mean Loss: 0.01		
-Episode 922 Mean Reward: 9.68 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 923 Mean Reward: 9.68 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 924 Mean Reward: 9.74 Ep_Reward: 12.0 Mean Loss: 0.01		
-Episode 925 Mean Reward: 9.76 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 926 Mean Reward: 9.74 Ep_Reward: 8.0 Mean Loss: 0.01		
-Episode 927 Mean Reward: 9.76 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 928 Mean Reward: 9.80 Ep_Reward: 12.0 Mean Loss: 0.01		
-Episode 929 Mean Reward: 9.72 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 930 Mean Reward: 9.72 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 931 Mean Reward: 9.72 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 932 Mean Reward: 9.74 Ep_Reward: 11.0 Mean Loss: 0.01		
-Episode 933 Mean Reward: 9.72 Ep_Reward: 8.0 Mean Loss: 0.01		
-Episode 934 Mean Reward: 9.72 Ep_Reward: 8.0 Mean Loss: 0.01		
-Episode 935 Mean Reward: 9.72 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 936 Mean Reward: 9.72 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 937 Mean Reward: 9.68 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 938 Mean Reward: 9.72 Ep_Reward: 11.0 Mean Loss: 0.01		
-Episode 939 Mean Reward: 9.72 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 940 Mean Reward: 9.70 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 941 Mean Reward: 9.68 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 942 Mean Reward: 9.62 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 943 Mean Reward: 9.62 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 944 Mean Reward: 9.62 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 945 Mean Reward: 9.66 Ep_Reward: 12.0 Mean Loss: 0.01		
-Episode 946 Mean Reward: 9.66 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 947 Mean Reward: 9.68 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 948 Mean Reward: 9.66 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 949 Mean Reward: 9.68 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 950 Mean Reward: 9.68 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 951 Mean Reward: 9.74 Ep_Reward: 12.0 Mean Loss: 0.01		
-Episode 952 Mean Reward: 9.72 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 953 Mean Reward: 9.76 Ep_Reward: 11.0 Mean Loss: 0.01		
-Episode 954 Mean Reward: 9.72 Ep_Reward: 8.0 Mean Loss: 0.01		
-Episode 955 Mean Reward: 9.72 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 956 Mean Reward: 9.66 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 957 Mean Reward: 9.64 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 958 Mean Reward: 9.64 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 959 Mean Reward: 9.64 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 960 Mean Reward: 9.68 Ep_Reward: 12.0 Mean Loss: 0.01		
-Episode 961 Mean Reward: 9.64 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 962 Mean Reward: 9.60 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 963 Mean Reward: 9.66 Ep_Reward: 13.0 Mean Loss: 0.01		
-Episode 964 Mean Reward: 9.66 Ep_Reward: 11.0 Mean Loss: 0.01		
-Episode 965 Mean Reward: 9.68 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 966 Mean Reward: 9.70 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 967 Mean Reward: 9.74 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 968 Mean Reward: 9.74 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 969 Mean Reward: 9.74 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 970 Mean Reward: 9.74 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 971 Mean Reward: 9.78 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 972 Mean Reward: 9.80 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 973 Mean Reward: 9.86 Ep_Reward: 12.0 Mean Loss: 0.01		
-Episode 974 Mean Reward: 9.82 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 975 Mean Reward: 9.84 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 976 Mean Reward: 9.92 Ep_Reward: 12.0 Mean Loss: 0.01		
-Episode 977 Mean Reward: 9.92 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 978 Mean Reward: 9.86 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 979 Mean Reward: 9.86 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 980 Mean Reward: 9.88 Ep_Reward: 11.0 Mean Loss: 0.01		
-Episode 981 Mean Reward: 9.88 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 982 Mean Reward: 9.84 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 983 Mean Reward: 9.86 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 984 Mean Reward: 9.88 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 985 Mean Reward: 9.86 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 986 Mean Reward: 9.86 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 987 Mean Reward: 9.92 Ep_Reward: 12.0 Mean Loss: 0.01		
-Episode 988 Mean Reward: 10.38 Ep_Reward: 34.0 Mean Loss: 0.01		
-Episode 989 Mean Reward: 10.36 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 990 Mean Reward: 10.36 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 991 Mean Reward: 10.38 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 992 Mean Reward: 10.38 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 993 Mean Reward: 10.36 Ep_Reward: 9.0 Mean Loss: 0.01		
-Episode 994 Mean Reward: 10.38 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 995 Mean Reward: 10.36 Ep_Reward: 11.0 Mean Loss: 0.01		
-Episode 996 Mean Reward: 10.32 Ep_Reward: 8.0 Mean Loss: 0.01		
-Episode 997 Mean Reward: 10.36 Ep_Reward: 12.0 Mean Loss: 0.01		
-Episode 998 Mean Reward: 10.36 Ep_Reward: 10.0 Mean Loss: 0.01		
-Episode 999 Mean Reward: 10.40 Ep_Reward: 11.0 Mean Loss: 0.01		
-Episode 1000 Mean Reward: 10.40 Ep_Reward: 10.0 Mean Loss: 0.01		
-
-Episode limit reached
-Starting game 1
-	Total Reward: 10.0
-Starting game 2
-	Total Reward: 10.0
-Starting game 3
-	Total Reward: 9.0
-Starting game 4
-	Total Reward: 10.0
-Starting game 5
-	Total Reward: 9.0
-Starting game 6
-	Total Reward: 10.0
-Starting game 7
-	Total Reward: 10.0
-Starting game 8
-	Total Reward: 10.0
-Starting game 9
-	Total Reward: 10.0
-Starting game 10
-	Total Reward: 9.0
-Mean Reward:  9.700000000000001

@@ -16,8 +16,9 @@ class UniformBuffer:
 
         #I want to construct it with an already full state (with noop transitions)
         env.reset()
-        observation,reward,done,_,_ = env.step(0)
-        self.store(observation,0,reward,done,observation)
+        action = env.action_space.high
+        observation,reward,done,_,_ = env.step(action)
+        self.store(observation,action,reward,done,observation)
     
     def store(self,observation,action,reward,done,next_observation):
         '''
@@ -44,13 +45,6 @@ class UniformBuffer:
     
     def __len__(self):
         return len(self.buffer)
-    
-    
-    
-    
-    
-    
-    
     
     
 
@@ -139,7 +133,7 @@ class PrioritizedBuffer:
         priorities = (errors + self.epsilon) ** self.alpha
         print("Priorities: {} ".format(priorities))
         
-        #Updating priorities in treee
+        #Updating priorities in tree
         for index,priority in zip(self.treeIndices,priorities):
             self.tree.update(index,priority,isLeaf=True)
             self.max_priority = max(self.max_priority,priority)
