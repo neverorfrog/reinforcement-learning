@@ -31,7 +31,7 @@ class Actor(nn.Module):
         return self.act_limit * self.pi(obs) #TODO tensor?
     
     def select_action(self, obs, noise_weight = 0.3):
-        with torch.no_grad(): action = self.pi(obs) #TODO: tensor?
+        with torch.no_grad(): action = self.pi(torch.as_tensor(obs, dtype=torch.float32))
         action += noise_weight * np.random.randn(self.act_dim)
         return np.clip(action, -self.act_limit, self.act_limit)
         

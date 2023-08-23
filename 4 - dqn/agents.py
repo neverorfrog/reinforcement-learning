@@ -2,7 +2,7 @@ from collections import deque
 from copy import deepcopy
 import numpy as np
 import gymnasium as gym
-from tools.estimator import DQN
+from network import DQN
 from tools.plotting import ProgressBoard
 from tools.agent import *
 from tools.utils import *

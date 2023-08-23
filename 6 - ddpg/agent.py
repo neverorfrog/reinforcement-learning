@@ -14,8 +14,8 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 class DDPG(HyperParameters):
     def __init__(self, name, env: gym.Env, board: ProgressBoard = None, window = 50,
-                 tau = 0.1, pi_lr = 0.0005, q_lr = 0.0005, target_update_freq = 10, online_update_freq = 1,
-                 batch_size = 5, start_steps = 5000, gamma=0.9, max_steps=200, max_episodes=500, reward_threshold=400):
+                 tau = 0.1, pi_lr = 0.0005, q_lr = 0.0005, target_update_freq = 5, online_update_freq = 1,
+                 batch_size = 32, start_steps = 5000, gamma=0.9, max_steps=200, max_episodes=500, reward_threshold=400):
 
         # Hyperparameters
         self.save_hyperparameters()
@@ -54,7 +54,7 @@ class DDPG(HyperParameters):
             done = False
 
             # starting point
-            observation = torch.FloatTensor(self.env.reset()[0])
+            observation = self.env.reset()[0]
 
             while not done:
                 new_observation, done = self.interaction_step(observation)
@@ -71,16 +71,18 @@ class DDPG(HyperParameters):
                 if steps > self.max_steps:
                     done = True
 
-                observation = new_observation.detach().clone()
+                observation = new_observation
                 steps += 1
 
             self.episode_update()
+        
+        #Done training and saving the model
+        self.save()
 
 
     def interaction_step(self, observation):
         action = self.online_actor.select_action(observation)
         new_observation, reward, terminated, truncated, _ = self.env.step(action)
-        new_observation = torch.FloatTensor(new_observation)
         done = terminated or truncated
         # Storing in the memory
         self.memory.store(observation,action,reward,done,new_observation)    
@@ -89,15 +91,9 @@ class DDPG(HyperParameters):
         return new_observation, done
     
     def learning_step(self): 
-        # Sampling and loss function
-        minibatch = self.memory.sample(batch_size = self.batch_size)
-        # Transform batch into torch tensors
-        rewards = torch.FloatTensor(minibatch.reward).reshape(-1,1).to(device)
-        actions = torch.FloatTensor(minibatch.action).reshape(-1,1).to(device)
-        dones = torch.IntTensor(minibatch.done).reshape(-1,1).to(device)
-        observations = torch.stack(minibatch.observation).to(device)
-        new_observations = torch.stack(minibatch.new_observation).to(device)
-        
+        #Sampling
+        observations, actions, rewards, dones, new_observations = self.memory.sample(batch_size = self.batch_size)
+                
         #Value Optimization
         estimations = self.online_critic(observations, actions)  
         with torch.no_grad():
@@ -167,7 +163,7 @@ class DDPG(HyperParameters):
                 observation, reward, terminated, truncated, _ = env.step(action)
                 observation = torch.FloatTensor(observation)
                 total_reward += reward
-                if render: self.env.render()
+                # if render: self.env.render()
                 
             if render: print("\tTotal Reward:", total_reward)
             mean_reward = mean_reward + (1/i)*(total_reward - mean_reward)
@@ -176,23 +172,25 @@ class DDPG(HyperParameters):
         return mean_reward 
     
     def populate_buffer(self):    
-        observation = torch.FloatTensor(self.env.reset()[0])
+        observation = self.env.reset()[0]
         for _ in range(self.start_steps):
             with torch.no_grad(): 
                 action = self.online_actor.select_action(observation, noise_weight = 1)
             new_observation, reward, terminated, truncated, _ = self.env.step(action)
-            new_observation = torch.FloatTensor(new_observation)
             done = terminated or truncated
             self.memory.store(observation,action,reward,done,new_observation)
-            observation = new_observation.detach().clone()
+            observation = new_observation
             if terminated or truncated: 
-                observation = torch.FloatTensor(self.env.reset()[0])
+                observation = self.env.reset()[0]
             
     def save(self):
-        torch.save(self.network.state_dict(), f"{self.name}.pt")
+        torch.save(self.online_actor.state_dict(), f"{self.name}.policy.pt")
+        torch.save(self.online_critic.state_dict(), f"{self.name}.value.pt")
+        
 
     def load(self):
-        self.network.load_state_dict(torch.load(f"{self.name}.pt"))
+        self.online_actor.load_state_dict(torch.load(f"{self.name}.policy.pt"))
+        self.online_critic.load_state_dict(torch.load(f"{self.name}.value.pt"))
 
     def to(self, device):
         ret = super().to(device)
@@ -201,10 +199,11 @@ class DDPG(HyperParameters):
          
     
 if __name__ == "__main__":
-    num_ep = 200
-    env = gym.make('InvertedPendulum-v4')
-    agent = DDPG("hi", env)
+    num_ep = 2000
+    env = gym.make('InvertedPendulum-v4', render_mode = "rgb_array")
+    agent = DDPG("ddpg_inverted_pendulum", env, max_episodes = num_ep)
+    # agent.load()
     agent.train()
     
-    # testenv = gym.make("MountainCar-v0", render_mode = "human")
-    # agent.evaluate(testenv, render = True, episodes = 10, max_steps=200)
+    testenv = gym.make('InvertedPendulum-v4')
+    agent.evaluate(testenv, episodes = 10)
