@@ -27,8 +27,7 @@ if __name__ == '__main__':
     env_params = {'obs': observation['observation'].shape[0], 
                   'goal': observation['desired_goal'].shape[0], 
                   'action': env.action_space.shape[0], 
-                  'action_max': env.action_space.high[0],
-                  }
+                  'action_max': env.action_space.high[0],}
     # create the actor network
     actor_network = actor(env_params)
     actor_network.load_state_dict(model)

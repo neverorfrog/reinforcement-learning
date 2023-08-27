@@ -3,7 +3,6 @@ import numpy as np
 
 """
 the replay buffer here is basically from the openai baselines code
-
 """
 class replay_buffer:
     def __init__(self, env_params, buffer_size, sample_func):
@@ -15,7 +14,7 @@ class replay_buffer:
         self.n_transitions_stored = 0
         self.sample_func = sample_func
         # create the buffer to store info
-        self.buffers = {'obs': np.empty([self.size, self.T + 1, self.env_params['obs']]),
+        self.buffers = {'obs': np.empty([self.size, self.T + 1, self.env_params['obs']]), 
                         'ag': np.empty([self.size, self.T + 1, self.env_params['goal']]),
                         'g': np.empty([self.size, self.T, self.env_params['goal']]),
                         'actions': np.empty([self.size, self.T, self.env_params['action']]),
@@ -26,7 +25,7 @@ class replay_buffer:
     # store the episode
     def store_episode(self, episode_batch):
         mb_obs, mb_ag, mb_g, mb_actions = episode_batch
-        batch_size = mb_obs.shape[0]
+        batch_size = mb_obs.shape[0] #episodes in the batch (maybe always 1?)
         with self.lock:
             idxs = self._get_storage_idx(inc=batch_size)
             # store the informations

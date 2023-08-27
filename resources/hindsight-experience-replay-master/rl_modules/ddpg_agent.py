@@ -240,7 +240,7 @@ class ddpg_agent:
             observation = self.env.reset()
             obs = observation['observation']
             g = observation['desired_goal']
-            for _ in range(self.env_params['max_timesteps']):
+            for _ in range(self.env_paraßms['max_timesteps']):
                 with torch.no_grad():
                     input_tensor = self._preproc_inputs(obs, g)
                     pi = self.actor_network(input_tensor)

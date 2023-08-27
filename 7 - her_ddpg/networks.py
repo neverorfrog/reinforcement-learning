@@ -2,8 +2,6 @@ import numpy as np
 import torch.nn as nn
 import torch
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-import gymnasium as gym
-from gymnasium.spaces.dict import Dict
 
 # Seed
 SEED = 42
@@ -20,29 +18,27 @@ def network(sizes, activation, output_activation = nn.Identity):
 class Actor(nn.Module):
     """Parametrized Policy Network."""
 
-    def __init__(self, env_params, hidden_dims=(400,300), activation=nn.ReLU):
+    def __init__(self, env_params, hidden_dims=(256,256), activation=nn.ReLU):
         super().__init__()
         # dimensions
-        dimensions = [env_params['obs_dim']] + list(hidden_dims) + [env_params['action_dim']]
+        dimensions = [env_params['obs_dim'] + env_params['goal_dim']] + list(hidden_dims) + [env_params['action_dim']]
         self.pi = network(dimensions, activation, nn.Tanh)
         self.action_bound = env_params['action_bound']
         
-    def forward(self, obs):    
+    def forward(self, obs, goals):        
         # Return output from network scaled to action space limits.
-        return self.action_bound * self.pi(obs)
+        # obs and goals come in shape (batch_size, size of obs or goal)
+        return self.action_bound * self.pi(torch.cat([obs,goals], dim = -1))
         
         
 class Critic(nn.Module):
     """Parametrized Q Network."""
 
-    def __init__(self, env_params, hidden_dims=(400,300), activation=nn.ReLU):
+    def __init__(self, env_params, hidden_dims=(256,256), activation=nn.ReLU):
         super().__init__()
         # dimensions
-        dimensions = [env_params['obs_dim'] + env_params['action_dim']] + list(hidden_dims) + [1]
+        dimensions = [env_params['obs_dim'] + env_params['goal_dim'] + env_params['action_dim']] + list(hidden_dims) + [1]
         self.q = network(dimensions, activation)
 
-    def forward(self, obs, act):
-        print(obs.shape)
-        print(act.shape)
-        exit()
-        return self.q(torch.cat([obs, act], dim=-1))    
+    def forward(self, obs, act, goals):
+        return self.q(torch.cat([obs, act, goals], dim=-1))    

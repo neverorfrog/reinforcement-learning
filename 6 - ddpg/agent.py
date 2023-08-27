@@ -1,36 +1,63 @@
 from collections import deque
 from copy import deepcopy
+import os
 import numpy as np
 import gymnasium as gym
 from networks import *
 from tools.plotting import ProgressBoard
-from tools.agent import *
-from tools.utils import *
+from tools.utils import HyperParameters
 import torch
 import torch.nn as nn
-from tools.buffers import UniformBuffer
+from tools.buffers import *
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
+# Seed
+SEED = 42
+torch.manual_seed(SEED)
+np.random.seed(SEED)
+
+'''
+Vanilla DDP: 756 episodes 1000 reward 411 mean reward
+'''
 
 class DDPG(HyperParameters):
     def __init__(self, name, env: gym.Env, board: ProgressBoard = None, window = 50,
-                 tau = 0.1, pi_lr = 0.0005, q_lr = 0.0005, target_update_freq = 5, online_update_freq = 1,
-                 batch_size = 32, start_steps = 5000, gamma=0.9, max_steps=200, max_episodes=500, reward_threshold=400):
+                 polyak = 0.995, pi_lr = 0.0001, q_lr = 0.0001, target_update_freq = 1, update_freq = 1, 
+                 eps = 1.0, eps_decay = 0.95, batch_size = 64, gamma=0.99, max_episodes=500, reward_threshold=400):
 
         # Hyperparameters
         self.save_hyperparameters()
+        
+        # env params for networks and buffer
+        observation = env.reset()[0]
+        self.env_params = {'obs_dim': observation.shape[0], 
+                    #   'goal_dim': observation['desired_goal'].shape[0], 
+                      'action_dim': env.action_space.shape[0], 
+                      'action_bound': env.action_space.high[0],
+                      'max_steps': env._max_episode_steps}
 
         # Networks
-        self.online_actor: Actor = Actor(env).to(device)
-        self.target_actor: Actor = deepcopy(self.online_actor).to(device)
-        self.online_critic: Critic = Critic(env).to(device)
-        self.target_critic: Critic = deepcopy(self.online_critic).to(device)
-        self.policy_optimizer = torch.optim.Adam(self.online_actor.parameters(), lr=pi_lr)
-        self.value_optimizer = torch.optim.Adam(self.online_critic.parameters(), lr=q_lr)
+        self.actor: Actor = Actor(self.env_params).to(device)
+        self.target_actor: Actor = deepcopy(self.actor).to(device)
+        self.critic: Critic = Critic(self.env_params).to(device)
+        self.target_critic: Critic = deepcopy(self.critic).to(device)
+        self.policy_optimizer = torch.optim.Adam(self.actor.parameters(), lr=pi_lr)
+        self.value_optimizer = torch.optim.Adam(self.critic.parameters(), lr=q_lr)
         self.value_loss_fn = nn.MSELoss()
+        #These networks must be updated not through the gradients but with polyak
+        for param in self.target_critic.parameters():
+            param.requires_grad = False 
+        for param in self.target_actor.parameters():
+            param.requires_grad = False 
 
         # Experience Replay Buffer
-        self.memory = UniformBuffer(env)
+        self.prioritizing = False
+        if self.prioritizing:
+            self.memory = PrioritizedBuffer(self.env_params, batch_size = self.batch_size)
+        else:
+            self.memory = StandardBuffer(self.env_params)
+        self.start_steps = 5*batch_size
+        
 
     def train(self):
 
@@ -43,7 +70,7 @@ class DDPG(HyperParameters):
         # Populating the experience replay memory
         self.populate_buffer()
 
-        while self.training:
+        while self.training: 
 
             # ep stats
             steps = 0
@@ -60,76 +87,93 @@ class DDPG(HyperParameters):
                 new_observation, done = self.interaction_step(observation)
                 
                 # Online network update
-                if steps % self.online_update_freq == 0:
+                if steps % self.update_freq == 0:
                     self.learning_step()
 
                 # Copying online network weights into target network
                 if steps % self.target_update_freq == 0:
-                    self.update_networks()
-
-                # Termination condition satisfied
-                if steps > self.max_steps:
-                    done = True
+                    self.update_target_networks()
 
                 observation = new_observation
                 steps += 1
 
             self.episode_update()
-        
-        #Done training and saving the model
-        self.save()
 
 
     def interaction_step(self, observation):
-        action = self.online_actor.select_action(observation)
+        action = self.select_action(observation, noise_weight = self.eps)
         new_observation, reward, terminated, truncated, _ = self.env.step(action)
         done = terminated or truncated
         # Storing in the memory
-        self.memory.store(observation,action,reward,done,new_observation)    
+        self.memory.store(observation,action,reward,done,new_observation) 
         # stats
         self.ep_reward += reward
         return new_observation, done
     
+    def select_action(self, obs, noise_weight = 0.5):
+        with torch.no_grad(): 
+            action = self.actor(torch.as_tensor(obs, dtype=torch.float32))
+            action += noise_weight * np.random.randn(self.env_params['action_dim'])
+            action = np.clip(action, -self.env_params['action_bound'], self.env_params['action_bound'])
+        return action
+    
     def learning_step(self): 
-        #Sampling
-        observations, actions, rewards, dones, new_observations = self.memory.sample(batch_size = self.batch_size)
-                
+        #Sampling of the minibatch
+        if self.prioritizing:
+            batch, weights = self.memory.sample()
+        else:
+            batch = self.memory.sample(batch_size = self.batch_size)
+        observations, actions, rewards, dones, new_observations = batch
         #Value Optimization
-        estimations = self.online_critic(observations, actions)  
+        estimations = self.critic(observations, actions)  
         with torch.no_grad():
             best_actions = self.target_actor(new_observations) #(batch_size, 1)
             target_values = self.target_critic(new_observations, best_actions)
             targets = rewards + (1 - dones) * self.gamma * target_values
-        value_loss = self.value_loss_fn(estimations, targets)
+        if self.prioritizing:
+            #For the priorities
+            errors = torch.abs(targets - estimations).detach()
+            # print(f"Errors in student: ", errors)
+            self.memory.update_priorities(errors)
+            #loss function
+            value_loss = torch.mean(self.value_loss_fn(estimations,targets) * weights)
+        else:
+            value_loss = self.value_loss_fn(estimations, targets)
         self.ep_mean_value_loss += (1/self.ep)*(value_loss.item() - self.ep_mean_value_loss)        
         self.value_optimizer.zero_grad()
         value_loss.backward()
         self.value_optimizer.step()
+        
+        #Don't waste computational effort
+        for param in self.critic.parameters():
+            param.requires_grad = False
                 
         #Policy Optimization
-        estimated_actions = self.online_actor(observations)
-        policy_loss = -self.online_critic(observations, estimated_actions).mean()
+        estimated_actions = self.actor(observations)
+        policy_loss = -self.critic(observations, estimated_actions).mean()
         self.policy_optimizer.zero_grad()
         policy_loss.backward()
         self.policy_optimizer.step()
+        
+        #Reactivate computational graph for critic
+        for param in self.critic.parameters():
+            param.requires_grad = True
     
-    def update_networks(self, tau=None):
-        tau = self.tau if tau is None else tau
-        for target, online in zip(self.target_critic.parameters(), 
-                                  self.online_critic.parameters()):
-            target_ratio = (1-tau) * target.data
-            online_ratio = tau * online.data
-            mixed_weights = target_ratio + online_ratio
-            target.data.copy_(mixed_weights)
+    def update_target_networks(self, polyak=None):
+        polyak = self.polyak if polyak is None else polyak
+        with torch.no_grad():
+            for target, online in zip(self.target_critic.parameters(), 
+                                    self.critic.parameters()):
+                target.data.mul_(polyak)
+                target.data.add_((1 - polyak) * online.data)
 
-        for target, online in zip(self.target_actor.parameters(), 
-                                  self.online_actor.parameters()):
-            target_ratio = (1-tau) * target.data
-            online_ratio = tau * online.data
-            mixed_weights = target_ratio + online_ratio
-            target.data.copy_(mixed_weights)
+            for target, online in zip(self.target_actor.parameters(), 
+                                    self.actor.parameters()):
+                target.data.mul_(polyak)
+                target.data.add_((1 - polyak) * online.data)
         
     def episode_update(self):
+        self.eps = max(0.1, self.eps * self.eps_decay)
         self.rewards.append(self.ep_reward)
         self.losses.append(self.ep_mean_value_loss)
         meanreward = np.mean(self.rewards)
@@ -145,11 +189,11 @@ class DDPG(HyperParameters):
         self.ep += 1
             
                 
-    def evaluate(self, env = None, render:bool = True, episodes = 3, max_steps: int = 200):
+    def evaluate(self, env = None, render:bool = True, num_ep = 3):
         mean_reward = 0.
         if env is None: env = self.env
         
-        for i in range(1, episodes+1):
+        for i in range(1, num_ep+1):
             if render: print(f"Starting game {i}")
 
             observation = torch.FloatTensor(env.reset()[0]) 
@@ -159,7 +203,9 @@ class DDPG(HyperParameters):
             total_reward = 0
             
             while not terminated and not truncated:
-                action = self.online_actor.select_action(observation, noise_weight = 0)
+                action = self.select_action(observation, noise_weight = 0)
+                print(action)
+                exit()
                 observation, reward, terminated, truncated, _ = env.step(action)
                 observation = torch.FloatTensor(observation)
                 total_reward += reward
@@ -175,7 +221,7 @@ class DDPG(HyperParameters):
         observation = self.env.reset()[0]
         for _ in range(self.start_steps):
             with torch.no_grad(): 
-                action = self.online_actor.select_action(observation, noise_weight = 1)
+                action = self.select_action(observation, noise_weight = 1)
             new_observation, reward, terminated, truncated, _ = self.env.step(action)
             done = terminated or truncated
             self.memory.store(observation,action,reward,done,new_observation)
@@ -184,26 +230,36 @@ class DDPG(HyperParameters):
                 observation = self.env.reset()[0]
             
     def save(self):
-        torch.save(self.online_actor.state_dict(), f"{self.name}.policy.pt")
-        torch.save(self.online_critic.state_dict(), f"{self.name}.value.pt")
-        
+        path = os.path.join("models",self.name)
+        if not os.path.exists(path): os.mkdir(path)
+        torch.save(self.actor.state_dict(), open(os.path.join(path,"actor.pt"), "wb"))
+        torch.save(self.actor.state_dict(), open(os.path.join(path,"critic.pt"), "wb"))
+        print("MODELS SAVED!")
 
     def load(self):
-        self.online_actor.load_state_dict(torch.load(f"{self.name}.policy.pt"))
-        self.online_critic.load_state_dict(torch.load(f"{self.name}.value.pt"))
+        path = os.path.join("models",self.name)
+        self.actor.load_state_dict(torch.load(open(os.path.join(path,"actor.pt"),"rb")))
+        self.critic.load_state_dict(torch.load(open(os.path.join(path,"critic.pt"),"rb")))
+        print("MODELS LOADED!")
 
     def to(self, device):
         ret = super().to(device)
         ret.device = device
         return ret 
-         
     
-if __name__ == "__main__":
-    num_ep = 2000
-    env = gym.make('InvertedPendulum-v4', render_mode = "rgb_array")
+
+def pendulum(num_ep = 500):
+    env = gym.make('InvertedPendulum-v4')
     agent = DDPG("ddpg_inverted_pendulum", env, max_episodes = num_ep)
-    # agent.load()
-    agent.train()
-    
-    testenv = gym.make('InvertedPendulum-v4')
-    agent.evaluate(testenv, episodes = 10)
+    return agent
+         
+if __name__ == "__main__":
+    agent = pendulum()
+    train = True
+    test = False
+    if train:
+        agent.train()
+        # agent.save()
+    if test:
+        agent.load()
+        agent.evaluate(num_ep = 10)

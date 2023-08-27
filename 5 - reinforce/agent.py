@@ -3,7 +3,6 @@ from torch.distributions.categorical import Categorical
 import numpy as np
 import gymnasium as gym
 from tools.plotting import ProgressBoard
-from tools.agent import *
 from tools.utils import *
 import torch
 import torch.nn as nn
