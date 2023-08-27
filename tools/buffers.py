@@ -70,19 +70,24 @@ class HERBuffer:
                        'reward': np.empty([self.ep_capacity, self.T]),
                        'new_observation': np.empty([self.ep_capacity, self.T, env_params['obs_dim']]),
                        'goal': np.empty([self.ep_capacity, self.T, env_params['goal_dim']]),
-                       'achieved_goal': np.empty([self.ep_capacity, self.T, env_params['goal_dim']]),
-                       'new_achieved_goal': np.empty([self.ep_capacity, self.T, env_params['goal_dim']]),}
+        }
 
-    def store(self,episode):
-        observations, actions, desired, achieved, new_observations, new_achieved_goals = episode
+    def store(self,episode, store_again = True):
+        observations, actions, rewards, new_observations, goals, achieved_goals = episode
         ep_index = self.ep_size % self.ep_capacity
         self.buffer['observation'][ep_index] = observations
         self.buffer['action'][ep_index] = actions
+        self.buffer['reward'][ep_index] = rewards
         self.buffer['new_observation'][ep_index] = new_observations
-        self.buffer['goal'][ep_index] = desired
-        self.buffer['achieved_goal'][ep_index] = achieved
-        self.buffer['new_achieved_goal'][ep_index] = new_achieved_goals
-        self.ep_size += 1        
+        self.buffer['goal'][ep_index] = goals
+        self.ep_size += 1
+        if store_again:
+            #compute new episode
+            #observations, actions and new_observations stay the same
+            goals = np.array([achieved_goals[-1]]*self.env_params['max_steps'])
+            rewards = np.array([self.reward_function(ag,g,None) for ag,g in zip(achieved_goals,goals)])
+            #save it
+            self.store([observations, actions, rewards, new_observations, goals, achieved_goals], store_again = False)        
 
     def sample(self, batch_size=32):
         #select episodes and timesteps to replay
@@ -90,15 +95,6 @@ class HERBuffer:
         episodes = np.random.randint(0, max_ep_index, size=batch_size)
         timesteps = np.random.randint(self.T, size=batch_size)
         transitions = {key: self.buffer[key][episodes,timesteps].copy() for key in self.buffer.keys()}
-        #indices from HER sampling
-        indices = np.where(np.random.uniform(size=batch_size) < self.future_p)
-        future_offset = (np.random.uniform(size=batch_size) * (self.T - timesteps)).astype(int)
-        future_timesteps = (timesteps + future_offset)[indices]
-        #replace goal with future achieved goal
-        future_goals = self.buffer['achieved_goal'][episodes[indices],future_timesteps]
-        transitions['goal'][indices] = future_goals
-        #recompute rewards of changed transitions so that the new achieved goal maybe meets the changed goal
-        transitions['reward'] = [self.reward_function(ag,g,None) for ag,g in zip(transitions['new_achieved_goal'],transitions['goal'])]       
         return transitions 
         
         

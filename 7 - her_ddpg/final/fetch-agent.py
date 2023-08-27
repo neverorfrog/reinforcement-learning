@@ -8,7 +8,7 @@ from tools.plotting import ProgressBoard
 from tools.utils import HyperParameters
 import torch
 import torch.nn as nn
-from tools.buffers import HERBuffer, StandardBuffer
+from tools.buffers import HERBuffer
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # Seed
@@ -23,7 +23,7 @@ Vanilla DDPG on inverted pendulum: 756 episodes 1000 reward 411 mean reward
 class FetchAgent(HyperParameters):
     def __init__(self, name, env: gym.Env, board: ProgressBoard = None, window = 50,
                  polyak = 0.95, pi_lr = 0.001, q_lr = 0.001, target_update_freq = 1, update_freq = 1, eps = 0.9, eps_decay = 0.995,
-                 batch_size = 64, gamma=0.99, max_steps=200, max_episodes=500, reward_threshold=400):
+                 num_epochs = 10, batch_size = 64, gamma=0.99, max_steps=200, max_episodes=500, reward_threshold=400):
 
         # Hyperparameters
         self.save_hyperparameters()
@@ -53,18 +53,19 @@ class FetchAgent(HyperParameters):
         # Experience Replay Buffer
         self.memory = HERBuffer(self.env_params, reward_function=env.compute_reward)
         self.start_steps = 5*batch_size
-
+        
+    
     def train(self):
+        for i in range(1,self.num_epochs+1):
+            success = self.train_epoch()
+            print(f"EPOCH {i} SUCCESS RATE {np.mean(success)}")      
 
-        # Life stats
+    def train_epoch(self):
+
+        # epoch stats
         self.ep = 1
         self.training = True
-        success_rate = []
-        self.rewards = deque(maxlen=self.window)
-        self.losses = deque(maxlen=self.window)
-
-        # Populating the experience replay memory
-        # self.populate_buffer()
+        successes = []
 
         while self.training:
 
@@ -75,54 +76,46 @@ class FetchAgent(HyperParameters):
             observations = np.empty([self.env_params['max_steps'], self.env_params['obs_dim']])
             actions = np.empty([self.env_params['max_steps'], self.env_params['action_dim']])
             new_observations = np.empty([self.env_params['max_steps'], self.env_params['obs_dim']])
+            goals = np.empty([self.env_params['max_steps'], self.env_params['goal_dim']])
+            rewards = np.empty([self.env_params['max_steps']])
             achieved_goals = np.empty([self.env_params['max_steps'], self.env_params['goal_dim']])
-            desired_goals = np.empty([self.env_params['max_steps'], self.env_params['goal_dim']])
-            new_achieved_goals = np.empty([self.env_params['max_steps'], self.env_params['goal_dim']])
+            
             # starting point
             obs_dict = self.env.reset()[0]
             observation = obs_dict['observation']
-            achieved = obs_dict['achieved_goal']
-            desired = obs_dict['desired_goal'] #never changes in an episode
+            goal = obs_dict['desired_goal'] #never changes in an episode
+            success = 0
             
             # Episode playing
+            new_obs_dict = None
             for t in range(self.env_params['max_steps']):
-                action = self.select_action(observation,desired,noise_weight = self.eps)
+                action = self.select_action(observation,goal,noise_weight = self.eps)
                 new_obs_dict, reward, _, _, info = self.env.step(action)
                 new_observation = new_obs_dict['observation']
-                new_achieved = new_obs_dict['achieved_goal']
+                achieved = new_obs_dict['achieved_goal']
                 #Storing in the temporary memory
                 observations[t] = observation
-                achieved_goals[t] = achieved
-                desired_goals[t] = desired
+                goals[t] = goal
                 actions[t] = action
                 new_observations[t] = new_observation
-                new_achieved_goals[t] = new_achieved
+                rewards[t] = reward
+                achieved_goals[t] = achieved
                 #Preparing for next step
-                achieved = new_achieved
                 observation = new_observation   
-                #Stats
-                self.ep_reward += reward
-                                        
-            # storing in the memory the entire episode
-            self.memory.store([observations, actions, desired, achieved, new_observations, new_achieved_goals])
-             
+                if info['is_success']: success = 1 
+                
+            # storing in the memory the entire episode plus the final achieved goal
+            self.memory.store([observations, actions, rewards, new_observations, goals, achieved_goals])
             # Episode sampling and learning
-            # Online network update
-            for _ in range(40):
+            for _ in range(20):
                 self.learning_step()
-            
-            # Copying online network weights into target network
             self.update_target_networks()
-
-            # stuff
-            self.episode_update()
             
-            #evaluation
-            self.evaluate(num_ep = 1)
-        
-        #Done training and saving the model
-        self.save()
-
+            #episode stuff
+            self.episode_update()
+            successes.append(success)
+            
+        return successes
     
     def select_action(self,obs,goal,noise_weight = 0.5):
         with torch.no_grad():
@@ -173,54 +166,46 @@ class FetchAgent(HyperParameters):
     def update_target_networks(self, polyak=None):
         polyak = self.polyak if polyak is None else polyak
         with torch.no_grad():
-            for target, online in zip(self.target_critic.parameters(), 
-                                    self.critic.parameters()):
+            for target, online in zip(self.target_critic.parameters(), self.critic.parameters()):
                 target.data.mul_(polyak)
                 target.data.add_((1 - polyak) * online.data)
 
-            for target, online in zip(self.target_actor.parameters(), 
-                                    self.actor.parameters()):
+            for target, online in zip(self.target_actor.parameters(), self.actor.parameters()):
                 target.data.mul_(polyak)
                 target.data.add_((1 - polyak) * online.data)
         
     def episode_update(self):
         self.eps = max(0.3, self.eps * self.eps_decay)
-        self.rewards.append(self.ep_reward)
-        self.losses.append(self.ep_mean_value_loss)
-        meanreward = np.mean(self.rewards)
-        meanloss = np.mean(self.losses)
-        # print(f'\rEpisode {self.ep} Mean Reward: {meanreward:.2f} Ep_Reward: {self.ep_reward} Mean Loss: {meanloss:.2f}\t\t')
-        # self.board.draw(self.ep, meanreward, self.name)
         if self.ep >= self.max_episodes:
             self.training = False
-            print("\nEpisode limit reached")
-        if meanreward >= self.reward_threshold:
-            self.training = False
-            print("\nSUCCESS!")
         self.ep += 1
             
                 
-    def evaluate(self, num_ep = 3, render = False):
+    def evaluate(self, num_ep = 5, render = False):
         success_rate = []     
         #Start testing the episodes
         for i in range(1, num_ep+1):
             if render: print(f"Starting game {i}")
             observation = self.env.reset()[0] 
             obs = observation['observation']
-            g = observation['desired_goal']            
+            g = observation['desired_goal']
+            success = 0            
             for _ in range(self.env_params['max_steps']):
                 with torch.no_grad():
                     obs = torch.as_tensor(obs, dtype = torch.float32)
                     goal = torch.as_tensor(g, dtype = torch.float32) 
-                    action = self.actor(obs,g).detach().cpu().numpy()
+                    action = self.actor(obs,goal).detach().cpu().numpy()
                 observation_new, reward, _, _, info = self.env.step(action)
                 obs = observation_new['observation']
                 g = observation_new['desired_goal']
                 if render: self.env.render()
-            success_rate.append(info['is_success'])
+                if info['is_success']: success = 1
+            success_rate.append(success)
         
         #End of the episodes
-        print(f"SUCCESS: {np.mean(success_rate)}")  
+        print(f"EPISODE {self.ep}")
+        print(success_rate)
+        print(f"MEAN SUCCESS: {np.mean(success_rate)}")  
             
                 
 
@@ -229,7 +214,7 @@ class FetchAgent(HyperParameters):
         path = os.path.join("models",self.name)
         if not os.path.exists(path): os.mkdir(path)
         torch.save(self.actor.state_dict(), open(os.path.join(path,"actor.pt"), "wb"))
-        torch.save(self.actor.state_dict(), open(os.path.join(path,"critic.pt"), "wb"))
+        torch.save(self.critic.state_dict(), open(os.path.join(path,"critic.pt"), "wb"))
         print("MODELS SAVED!")
 
     def load(self):
@@ -246,14 +231,15 @@ class FetchAgent(HyperParameters):
 
 def fetch_reach(num_ep = 500, train = True, test = True):
     env = gym.make('FetchReach-v2')
-    agent = FetchAgent("ddpg_fetch", env, max_episodes = num_ep)
+    agent = FetchAgent("ddpg_fetch", env, max_episodes = num_ep, num_epochs = 25)
     if train:
-        agent.train()
+        agent.train()    
+        agent.save() #Done training and saving the model
     if test:
         agent.load()
-        agent.evaluate(episodes = 10)
+        agent.evaluate(episodes = 10, render = True)
     
          
     
 if __name__ == "__main__":
-    fetch_reach(2000, True, False)
+    fetch_reach(200, False, True)
