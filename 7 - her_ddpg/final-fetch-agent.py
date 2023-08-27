@@ -8,13 +8,13 @@ from tools.plotting import ProgressBoard
 from tools.utils import HyperParameters
 import torch
 import torch.nn as nn
-from tools.buffers import HERBuffer
+from tools.buffers import *
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # Seed
-# SEED = 42
-# torch.manual_seed(SEED)
-# np.random.seed(SEED)
+SEED = 42
+torch.manual_seed(SEED)
+np.random.seed(SEED)
 
 '''
 Vanilla DDPG on inverted pendulum: 756 episodes 1000 reward 411 mean reward
@@ -51,7 +51,7 @@ class FetchAgent(HyperParameters):
             param.requires_grad = False 
 
         # Experience Replay Buffer
-        self.memory = HERBuffer(self.env_params, reward_function=env.compute_reward)
+        self.memory = FinalBuffer(self.env_params, reward_function=env.compute_reward)
         self.start_steps = 5*batch_size
         
     
@@ -69,9 +69,6 @@ class FetchAgent(HyperParameters):
 
         while self.training:
 
-            # ep stats
-            self.ep_reward = 0
-            self.ep_mean_value_loss = 0.
             # empty episode temporary memory
             observations = np.empty([self.env_params['max_steps'], self.env_params['obs_dim']])
             actions = np.empty([self.env_params['max_steps'], self.env_params['action_dim']])
@@ -79,7 +76,6 @@ class FetchAgent(HyperParameters):
             goals = np.empty([self.env_params['max_steps'], self.env_params['goal_dim']])
             rewards = np.empty([self.env_params['max_steps']])
             achieved_goals = np.empty([self.env_params['max_steps'], self.env_params['goal_dim']])
-            
             # starting point
             obs_dict = self.env.reset()[0]
             observation = obs_dict['observation']
@@ -128,7 +124,7 @@ class FetchAgent(HyperParameters):
     
     def learning_step(self): 
         #Sampling of the minibatch
-        transitions = self.memory.sample(batch_size = 3)
+        transitions = self.memory.sample(batch_size = self.batch_size)
         
         observations = torch.as_tensor(transitions['observation'], dtype=torch.float32)
         goals = torch.as_tensor(transitions['goal'], dtype=torch.float32)
@@ -143,7 +139,6 @@ class FetchAgent(HyperParameters):
             target_values = self.target_critic(new_observations,goals,best_actions)
             targets = rewards + self.gamma * target_values
         value_loss = self.value_loss_fn(estimations, targets)
-        self.ep_mean_value_loss += (1/self.ep)*(value_loss.item() - self.ep_mean_value_loss)        
         self.value_optimizer.zero_grad()
         value_loss.backward()
         self.value_optimizer.step()
@@ -182,7 +177,6 @@ class FetchAgent(HyperParameters):
             
                 
     def evaluate(self, num_ep = 5, render = False):
-        success_rate = []     
         #Start testing the episodes
         for i in range(1, num_ep+1):
             if render: print(f"Starting game {i}")
@@ -200,12 +194,7 @@ class FetchAgent(HyperParameters):
                 g = observation_new['desired_goal']
                 if render: self.env.render()
                 if info['is_success']: success = 1
-            success_rate.append(success)
-        
-        #End of the episodes
-        print(f"EPISODE {self.ep}")
-        print(success_rate)
-        print(f"MEAN SUCCESS: {np.mean(success_rate)}")  
+            print(f"SUCCESS: {success}")
             
                 
 
@@ -229,17 +218,23 @@ class FetchAgent(HyperParameters):
         return ret
     
 
-def fetch_reach(num_ep = 500, train = True, test = True):
-    env = gym.make('FetchReach-v2')
-    agent = FetchAgent("ddpg_fetch", env, max_episodes = num_ep, num_epochs = 25)
-    if train:
+from enum import Enum
+class Mode(Enum):
+    TRAIN = 1
+    TEST = 2
+     
+def fetch_reach(num_ep = 500, mode = None):
+    if mode == Mode.TRAIN:
+        env = gym.make('FetchReach-v2')
+        agent = FetchAgent("ddpg_per_fetch_reach_future", env, max_episodes = num_ep, num_epochs=20)
         agent.train()    
         agent.save() #Done training and saving the model
-    if test:
+    if mode == Mode.TEST:
+        env = gym.make('FetchReach-v2', render_mode = "human")
+        agent = FetchAgent("ddpg_per_fetch_reach_future", env)
         agent.load()
-        agent.evaluate(episodes = 10, render = True)
+        agent.evaluate(num_ep = 10, render = True)
     
          
-    
 if __name__ == "__main__":
-    fetch_reach(200, False, True)
+    fetch_reach(100, Mode.TEST)
