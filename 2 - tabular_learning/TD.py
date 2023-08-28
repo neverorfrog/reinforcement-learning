@@ -1,8 +1,8 @@
 import random
 import numpy as np
-from tools.plotting import *
+from common.plotting import *
 import gymnasium as gym
-from tools.utils import *
+from common.utils import *
 
 
 def sarsa(env: gym.Env, episodes: int, alpha: float = 0.7, eps: float = 0.1, gamma: float = 0.99, board: ProgressBoard = None):

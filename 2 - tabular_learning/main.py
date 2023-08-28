@@ -1,7 +1,7 @@
 import TD as td
 import gymnasium as gym
-from tools.utils import *
-from tools.plotting import *
+from common.utils import *
+from common.plotting import *
 
 #Training
 env = gym.make('CliffWalking-v0')
@@ -19,4 +19,21 @@ test_policy(env, policy2, episodes = 1, max_steps=20)
 test_policy(env, policy3, episodes = 1, max_steps=20)
 test_policy(env, policy4, episodes = 1, max_steps=20)
 board.block()
+
+
+'''
+Unknown model
+- In dynamic programming we had the model, here we don't
+- It means that in the Bellman equation (page 59) we don't have the transition probabilities and the value for s'
+- What we do is sampling the return instead of explicitly computing it
+
+How do we sample the return?
+- In MONTECARLO we generate the entire episode
+    - After that, we iterate over the state-action pairs backwards in time
+    - For each state-action pair, we sample its return by summing the discounted rewards until the end of the episode
+    - So, for each state-action pair, there is an entry in a tensor of shape (#ep, #states, #actions)
+    - We then estimate the value of a state-action pair by averaging along the first dimension of the tensor
+- In TEMPORAL DIFFERENCE methods we simply reduce the size of the sampled return, by just bootstrapping one step ahead instead of the entire episode
+    - So we don't average anything, the estimated value is just a single formula
+'''
 

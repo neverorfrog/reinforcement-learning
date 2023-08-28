@@ -1,6 +1,7 @@
 from collections import deque
 from copy import deepcopy
 import os
+import pprint
 import numpy as np
 import gymnasium as gym
 from networks import *
@@ -8,7 +9,7 @@ from common.plotting import ProgressBoard
 from common.utils import HyperParameters
 import torch
 import torch.nn as nn
-from common.buffers import *
+from perbuffer import *
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # Seed
@@ -17,7 +18,8 @@ torch.manual_seed(SEED)
 np.random.seed(SEED)
 
 '''
-Vanilla DDP: 756 episodes 1000 reward 411 mean reward
+DDPG (alpha and beta = 0): 756 episodes 1000 reward 411 mean reward
+DDPG + PER: 387 episodes 1000 reward 407 mean reward
 '''
 
 class DDPG(HyperParameters):
@@ -50,8 +52,9 @@ class DDPG(HyperParameters):
             param.requires_grad = False 
 
         # Experience Replay Buffer
-        self.memory = StandardBuffer(self.env_params)
-        self.start_steps = 5*batch_size
+        capacity = int(2**10)
+        self.memory = PrioritizedBuffer(self.env_params, capacity=capacity)
+        self.start_steps = capacity
         
 
     def train(self):
@@ -100,7 +103,7 @@ class DDPG(HyperParameters):
         new_observation, reward, terminated, truncated, _ = self.env.step(action)
         done = terminated or truncated
         # Storing in the memory
-        self.memory.store(observation,action,reward,done,new_observation) 
+        self.memory.store(observation,action,reward,done,new_observation)
         # stats
         self.ep_reward += reward
         return new_observation, done
@@ -114,7 +117,7 @@ class DDPG(HyperParameters):
     
     def learning_step(self): 
         #Sampling of the minibatch
-        batch = self.memory.sample(batch_size = self.batch_size)
+        batch, indexes, weights = self.memory.sample(batch_size = self.batch_size)
         observations, actions, rewards, dones, new_observations = batch
         #Value Optimization
         estimations = self.critic(observations, actions)  
@@ -122,7 +125,11 @@ class DDPG(HyperParameters):
             best_actions = self.target_actor(new_observations) #(batch_size, 1)
             target_values = self.target_critic(new_observations, best_actions)
             targets = rewards + (1 - dones) * self.gamma * target_values
-        value_loss = self.value_loss_fn(estimations, targets)
+        #For the priorities
+        priorities = torch.abs(targets - estimations).detach().cpu().numpy() + 1e-5
+        self.memory.update_priorities(indexes, priorities)
+        #loss function
+        value_loss = torch.mean(self.value_loss_fn(estimations,targets) * torch.as_tensor(weights))
         self.ep_mean_value_loss += (1/self.ep)*(value_loss.item() - self.ep_mean_value_loss)        
         self.value_optimizer.zero_grad()
         value_loss.backward()

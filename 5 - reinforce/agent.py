@@ -2,8 +2,8 @@ from collections import deque
 from torch.distributions.categorical import Categorical
 import numpy as np
 import gymnasium as gym
-from tools.plotting import ProgressBoard
-from tools.utils import *
+from common.plotting import ProgressBoard
+from common.utils import *
 import torch
 import torch.nn as nn
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -134,17 +134,8 @@ class REINFORCE(HyperParameters):
     
     
 if __name__ == "__main__":
-    # env = gym.make('CartPole-v1', render_mode = "rgb_array")     
-    # num_ep = 200
-    # board = ProgressBoard(num_ep, n = max(num_ep / 10, 1))
-    # agent = REINFORCE("hi", env)
-    # agent.train()
-    
-    print("HI")
-    env = gym.make("FetchPickAndPlace-v2", render_mode="human")
-    observation, info = env.reset(seed=42)
-    print(observation)
-    print("HI")
-    observation, reward, terminated, truncated, info = env.step(1)
-    print(observation)
-    env.render()
+    env = gym.make('CartPole-v1', render_mode = "rgb_array")     
+    num_ep = 200
+    board = ProgressBoard(num_ep, n = max(num_ep / 10, 1))
+    agent = REINFORCE("hi", env)
+    agent.train()

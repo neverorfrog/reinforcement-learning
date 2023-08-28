@@ -3,11 +3,11 @@ from copy import deepcopy
 import numpy as np
 import gymnasium as gym
 from network import DQN
-from tools.plotting import ProgressBoard
-from tools.utils import *
+from common.plotting import ProgressBoard
+from common.utils import *
 import torch
 import torch.nn as nn
-from tools.buffers import UniformBuffer
+from common.buffers import UniformBuffer
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 

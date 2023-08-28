@@ -1,10 +1,10 @@
 import numpy as np
 import gymnasium as gym
-from tools.plotting import ProgressBoard
+from common.plotting import ProgressBoard
 from encoder import *
 from estimator import Estimator
-from tools.utils import *
-from tools.plotting import *
+from common.utils import *
+from common.plotting import *
 
 class Agent(HyperParameters):
     def __init__(self, name, env, Q, board: ProgressBoard = None, 
