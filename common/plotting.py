@@ -1,3 +1,4 @@
+import os
 from matplotlib import pyplot as plt
 import collections
 from IPython import display
@@ -8,24 +9,23 @@ from common.utils import *
 class ProgressBoard(HyperParameters):
     """The board that plots data points in animation."""
     
-    def __init__(self, epochs, n, jupyter = False, xlabel=None, ylabel=None, xlim=None,
-                 ylim=None, xscale='linear', yscale='linear',
+    def __init__(self,episodes,plot_rate, jupyter = False,xlabel=None,ylabel=None, xlim=[0,1000],
+                 ylim=[0,1], xscale='linear', yscale='linear',
                  ls=['-', '--', '-.', ':'], colors=['C0', 'C1', 'C2', 'C3'],
-                 fig=None, axes=None, figsize=(5, 4), display=True):
+                 fig=None, axes=None, figsize=(6, 4), display=True, figname = None):
         self.save_hyperparameters()
         self.fig = plt.figure(figsize=self.figsize)
-        self.xlim = [0, epochs]
-        self.ylim = [-200, 0]
         self.xlabel = 'episode'
         self.ylabel = 'reward'
         self.axes = plt.gca()
         self.setAxes(self.xlabel, self.ylabel, self.xlim, self.ylim, self.xscale, self.yscale)
         self.axes.grid()
-        
+        self.path = os.path.join("figures",self.figname)
+        if not os.path.exists(self.path): os.mkdir(self.path)
 
-    def draw(self, x, y, label, n = None):
+    def draw(self, x, y, label, plot_rate = None):
         
-        if n is None: n = self.n
+        if plot_rate is None: plot_rate = self.plot_rate
                         
         #Creation of data structure for the points
         Point = collections.namedtuple('Point', ['x', 'y'])
@@ -49,8 +49,8 @@ class ProgressBoard(HyperParameters):
         #Populating points dictionary with latest point
         points.append(Point(x, y))
         
-        #Drawing a point only every n steps
-        if len(points) != n: return
+        #Drawing a point only every plot_rate steps
+        if len(points) != plot_rate: return
         
         #Adding a point to the line 
         mean = lambda x: sum(x) / len(x)
@@ -71,8 +71,11 @@ class ProgressBoard(HyperParameters):
             display.clear_output(wait=True)
         else:
             plt.show(block = False)
-            plt.pause((2*n) / self.epochs)
-                
+            plt.pause((2*plot_rate) / self.episodes)
+        
+        if self.figname:
+            plt.savefig(open(os.path.join(self.path,f"{x // self.plot_rate}.png"), "wb"))
+               
     def setAxes(self, xlabel, ylabel, xlim, ylim, xscale, yscale):
         """Set the axes for matplotlib."""
         self.axes.set_xlabel(xlabel), self.axes.set_ylabel(ylabel)
