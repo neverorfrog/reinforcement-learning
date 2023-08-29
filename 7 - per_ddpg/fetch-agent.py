@@ -1,7 +1,6 @@
 from collections import deque
 from copy import deepcopy
 import os
-import pprint
 import numpy as np
 import gymnasium as gym
 from networks import *
@@ -56,15 +55,19 @@ class DDPG(HyperParameters):
         self.memory = PrioritizedBuffer(self.env_params, capacity=capacity)
         self.start_steps = capacity
         
-
+        
     def train(self):
+        for i in range(1,self.num_epochs+1):
+            success = self.train_epoch()
+            print(f"EPOCH {i} SUCCESS RATE {np.mean(success)} \n")      
 
-        # Life stats
+    def train_epoch(self):
+
+        # epoch stats
         self.ep = 1
         self.training = True
-        self.rewards = deque(maxlen=self.window)
-        self.losses = deque(maxlen=self.window)
-
+        successes = []
+        
         # Populating the experience replay memory
         self.populate_buffer()
 
@@ -72,11 +75,6 @@ class DDPG(HyperParameters):
 
             # ep stats
             steps = 0
-            self.ep_reward = 0
-            self.ep_mean_value_loss = 0.
-
-            # ep termination
-            done = False
 
             # starting point
             observation = self.env.reset()[0]

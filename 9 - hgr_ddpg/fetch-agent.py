@@ -1,4 +1,3 @@
-from collections import deque
 from copy import deepcopy
 import os
 import numpy as np
@@ -47,7 +46,8 @@ class FetchAgent(HyperParameters):
             param.requires_grad = False 
 
         # Experience Replay Buffer
-        self.memory = FutureBuffer(self.env_params, reward_function=env.unwrapped.compute_reward)
+        self.memory = FutureBuffer(self.env_params, reward_function=env.compute_reward)
+        self.start_steps = 5*batch_size
         
         
     def train(self):
@@ -63,7 +63,7 @@ class FetchAgent(HyperParameters):
         successes = []
 
         while self.training:
-            print(self.ep)
+
             # empty episode temporary memory
             observations = np.empty([self.env_params['max_steps'], self.env_params['obs_dim']])
             actions = np.empty([self.env_params['max_steps'], self.env_params['action_dim']])
@@ -219,42 +219,30 @@ class Mode(Enum):
     TRAIN = 1
     TEST = 2
      
-def fetch_reach(mode = None):
+def fetch_reach(num_ep = 500, mode = None):
     if mode == Mode.TRAIN:
         env = gym.make('FetchReach-v2')
-        agent = FetchAgent("ddpg_her_fetch_reach", env, max_episodes = 400, num_epochs=5)
+        agent = FetchAgent("ddpg_per_fetch_reach_future", env, max_episodes = num_ep, num_epochs=7)
         agent.train()    
         agent.save() #Done training and saving the model
     if mode == Mode.TEST:
         env = gym.make('FetchReach-v2', render_mode = "human")
-        agent = FetchAgent("ddpg_her_fetch_reach", env)
+        agent = FetchAgent("ddpg_per_fetch_reach_future", env)
         agent.load()
         agent.evaluate(num_ep = 10, render = True)
         
 def fetch_push(mode = None):
     if mode == Mode.TRAIN:
         env = gym.make('FetchPush-v2')
-        agent = FetchAgent("ddpg_her_fetch_push", env, max_episodes = 500, num_epochs=1000)
+        agent = FetchAgent("ddpg_per_fetch_push", env, max_episodes = 500, num_epochs=50)
         agent.train()    
         agent.save() #Done training and saving the model
     if mode == Mode.TEST:
         env = gym.make('FetchPush-v2', render_mode = "human")
-        agent = FetchAgent("ddpg_her_fetch_push", env)
+        agent = FetchAgent("ddpg_per_fetch_push", env)
         agent.load()
         agent.evaluate(num_ep = 10, render = True)
-        
-        
-def fetch_slide(mode = None):
-    if mode == Mode.TRAIN:
-        env = gym.make('FetchSlide-v2')
-        agent = FetchAgent("ddpg_her_fetch_slide", env, max_episodes = 500, num_epochs=1000)
-        agent.train()    
-        agent.save() #Done training and saving the model
-    if mode == Mode.TEST:
-        env = gym.make('FetchSlide-v2', render_mode = "human")
-        agent = FetchAgent("ddpg_her_fetch_slide", env)
-        agent.load()
-        agent.evaluate(num_ep = 10, render = True)
-            
+    
+          
 if __name__ == "__main__":
-    fetch_reach(Mode.TRAIN)
+    fetch_push(Mode.TRAIN)
