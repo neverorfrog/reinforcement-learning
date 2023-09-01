@@ -8,11 +8,11 @@ from common.plotting import ProgressBoard
 from common.utils import HyperParameters
 import torch
 import torch.nn as nn
-from common.buffers import *
+from buffer import *
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # Seed
-SEED = 42
+SEED = 123
 torch.manual_seed(SEED)
 np.random.seed(SEED)
 

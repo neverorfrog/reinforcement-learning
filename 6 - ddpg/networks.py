@@ -6,7 +6,7 @@ import gymnasium as gym
 from gymnasium.spaces.dict import Dict
 
 # Seed
-SEED = 42
+SEED = 123
 torch.manual_seed(SEED)
 np.random.seed(SEED)
 

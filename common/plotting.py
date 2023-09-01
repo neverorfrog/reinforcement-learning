@@ -20,8 +20,9 @@ class ProgressBoard(HyperParameters):
         self.axes = plt.gca()
         self.setAxes(self.xlabel, self.ylabel, self.xlim, self.ylim, self.xscale, self.yscale)
         self.axes.grid()
-        self.path = os.path.join("figures",self.figname)
-        if not os.path.exists(self.path): os.mkdir(self.path)
+        if self.figname:
+            self.path = os.path.join("figures",self.figname)
+            if not os.path.exists(self.path): os.mkdir(self.path)
 
     def draw(self, x, y, label, plot_rate = None):
         

@@ -9,18 +9,28 @@ from common.plotting import ProgressBoard
 from common.utils import HyperParameters
 import torch
 import torch.nn as nn
-from common.buffers import *
+from buffers import *
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # Seed
-SEED = 42
+SEED = 123
 torch.manual_seed(SEED)
 np.random.seed(SEED)
 
+'''REACH
+VANILLA HER: 255, 277, 234, 271 (mediamente 3.5 minuti) 
+'''
+
+'''PUSH
+VANILLA HER: 0.88, 
+'''
+
+'''PICKANDPLACE'''
+
 class FetchAgent(HyperParameters):
-    def __init__(self, name, env: gym.Env, board: ProgressBoard = None, window = 50,
-                 polyak = 0.95, pi_lr = 0.001, q_lr = 0.001, target_update_freq = 1, update_freq = 1, eps = 0.9, eps_decay = 0.995,
-                 batch_size = 64, gamma=0.99, max_steps=200, max_episodes=500, reward_threshold=400, success_threshold = 0.98):
+    def __init__(self, name, env: gym.Env, board: ProgressBoard = None, window = 50, gamma = 0.99,
+                 polyak = 0.95, pi_lr = 0.001, q_lr = 0.001, eps = 0.3, noise_eps = 0.2, 
+                 action_l2 = 1., batch_size = 256, num_batches=40, success_threshold = 0.98, max_episodes=500):
 
         # Hyperparameters
         self.save_hyperparameters()
@@ -51,11 +61,9 @@ class FetchAgent(HyperParameters):
         self.memory = FutureBuffer(self.env_params, reward_function=env.unwrapped.compute_reward)
         
         
-    def train(self):
+    def train(self, plot = False):
         #Life stats
         self.success_rate = []
-        self.ep = 1
-        self.training = True
         ep_successes = deque(maxlen = self.window)
         
         #Plotting
@@ -64,11 +72,12 @@ class FetchAgent(HyperParameters):
         for i in range(self.max_episodes):
             success = self.train_episode()
             ep_successes.append(success)
-            mean_success = np.mean(ep_successes)
-            self.success_rate.append(mean_success)
-            print(f"Episode {i+1} SUCCESS RATE {mean_success} \n")
-            board.draw(i, mean_success, "success")
-            if mean_success >= 0.98 and i > self.window: break
+            if i >= self.window:
+                mean_success = np.mean(ep_successes)
+                self.success_rate.append(mean_success)
+                print(f"Episode {i+1} SUCCESS RATE {mean_success} \n")
+                if plot: board.draw(i, mean_success, "success")
+                if mean_success >= 0.99: break
         self.success_rate = np.array(self.success_rate)
           
 
@@ -89,7 +98,7 @@ class FetchAgent(HyperParameters):
         
         # Episode playing
         for t in range(self.env_params['max_steps']):
-            action = self.select_action(observation,desired,noise_weight = self.eps)
+            action = self.select_action(observation,desired)
             new_obs_dict, _, _, _, info = self.env.step(action)
             new_observation = new_obs_dict['observation']
             new_achieved = new_obs_dict['achieved_goal']
@@ -104,29 +113,25 @@ class FetchAgent(HyperParameters):
             achieved = new_achieved
             observation = new_observation
             if info['is_success']: success = 1 
-                
-                                    
+                                  
         # storing in the memory the entire episode
         self.memory.store([observations, actions, desired, achieved, new_observations, new_achieved_goals])
         # Episode sampling and learning
-        for _ in range(20):
+        for _ in range(self.num_batches):
             self.learning_step()            
         self.update_target_networks()
-
-        # episode stuff
-        self.episode_update()
         
         return success
             
     
-    def select_action(self,obs,goal,noise_weight = 0.5):
+    def select_action(self,obs,goal):
         with torch.no_grad():
             obs = torch.as_tensor(obs, dtype = torch.float32)
             goal = torch.as_tensor(goal, dtype = torch.float32)  
-            action = self.actor(obs,goal)
-            action += noise_weight * np.random.randn(self.env_params['action_dim'])
+            action = self.actor(obs,goal).detach().numpy()
+            action += self.noise_eps * np.random.randn(self.env_params['action_dim'])
             action = np.clip(action, -self.env_params['action_bound'], self.env_params['action_bound'])
-        return action.numpy()
+        return action
     
     def learning_step(self): 
         #Sampling of the minibatch
@@ -156,6 +161,7 @@ class FetchAgent(HyperParameters):
         #Policy Optimization
         estimated_actions = self.actor(observations,goals)
         policy_loss = -self.critic(observations,goals,estimated_actions).mean()
+        # policy_loss += self.action_l2 * (estimated_actions / self.env_params['action_bound']).pow(2).mean()
         self.policy_optimizer.zero_grad()
         policy_loss.backward()
         self.policy_optimizer.step()
@@ -174,12 +180,6 @@ class FetchAgent(HyperParameters):
             for target, online in zip(self.target_actor.parameters(), self.actor.parameters()):
                 target.data.mul_(polyak)
                 target.data.add_((1 - polyak) * online.data)
-        
-    def episode_update(self):
-        self.eps = max(0.3, self.eps * self.eps_decay)
-        if self.ep >= self.max_episodes:
-            self.training = False
-        self.ep += 1
                 
     def evaluate(self, num_ep = 5, render = False):
         #Start testing the episodes
@@ -231,44 +231,43 @@ class Mode(Enum):
     TRAIN = 1
     TEST = 2
      
-def fetch_reach(mode = None):
+def reach(mode = None):
     if mode == Mode.TRAIN:
         env = gym.make('FetchReach-v2')
-        agent = FetchAgent("ddpg_her_fetch_reach", env, max_episodes = 30)
+        agent = FetchAgent("ddpg_her_fetch_reach", env, max_episodes = 500, window = 50)
         agent.train()    
         agent.save() #Done training and saving the model
     if mode == Mode.TEST:
         env = gym.make('FetchReach-v2', render_mode = "human")
         agent = FetchAgent("ddpg_her_fetch_reach", env)
         agent.load()
-        agent.plot_success()
         agent.evaluate(num_ep = 10, render = True)
         
-def fetch_push(mode = None):
+def push(mode = None):
     if mode == Mode.TRAIN:
         env = gym.make('FetchPush-v2')
-        agent = FetchAgent("ddpg_her_fetch_push", env, max_episodes = 200)
+        agent = FetchAgent("ddpg_her_fetch_push", env, max_episodes = 50000, window = 50)
         agent.train()    
         agent.save() #Done training and saving the model
     if mode == Mode.TEST:
         env = gym.make('FetchPush-v2', render_mode = "human")
         agent = FetchAgent("ddpg_her_fetch_push", env)
         agent.load()
+        agent.plot_success()
         agent.evaluate(num_ep = 10, render = True)
         
         
-def fetch_slide(mode = None):
+def pickandplace(mode = None):
     if mode == Mode.TRAIN:
-        env = gym.make('FetchSlide-v2')
-        agent = FetchAgent("ddpg_her_fetch_slide", env, max_episodes = 200)
+        env = gym.make('FetchPickAndPlace-v2')
+        agent = FetchAgent("ddpg_her_fetch_pickplace", env, max_episodes = 50000, window = 50)
         agent.train()    
         agent.save() #Done training and saving the model
     if mode == Mode.TEST:
-        env = gym.make('FetchSlide-v2', render_mode = "human")
-        agent = FetchAgent("ddpg_her_fetch_slide", env)
+        env = gym.make('FetchPickAndPlace-v2', render_mode = "human")
+        agent = FetchAgent("ddpg_her_fetch_pickplace", env)
         agent.load()
         agent.evaluate(num_ep = 10, render = True)
             
 if __name__ == "__main__":
-    fetch_reach(Mode.TRAIN)
-    fetch_reach(Mode.TEST)
+    reach(Mode.TRAIN)
