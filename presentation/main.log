@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.9.1)  1 SEP 2023 18:32
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.9.1)  1 SEP 2023 23:07
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1036,28 +1036,8 @@ File: assets/background.png Graphic file (type bmp)
 ]
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
-LaTeX Font Info:    Font shape `TU/Caladea(0)/m/n' will be
-(Font)              scaled to size 10.95pt on input line 33.
-LaTeX Font Info:    Font shape `TU/Caladea(0)/m/n' will be
-(Font)              scaled to size 8.0pt on input line 33.
-LaTeX Font Info:    Font shape `TU/Caladea(0)/m/n' will be
-(Font)              scaled to size 6.0pt on input line 33.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 33.
- (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Trying to load font information for U+msb on input line 33.
- (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-LaTeX Font Info:    Font shape `TU/Caladea(0)/m/it' will be
-(Font)              scaled to size 10.95pt on input line 33.
-LaTeX Font Info:    Font shape `TU/Caladea(0)/m/it' will be
-(Font)              scaled to size 8.0pt on input line 33.
-LaTeX Font Info:    Font shape `TU/Caladea(0)/m/it' will be
-(Font)              scaled to size 6.0pt on input line 33.
 LaTeX Font Info:    Font shape `TU/Carlito(0)/m/n' will be
-(Font)              scaled to size 4.0pt on input line 33.
+(Font)              scaled to size 4.0pt on input line 31.
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
  [2
@@ -1065,7 +1045,28 @@ File: assets/logo_RGB.png Graphic file (type bmp)
 ]
 File: assets/logo_RGB_negative.png Graphic file (type bmp)
 <assets/logo_RGB_negative.png>
- (./main.toc)
+ (./main.toc
+LaTeX Font Info:    Font shape `TU/Caladea(0)/m/n' will be
+(Font)              scaled to size 10.95pt on input line 1.
+LaTeX Font Info:    Font shape `TU/Caladea(0)/m/n' will be
+(Font)              scaled to size 8.0pt on input line 1.
+LaTeX Font Info:    Font shape `TU/Caladea(0)/m/n' will be
+(Font)              scaled to size 6.0pt on input line 1.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 1.
+ (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 1.
+ (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Font shape `TU/Caladea(0)/m/it' will be
+(Font)              scaled to size 10.95pt on input line 1.
+LaTeX Font Info:    Font shape `TU/Caladea(0)/m/it' will be
+(Font)              scaled to size 8.0pt on input line 1.
+LaTeX Font Info:    Font shape `TU/Caladea(0)/m/it' will be
+(Font)              scaled to size 6.0pt on input line 1.
+)
 File: assets/logo_RGB_negative.png Graphic file (type bmp)
 <assets/logo_RGB_negative.png>
  [3
@@ -1080,14 +1081,6 @@ File: assets/logo_RGB.png Graphic file (type bmp)
 ]
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
-LaTeX Font Info:    Font shape `TU/Carlito(0)/m/it' will be
-(Font)              scaled to size 10.95pt on input line 67.
-LaTeX Font Info:    Font shape `TU/Caladea(0)/b/n' will be
-(Font)              scaled to size 10.95pt on input line 67.
-LaTeX Font Info:    Font shape `TU/Caladea(0)/b/n' will be
-(Font)              scaled to size 8.0pt on input line 67.
-LaTeX Font Info:    Font shape `TU/Caladea(0)/b/n' will be
-(Font)              scaled to size 6.0pt on input line 67.
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
  [5
@@ -1095,16 +1088,6 @@ File: assets/logo_RGB.png Graphic file (type bmp)
 ]
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
-\openout4 = `main.vrb'.
-
-File: assets/logo_RGB.png Graphic file (type bmp)
-<assets/logo_RGB.png>
- (./main.vrb
-LaTeX Font Info:    Font shape `TU/Carlito(0)/m/n' will be
-(Font)              scaled to size 12.0pt on input line 5.
-LaTeX Font Info:    Font shape `TU/Carlito(0)/b/n' will be
-(Font)              scaled to size 12.0pt on input line 5.
-)
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
  [6
@@ -1117,8 +1100,76 @@ File: assets/logo_RGB.png Graphic file (type bmp)
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
  (./main.vrb
-LaTeX Font Info:    Font shape `TU/Carlito(0)/b/n' will be
-(Font)              scaled to size 10.95pt on input line 13.
+./main.vrb:2: Missing \endcsname inserted.
+<to be read again> 
+                   \let 
+l.2 \begin{\itemize}
+                    
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+./main.vrb:2: Missing \endcsname inserted.
+<to be read again> 
+                   \let 
+l.2 \begin{\itemize}
+                    
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+
+./main.vrb:2: LaTeX Error: Environment \itemize undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.2 \begin{\itemize}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./main.vrb:4: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.4       \end
+              {itemize}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 4
+[][]
+ []
+
+./main.vrb:4: Undefined control sequence.
+<argument> .../enumerate \beameritemnestingprefix 
+                                                  body end
+l.4       \end{itemize}
+                       
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./main.vrb:4: LaTeX Error: \begin{beamer@framepauses} on input line 60 ended by \end{itemize}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.4       \end{itemize}
+                       
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
 )
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
@@ -1131,7 +1182,12 @@ File: assets/logo_RGB.png Graphic file (type bmp)
 
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
- (./main.vrb)
+ (./main.vrb
+LaTeX Font Info:    Font shape `TU/Carlito(0)/m/n' will be
+(Font)              scaled to size 12.0pt on input line 7.
+LaTeX Font Info:    Font shape `TU/Carlito(0)/b/n' will be
+(Font)              scaled to size 12.0pt on input line 7.
+)
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
  [8
@@ -1156,11 +1212,9 @@ File: assets/logo_RGB_negative.png Graphic file (type bmp)
 
 ]
 LaTeX Font Info:    Font shape `TU/Caladea(0)/m/n' will be
-(Font)              scaled to size 5.0pt on input line 125.
-LaTeX Font Info:    Font shape `TU/Caladea(0)/b/n' will be
-(Font)              scaled to size 5.0pt on input line 125.
+(Font)              scaled to size 5.0pt on input line 83.
 LaTeX Font Info:    Font shape `TU/Caladea(0)/m/it' will be
-(Font)              scaled to size 5.0pt on input line 125.
+(Font)              scaled to size 5.0pt on input line 83.
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
 \openout4 = `main.vrb'.
@@ -1168,14 +1222,21 @@ File: assets/logo_RGB.png Graphic file (type bmp)
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
  (./main.vrb
+LaTeX Font Info:    Font shape `TU/Carlito(0)/m/it' will be
+(Font)              scaled to size 10.95pt on input line 3.
+LaTeX Font Info:    Font shape `TU/Carlito(0)/b/n' will be
+(Font)              scaled to size 10.95pt on input line 3.
 LaTeX Font Info:    Font shape `TU/Carlito(0)/m/n' will be
 (Font)              scaled to size 10.0pt on input line 6.
 LaTeX Font Info:    Font shape `TU/Carlito(0)/m/it' will be
 (Font)              scaled to size 10.0pt on input line 6.
 )
+Overfull \vbox (7.39362pt too high) detected at line 106
+ []
+
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
- [12
+[12
 
 ]
 File: assets/logo_RGB.png Graphic file (type bmp)
@@ -1199,19 +1260,23 @@ File: assets/logo_RGB.png Graphic file (type bmp)
  (./main.vrb
 LaTeX Font Info:    Font shape `TU/Caladea(0)/m/n' will be
 (Font)              scaled to size 9.0pt on input line 14.
-LaTeX Font Info:    Font shape `TU/Caladea(0)/b/n' will be
-(Font)              scaled to size 9.0pt on input line 14.
 LaTeX Font Info:    Font shape `TU/Caladea(0)/m/it' will be
 (Font)              scaled to size 9.0pt on input line 14.
 )
+Overfull \vbox (8.89537pt too high) detected at line 162
+ []
+
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
- [14
+[14
 
 ] (./main.vrb)
+Overfull \vbox (8.89537pt too high) detected at line 162
+ []
+
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
- [15
+[15
 
 ]
 File: assets/logo_RGB.png Graphic file (type bmp)
@@ -1257,9 +1322,12 @@ File: assets/logo_RGB.png Graphic file (type bmp)
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
  (./main.vrb)
+Overfull \vbox (0.76309pt too high) detected at line 235
+ []
+
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
- [19
+[19
 
 ]
 File: assets/logo_RGB.png Graphic file (type bmp)
@@ -1274,8 +1342,8 @@ File: assets/logo_RGB.png Graphic file (type bmp)
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
 LaTeX Font Info:    Font shape `TU/Caladea(0)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 304.
-LaTeX Font Info:    Trying to load font information for U+yfrak on input line 304.
+(Font)              scaled to size 10.0pt on input line 262.
+LaTeX Font Info:    Trying to load font information for U+yfrak on input line 262.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/mfnfss/uyfrak.fd
 File: Uyfrak.fd 2000/08/02 v2.1k YH Fraktur definitions
 )
@@ -1314,11 +1382,11 @@ File: assets/logo_RGB.png Graphic file (type bmp)
 File: assets/logo_RGB_negative.png Graphic file (type bmp)
 <assets/logo_RGB_negative.png>
 LaTeX Font Info:    Font shape `TU/Carlito(0)/m/n' will be
-(Font)              scaled to size 24.88pt on input line 337.
+(Font)              scaled to size 24.88pt on input line 287.
 LaTeX Font Info:    Font shape `TU/Carlito(0)/m/sl' in size <14.4> not available
-(Font)              Font shape `TU/Carlito(0)/m/it' tried instead on input line 337.
+(Font)              Font shape `TU/Carlito(0)/m/it' tried instead on input line 287.
 LaTeX Font Info:    Font shape `TU/Carlito(0)/m/it' will be
-(Font)              scaled to size 14.4pt on input line 337.
+(Font)              scaled to size 14.4pt on input line 287.
 File: assets/logo_RGB_negative.png Graphic file (type bmp)
 <assets/logo_RGB_negative.png>
  [25
@@ -1338,16 +1406,23 @@ File: assets/logo_RGB_negative.png Graphic file (type bmp)
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-08-29>
  ***********
-Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: CFB8EA9DD86BD89D9A0C7F7371C78793;299.
+
+
+Package rerunfilecheck Warning: File `main.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `main.out':
+(rerunfilecheck)             Before: 23E90F740B7BA8721F47F85D24590EA1;244
+(rerunfilecheck)             After:  CFB8EA9DD86BD89D9A0C7F7371C78793;299.
  ) 
 Here is how much of TeX's memory you used:
- 27644 strings out of 475591
- 593908 string characters out of 5773842
+ 27623 strings out of 475591
+ 593233 string characters out of 5773842
  1923438 words of memory out of 5000000
- 48341 multiletter control sequences out of 15000+600000
- 566021 words of font info for 116 fonts, out of 8000000 for 9000
+ 48327 multiletter control sequences out of 15000+600000
+ 565981 words of font info for 111 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 128i,15n,133p,450b,1068s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 128i,15n,133p,450b,1063s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on main.pdf (25 pages).

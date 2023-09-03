@@ -61,7 +61,7 @@ class ReplayBuffer:
 
 
     def store(self,episode):
-        observations, actions, desired, achieved, new_observations, new_achieved_goals = episode.unpack()
+        observations, actions, desired, achieved, new_observations, new_achieved_goals = episode
         self.buffer['observation'][self.index_ep] = observations
         self.buffer['action'][self.index_ep] = actions
         self.buffer['new_observation'][self.index_ep] = new_observations
@@ -157,9 +157,9 @@ class ReplayBuffer:
         transitions['reward'] = [self.reward_function(ag,g,None) for ag,g in zip(transitions['new_achieved_goal'],transitions['goal'])]       
         self.last_sampled_episodes = ep_indices
         self.last_sampled_transitions = t_indices
-        return transitions
+        return transitions, 1
     
-      
+
 class ReplayCache():
     '''Cache of episode during training'''
 
@@ -171,6 +171,7 @@ class ReplayCache():
         self.reset()
 
     def reset(self):
+        self.t = 0
         self.observations = np.empty([self.T, self.obs_dim])
         self.new_observations = np.empty([self.T, self.obs_dim])
         self.actions = np.empty([self.T, self.action_dim])
@@ -178,21 +179,21 @@ class ReplayCache():
         self.new_achieved_goals = np.empty([self.T, self.goal_dim])
         self.desired_goals = np.empty([self.T, self.goal_dim])
     
-    def store_transition(self, t, obs_dict, action, new_obs_dict):
-        assert(t < self.T)
-        self.observations[t] = obs_dict['observation']
-        self.achieved_goals[t] = obs_dict['achieved_goal']
-        self.desired_goals[t] = obs_dict['desired_goal']
-        self.actions[t] = action
-        self.new_observations[t] = new_obs_dict['observation']
-        self.new_achieved_goals[t] = new_obs_dict['achieved_goal']
-        self.is_full = t == self.T - 1
+    def store_transition(self, obs_dict, action, new_obs_dict):
+        assert(self.t < self.T)
+        self.observations[self.t] = obs_dict['observation']
+        self.achieved_goals[self.t] = obs_dict['achieved_goal']
+        self.desired_goals[self.t] = obs_dict['desired_goal']
+        self.actions[self.t] = action
+        self.new_observations[self.t] = new_obs_dict['observation']
+        self.new_achieved_goals[self.t] = new_obs_dict['achieved_goal']
+        self.t += 1
 
-    def unpack(self):
-        assert(self.is_full)
-        self.is_full = False
+    def pop(self):
+        assert (self.t == self.T)
+        self.reset()
         return (self.observations, self.actions, self.desired_goals, self.achieved_goals, self.new_observations, self.new_achieved_goals)
-
+            
 class SegmentTree:
     def __init__(self, buffer_capacity):
         self.buffer_capacity = buffer_capacity
