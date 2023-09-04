@@ -1,9 +1,0 @@
-\frametitle{Look}
-\begin{itemize}
-\item To insert a final slide with the title and final thanks, use \verb|\backmatter|.
-      \begin{itemize}
-      \item The title also appears in footlines along with the author name, you can change this text with \verb|\footlinepayoff|
-  , check the package
-            code and look for the \texttt{geometry} class.
-      \end{itemize}
-\end{itemize}
