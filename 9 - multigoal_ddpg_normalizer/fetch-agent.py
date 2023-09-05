@@ -2,6 +2,7 @@ from collections import deque
 from copy import deepcopy
 import inspect
 import os
+from normalizer import Normalizer
 from matplotlib import pyplot as plt
 import numpy as np
 import gymnasium as gym
@@ -44,9 +45,10 @@ class Parameters:
             setattr(self, k, v)
             
 class FetchAgent(Parameters):
-    def __init__(self, name, env: gym.Env, board: ProgressBoard = None, window = 500, gamma = 0.98, prioritized = True,
-                 polyak = 0.95, pi_lr = 0.001, q_lr = 0.001, eps = 0.3, noise_eps = 0.2, learning_rate = 2, logging_rate = 1,
-                 action_l2 = 1., batch_size = 256, gradient_steps=50, success_threshold = 0.98, max_episodes=500):
+    def __init__(self, name, env: gym.Env, board: ProgressBoard = None, window = 500, gamma = 0.98, 
+                 prioritized = True, polyak = 0.95, pi_lr = 0.001, q_lr = 0.001, eps = 0.3, 
+                 noise_eps = 0.2, learning_rate = 2, logging_rate = 1, action_l2 = 1., batch_size = 256, 
+                 gradient_steps=50, success_threshold = 0.98, max_episodes=500, norm_clip = 5, obs_clip = 200):
 
         # Hyperparameters
         self.save_parameters()
@@ -74,8 +76,19 @@ class FetchAgent(Parameters):
             param.requires_grad = False 
 
         # Experience Replay Buffer
-        self.memory = ReplayBuffer(self.env_params, max_timesteps=self.max_episodes * self.env_params['max_steps'], reward_function=env.unwrapped.compute_reward)
+        T = self.max_episodes * self.env_params['max_steps']
+        self.memory = ReplayBuffer(self.env_params, max_timesteps=T, reward_function=env.unwrapped.compute_reward)
         self.cache = ReplayCache(env_params = self.env_params)
+        
+        # normalizer
+        self.o_norm = Normalizer(
+            size=self.env_params['obs_dim'], 
+            default_clip_range = self.norm_clip
+        )
+        self.g_norm = Normalizer(
+            size=self.env_params['action_dim'], 
+            default_clip_range = self.norm_clip
+        )
         
         
     def train(self, plot = False):
@@ -130,9 +143,8 @@ class FetchAgent(Parameters):
     
     def select_action(self,obs,goal,explore = True):
         with torch.no_grad():
-            obs = torch.as_tensor(obs, dtype = torch.float32)
-            goal = torch.as_tensor(goal, dtype = torch.float32)  
-            action = self.actor(obs,goal).detach().numpy()
+            action = self.actor(self.normalize_og(obs, goal)).detach().numpy()
+            exit("OK")
             if explore:
                 action += self.env_params['action_bound'] * self.noise_eps * np.random.randn(self.env_params['action_dim'])
             action = np.clip(action, -self.env_params['action_bound'], self.env_params['action_bound'])
@@ -191,6 +203,8 @@ class FetchAgent(Parameters):
             weights = 1
             
         # preprocess
+        observations = torch.clip(transitions['observation'], -self.obs_clip, self.obs_obs)
+        exit(observations)
         observations = self.to_torch(transitions['observation'])
         goals = self.to_torch(transitions['goal'])
         new_observations = self.to_torch(transitions['new_observation'])
@@ -254,6 +268,12 @@ class FetchAgent(Parameters):
         ret.device = device
         return ret
     
+    #pre-process the inputs
+    def normalize_og(self, obs, g):
+        obs = self.to_torch(self.o_norm.normalize(obs))
+        g = self.to_torch(self.g_norm.normalize(g))
+        return obs, g
+    
     def to_torch(self, array, copy=False):
         if copy:
             return torch.tensor(array, dtype = torch.float32).to(device)
@@ -269,8 +289,6 @@ def launch(env_name = 'FetchReach-v2', mode = None, prioritized = True):
         seeds = [0]
         for seed in seeds:
             env = gym.make(env_name)
-            env.seed(seed)
-            set_global_seeds(seed)
             if prioritized:
                 agent = FetchAgent(f"HGR_{env_name}_{seed}", env, max_episodes = 15000, window = 100)
             else:
@@ -281,8 +299,6 @@ def launch(env_name = 'FetchReach-v2', mode = None, prioritized = True):
             
     if mode == Mode.TEST:
         env = gym.make(env_name, render_mode = "human")
-        env.seed(0)
-        set_global_seeds(0)
         if prioritized:
             agent = FetchAgent(f"HGR_{env_name}_0", env)
         else:
@@ -300,7 +316,7 @@ if __name__ == "__main__":
     # launch(pickandplace, Mode.TRAIN, prioritized = True)
     # launch(push, Mode.TRAIN, prioritized = False)
     # launch(push, Mode.TRAIN, prioritized = True)
-    launch(push, Mode.TRAIN, prioritized = False)
+    launch(reach, Mode.TRAIN, prioritized = False)
     # launch(reach, Mode.TRAIN, prioritized = True)
     # launch(pickandplace, Mode.TEST, prioritized=True)
     

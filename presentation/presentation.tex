@@ -20,21 +20,32 @@
 \begin{document}
 \maketitle
 
-\begin{frame}
-      First introduction sentence
-      \vspace{\baselineskip}
-      Second introduction sentence
-\end{frame}
-
 \section{Introduction}
 
       \begin{frame}{Problem statement}
-            \begin{itemize}
-            \item Vanilla off-policy algorithms are not suited for multi-goal reinforcement learning with sparse reward
-            \item Since the goal is not fixed, we may never get reward 1
-            \item Problem with exploration
-            \end{itemize}
+            \begin{block}{Real-world environments}
+                  \begin{itemize}
+                        \item Multi goal: value functions take as input also the goal
+                        \item Sparse rewards
+                        \item Continuous action space
+                  \end{itemize}  
+            \end{block}
+
+            $\Downarrow$ \centering \\
+
+            \begin{block}{}
+
+            \end{block}
       \end{frame}
+
+      \begin{frame}
+            \begin{itemize}
+                  \item Vanilla off-policy algorithms are not suited for multi-goal reinforcement learning with sparse reward
+                  \item Since the goal is not fixed, we may never get reward 1
+                  \item Problem with exploration
+            \end{itemize}  
+      \end{frame}
+
 
       \begin{frame}[fragile]{HER}
             \framesubtitle{Sampling future goals}
