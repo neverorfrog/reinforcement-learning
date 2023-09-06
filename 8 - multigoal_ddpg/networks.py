@@ -3,11 +3,6 @@ import torch.nn as nn
 import torch
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-# Seed
-SEED = 123
-torch.manual_seed(SEED)
-np.random.seed(SEED)
-
 def network(sizes, activation, output_activation = nn.Identity):
     layers = []
     for j in range(len(sizes)-1):
@@ -41,4 +36,32 @@ class Critic(nn.Module):
         self.q = network(dimensions, activation)
 
     def forward(self, obs, act, goals):
-        return self.q(torch.cat([obs, act, goals], dim=-1))    
+        return self.q(torch.cat([obs, act, goals], dim=-1))  
+    
+    
+class StandardActor(nn.Module):
+    """Parametrized Policy Network."""
+
+    def __init__(self, env_params, hidden_dims=(256,256,256), activation=nn.ReLU):
+        super().__init__()
+        # dimensions
+        dimensions = [env_params['obs_dim']] + list(hidden_dims) + [env_params['action_dim']]
+        self.pi = network(dimensions, activation, nn.Tanh)
+        self.action_bound = env_params['action_bound']
+        
+    def forward(self, obs):    
+        # Return output from network scaled to action space limits.
+        return self.action_bound * self.pi(obs)
+        
+        
+class StandardCritic(nn.Module):
+    """Parametrized Q Network."""
+
+    def __init__(self, env_params, hidden_dims=(256,256,256), activation=nn.ReLU):
+        super().__init__()
+        # dimensions
+        dimensions = [env_params['obs_dim'] + env_params['action_dim']] + list(hidden_dims) + [1]
+        self.q = network(dimensions, activation)
+
+    def forward(self, obs, act):
+        return self.q(torch.cat([obs, act], dim=-1))      

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.9.1)  5 SEP 2023 13:14
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.9.1)  6 SEP 2023 23:34
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1068,9 +1068,9 @@ File: assets/logo_RGB_negative.png Graphic file (type bmp)
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
 LaTeX Font Info:    Font shape `TU/Carlito(0)/m/n' will be
-(Font)              scaled to size 12.0pt on input line 39.
+(Font)              scaled to size 12.0pt on input line 46.
 LaTeX Font Info:    Font shape `TU/Carlito(0)/b/n' will be
-(Font)              scaled to size 12.0pt on input line 39.
+(Font)              scaled to size 12.0pt on input line 46.
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
  [3
@@ -1078,20 +1078,30 @@ File: assets/logo_RGB.png Graphic file (type bmp)
 ]
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
+LaTeX Font Info:    Font shape `TU/Carlito(0)/m/n' will be
+(Font)              scaled to size 10.0pt on input line 62.
+LaTeX Font Info:    Font shape `TU/Caladea(0)/m/n' will be
+(Font)              scaled to size 10.0pt on input line 62.
+LaTeX Font Info:    Font shape `TU/Caladea(0)/m/n' will be
+(Font)              scaled to size 7.0pt on input line 62.
+LaTeX Font Info:    Font shape `TU/Caladea(0)/m/n' will be
+(Font)              scaled to size 5.0pt on input line 62.
+LaTeX Font Info:    Font shape `TU/Caladea(0)/m/it' will be
+(Font)              scaled to size 10.0pt on input line 62.
+LaTeX Font Info:    Font shape `TU/Caladea(0)/m/it' will be
+(Font)              scaled to size 7.0pt on input line 62.
+LaTeX Font Info:    Font shape `TU/Caladea(0)/m/it' will be
+(Font)              scaled to size 5.0pt on input line 62.
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
  [4
 
 ]
-File: assets/logo_RGB.png Graphic file (type bmp)
-<assets/logo_RGB.png>
-\openout4 = `presentation.vrb'.
-
-File: assets/logo_RGB.png Graphic file (type bmp)
-<assets/logo_RGB.png>
- (./presentation.vrb)
-File: assets/logo_RGB.png Graphic file (type bmp)
-<assets/logo_RGB.png>
+File: assets/logo_RGB_negative.png Graphic file (type bmp)
+<assets/logo_RGB_negative.png>
+ (./presentation.toc)
+File: assets/logo_RGB_negative.png Graphic file (type bmp)
+<assets/logo_RGB_negative.png>
  [5
 
 ]
@@ -1107,26 +1117,28 @@ File: assets/logo_RGB.png Graphic file (type bmp)
  [6
 
 ]
-File: assets/logo_RGB_negative.png Graphic file (type bmp)
-<assets/logo_RGB_negative.png>
- (./presentation.toc)
-File: assets/logo_RGB_negative.png Graphic file (type bmp)
-<assets/logo_RGB_negative.png>
+File: assets/logo_RGB.png Graphic file (type bmp)
+<assets/logo_RGB.png>
+\openout4 = `presentation.vrb'.
+
+File: assets/logo_RGB.png Graphic file (type bmp)
+<assets/logo_RGB.png>
+ (./presentation.vrb)
+File: assets/logo_RGB.png Graphic file (type bmp)
+<assets/logo_RGB.png>
  [7
 
 ]
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
+\openout4 = `presentation.vrb'.
+
+File: assets/logo_RGB.png Graphic file (type bmp)
+<assets/logo_RGB.png>
+ (./presentation.vrb)
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
  [8
-
-]
-File: assets/logo_RGB.png Graphic file (type bmp)
-<assets/logo_RGB.png>
-File: assets/logo_RGB.png Graphic file (type bmp)
-<assets/logo_RGB.png>
- [9
 
 ]
 File: assets/logo_RGB_negative.png Graphic file (type bmp)
@@ -1134,6 +1146,13 @@ File: assets/logo_RGB_negative.png Graphic file (type bmp)
  (./presentation.toc)
 File: assets/logo_RGB_negative.png Graphic file (type bmp)
 <assets/logo_RGB_negative.png>
+ [9
+
+]
+File: assets/logo_RGB.png Graphic file (type bmp)
+<assets/logo_RGB.png>
+File: assets/logo_RGB.png Graphic file (type bmp)
+<assets/logo_RGB.png>
  [10
 
 ]
@@ -1144,32 +1163,25 @@ File: assets/logo_RGB.png Graphic file (type bmp)
  [11
 
 ]
-File: assets/logo_RGB.png Graphic file (type bmp)
-<assets/logo_RGB.png>
-File: assets/logo_RGB.png Graphic file (type bmp)
-<assets/logo_RGB.png>
- [12
-
-]
 File: assets/logo_RGB_negative.png Graphic file (type bmp)
 <assets/logo_RGB_negative.png>
  (./presentation.toc)
 File: assets/logo_RGB_negative.png Graphic file (type bmp)
 <assets/logo_RGB_negative.png>
- [13
+ [12
 
 ]
 File: assets/logo_RGB_negative.png Graphic file (type bmp)
 <assets/logo_RGB_negative.png>
 LaTeX Font Info:    Font shape `TU/Carlito(0)/m/n' will be
-(Font)              scaled to size 24.88pt on input line 95.
+(Font)              scaled to size 24.88pt on input line 112.
 LaTeX Font Info:    Font shape `TU/Carlito(0)/m/sl' in size <14.4> not available
-(Font)              Font shape `TU/Carlito(0)/m/it' tried instead on input line 95.
+(Font)              Font shape `TU/Carlito(0)/m/it' tried instead on input line 112.
 LaTeX Font Info:    Font shape `TU/Carlito(0)/m/it' will be
-(Font)              scaled to size 14.4pt on input line 95.
+(Font)              scaled to size 14.4pt on input line 112.
 File: assets/logo_RGB_negative.png Graphic file (type bmp)
 <assets/logo_RGB_negative.png>
- [14
+ [13
 
 ]
 \tf@nav=\write6
@@ -1187,15 +1199,15 @@ LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-08-29>
  ***********
 Package rerunfilecheck Info: File `presentation.out' has not changed.
-(rerunfilecheck)             Checksum: 4B8CEA89A246E0C55198BD97F7F14B0E;392.
+(rerunfilecheck)             Checksum: A1D390E909B39C48E771C73A2DFB806C;440.
  ) 
 Here is how much of TeX's memory you used:
- 27418 strings out of 475591
- 587740 string characters out of 5773842
- 1918438 words of memory out of 5000000
- 48164 multiletter control sequences out of 15000+600000
- 563357 words of font info for 90 fonts, out of 8000000 for 9000
+ 27469 strings out of 475591
+ 589329 string characters out of 5773842
+ 1921438 words of memory out of 5000000
+ 48204 multiletter control sequences out of 15000+600000
+ 565112 words of font info for 105 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  128i,13n,133p,458b,939s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on presentation.pdf (14 pages).
+Output written on presentation.pdf (13 pages).

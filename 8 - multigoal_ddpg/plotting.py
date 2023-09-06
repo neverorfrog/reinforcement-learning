@@ -3,17 +3,17 @@ from matplotlib import pyplot as plt
 import collections
 from IPython import display
 from matplotlib_inline import backend_inline
-from common.utils import *
+from utils import *
 
 
-class ProgressBoard(HyperParameters):
+class ProgressBoard(Parameters):
     """The board that plots data points in animation."""
     
     def __init__(self,episodes,plot_rate, jupyter = False,xlabel=None,ylabel=None, xlim=[0,1000],
                  ylim=[0,1], xscale='linear', yscale='linear',
                  ls=['-', '--', '-.', ':'], colors=['C0', 'C1', 'C2', 'C3'],
                  fig=None, axes=None, figsize=(6, 4), display=True, figname = None):
-        self.save_hyperparameters()
+        self.save_parameters()
         self.fig = plt.figure(figsize=self.figsize)
         self.xlabel = 'episode'
         self.ylabel = 'reward'

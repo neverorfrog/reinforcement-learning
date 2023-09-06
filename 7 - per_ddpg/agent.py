@@ -5,7 +5,6 @@ import pprint
 import numpy as np
 import gymnasium as gym
 from networks import *
-from common.plotting import ProgressBoard
 from common.utils import HyperParameters
 import torch
 import torch.nn as nn
@@ -23,9 +22,10 @@ DDPG + PER: 387 episodes 1000 reward 407 mean reward
 '''
 
 class DDPG(HyperParameters):
-    def __init__(self, name, env: gym.Env, board: ProgressBoard = None, window = 50,
-                 polyak = 0.995, pi_lr = 0.0001, q_lr = 0.0001, target_update_freq = 1, update_freq = 1, 
-                 eps = 1.0, eps_decay = 0.95, batch_size = 64, gamma=0.99, max_episodes=500, reward_threshold=400):
+    def __init__(self, name, env: gym.Env, window = 50, polyak = 0.995, pi_lr = 0.0001, 
+                 q_lr = 0.0001, target_update_freq = 1, update_freq = 1, 
+                 eps = 1.0, eps_decay = 0.95, batch_size = 64, gamma=0.99, 
+                 max_episodes=500, reward_threshold=400):
 
         # Hyperparameters
         self.save_hyperparameters()

@@ -4,7 +4,7 @@ import torch
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # Seed
-SEED = 123
+SEED = 0
 torch.manual_seed(SEED)
 np.random.seed(SEED)
 
@@ -18,7 +18,7 @@ def network(sizes, activation, output_activation = nn.Identity):
 class Actor(nn.Module):
     """Parametrized Policy Network."""
 
-    def __init__(self, env_params, hidden_dims=(256,256), activation=nn.ReLU):
+    def __init__(self, env_params, hidden_dims=(256,256,256), activation=nn.ReLU):
         super().__init__()
         # dimensions
         dimensions = [env_params['obs_dim'] + env_params['goal_dim']] + list(hidden_dims) + [env_params['action_dim']]
@@ -34,7 +34,7 @@ class Actor(nn.Module):
 class Critic(nn.Module):
     """Parametrized Q Network."""
 
-    def __init__(self, env_params, hidden_dims=(256,256), activation=nn.ReLU):
+    def __init__(self, env_params, hidden_dims=(256,256,256), activation=nn.ReLU):
         super().__init__()
         # dimensions
         dimensions = [env_params['obs_dim'] + env_params['goal_dim'] + env_params['action_dim']] + list(hidden_dims) + [1]

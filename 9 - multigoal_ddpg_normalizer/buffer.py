@@ -2,8 +2,6 @@ import random
 import torch
 import numpy as np
 device = torch.device("cpu")
-from common.utils import HyperParameters
-from scipy.stats import multinomial
 import math
 from utils import *
 np.seterr(all="raise")
@@ -159,6 +157,18 @@ class ReplayBuffer:
         self.last_sampled_transitions = t_indices
         return transitions
     
+    def sample_episode(self, episode, batch_size = 6):
+        observations, _, desired, achieved, _, _ = episode.unpack()
+        #indices from HER sampling
+        t_indices = np.random.randint(self.T, size=batch_size)
+        indices = np.where(np.random.uniform(size=batch_size) < self.future_p)
+        future_offset = (np.random.uniform(size=batch_size) * (self.T - t_indices)).astype(int)
+        future_timesteps = (t_indices + future_offset)[indices]
+        #replace goal with future achieved goal
+        future_goals = achieved[future_timesteps]
+        desired[indices] = future_goals     
+        return observations[indices], desired[indices]
+    
       
 class ReplayCache():
     '''Cache of episode during training'''
@@ -189,10 +199,11 @@ class ReplayCache():
         self.is_full = t == self.T - 1
 
     def unpack(self):
-        assert(self.is_full)
-        self.is_full = False
         return (self.observations, self.actions, self.desired_goals, self.achieved_goals, self.new_observations, self.new_achieved_goals)
 
+    
+    
+    
 class SegmentTree:
     def __init__(self, buffer_capacity):
         self.buffer_capacity = buffer_capacity

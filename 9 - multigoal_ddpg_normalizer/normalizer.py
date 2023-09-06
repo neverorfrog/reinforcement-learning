@@ -6,9 +6,9 @@ class Normalizer:
         self.eps = eps
         self.default_clip_range = default_clip_range
         # some local information
-        self.local_sum = np.zeros(self.size, np.float32)
-        self.local_sumsq = np.zeros(self.size, np.float32)
-        self.local_count = 0
+        self.sum = np.zeros(self.size, np.float32)
+        self.sumsq = np.zeros(self.size, np.float32)
+        self.count = 0
         # get the mean and std
         self.mean = np.zeros(self.size, np.float32)
         self.std = np.ones(self.size, np.float32)
@@ -18,7 +18,7 @@ class Normalizer:
         v = v.reshape(-1, self.size)
         self.sum += v.sum(axis=0)
         self.sumsq += (np.square(v)).sum(axis=0)
-        self.count += v.shape
+        self.count += v.shape[0]
 
     def recompute_stats(self):
         # calculate the new mean and std
@@ -29,5 +29,4 @@ class Normalizer:
     def normalize(self, v, clip_range=None):
         if clip_range is None:
             clip_range = self.default_clip_range
-        print(v.shape)
         return np.clip((v - self.mean) / (self.std), -clip_range, clip_range)

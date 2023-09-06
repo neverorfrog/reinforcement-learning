@@ -1,12 +1,12 @@
 from collections import deque
 from copy import deepcopy
-import inspect
+from utils import *
 import os
 from matplotlib import pyplot as plt
 import numpy as np
 import gymnasium as gym
 from networks import *
-from common.plotting import ProgressBoard
+from plotting import ProgressBoard
 import torch
 import torch.nn as nn
 from buffer import *
@@ -14,34 +14,6 @@ from tqdm import tqdm
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 torch.autograd.set_detect_anomaly(True)
 np.seterr(all="raise")
-
-# Seed
-SEED = 123
-torch.manual_seed(SEED)
-np.random.seed(SEED)
-
-'''REACH
-VANILLA HER: 229,242  (window 20)
-HGR: 180, 174 (window 10) --- 225,212 (window 20)
-'''
-
-'''PUSH
-VANILLA HER: 
-'''
-
-'''PICKANDPLACE
-
-'''
-
-class Parameters:
-    def save_parameters(self, ignore=[]):
-        """Save function arguments into class attributes"""
-        frame = inspect.currentframe().f_back
-        _, _, _, local_vars = inspect.getargvalues(frame)
-        self.hparams = {k:v for k, v in local_vars.items()
-                        if k not in set(ignore+['self']) and not k.startswith('_')}
-        for k, v in self.hparams.items():
-            setattr(self, k, v)
             
 class FetchAgent(Parameters):
     def __init__(self, name, env: gym.Env, board: ProgressBoard = None, window = 500, gamma = 0.98, prioritized = True,
@@ -50,7 +22,7 @@ class FetchAgent(Parameters):
 
         # Hyperparameters
         self.save_parameters()
-
+        
         # env params for networks and buffer
         observation = env.reset()[0]
         self.env_params = {'obs_dim': observation['observation'].shape[0], 
@@ -215,18 +187,22 @@ class FetchAgent(Parameters):
         obs_dict = self.env.reset()[0]
         observation = obs_dict['observation']
         goal = obs_dict['desired_goal'] #never changes in an episode
-        info = None     
+        info = None 
+        self.imgs = []    
         # Episode playing
         for _ in range(self.env_params['max_steps']):
             action = self.select_action(observation,goal,explore = False)
             new_obs_dict, _, _, _, info = self.env.step(action)
             new_observation = new_obs_dict['observation']
-            if render: self.env.render()
+            if render: 
+                img = self.env.render()
+                self.imgs.append(img)
             #Preparing for next step
             observation = new_observation
         success = 1 if info['is_success'] else 0
         if render: print(f"SUCCESS: {success}")
-        return success        
+        path = os.path.join("models",self.name)
+        return success      
                    
     def save(self):
         path = os.path.join("models",self.name)
@@ -259,36 +235,30 @@ class FetchAgent(Parameters):
             return torch.tensor(array, dtype = torch.float32).to(device)
         return torch.as_tensor(array, dtype = torch.float32).to(device)
     
-from enum import Enum
-class Mode(Enum):
-    TRAIN = 1
-    TEST = 2
-     
-def launch(env_name = 'FetchReach-v2', mode = None, prioritized = True):
-    if mode == Mode.TRAIN:
-        seeds = [0]
-        for seed in seeds:
-            env = gym.make(env_name)
-            env.seed(seed)
-            set_global_seeds(seed)
-            if prioritized:
-                agent = FetchAgent(f"HGR_{env_name}_{seed}", env, max_episodes = 15000, window = 100)
-            else:
-                agent = FetchAgent(f"HER_{env_name}_{seed}", env, max_episodes = 15000, window = 100)
-            agent.prioritized = prioritized
-            agent.train()    
-            agent.save() #Done training and saving the model
-            
-    if mode == Mode.TEST:
-        env = gym.make(env_name, render_mode = "human")
-        env.seed(0)
-        set_global_seeds(0)
+    
+SEEDS = [42,0]    
+def launch(env_name = 'FetchReach-v2', prioritized = True):
+    for seed in SEEDS:
+        set_global_seeds(seed)
+        env = gym.make(env_name)
         if prioritized:
-            agent = FetchAgent(f"HGR_{env_name}_0", env)
+            agent = FetchAgent(f"HGR_{env_name}_{seed}", env, max_episodes = 20000, window = 1000)
         else:
-            agent = FetchAgent(f"HER_{env_name}_0", env)
-        agent.load()
+            agent = FetchAgent(f"HER_{env_name}_{seed}", env, max_episodes = 20000, window = 1000)
+        agent.prioritized = prioritized
+        agent.train()    
+        agent.save() #Done training and saving the model
+ 
+def test(env_name = 'FetchReach-v2', prioritized = True):
+    for seed in SEEDS:
+        set_global_seeds(seed)
+        env = gym.make(env_name, render_mode = "human")
+        if prioritized:
+            agent = FetchAgent(f"HGR_{env_name}_{seed}", env)
+        else:
+            agent = FetchAgent(f"HER_{env_name}_{seed}", env)
         agent.plot_success()
+        agent.load()
         for _ in range(10):
             agent.evaluate(render = True)
             
@@ -296,12 +266,12 @@ if __name__ == "__main__":
     reach = 'FetchReach-v2'
     push = 'FetchPush-v2'
     pickandplace = 'FetchPickAndPlace-v2'
-    # launch(pickandplace, Mode.TRAIN, prioritized = False)
-    # launch(pickandplace, Mode.TRAIN, prioritized = True)
-    # launch(push, Mode.TRAIN, prioritized = False)
-    # launch(push, Mode.TRAIN, prioritized = True)
-    launch(push, Mode.TRAIN, prioritized = False)
-    # launch(reach, Mode.TRAIN, prioritized = True)
-    # launch(pickandplace, Mode.TEST, prioritized=True)
+    slide = 'FetchSlide-v2'
+    launch(pickandplace, True)
+    launch(reach, True)
+    launch(slide,True)
+    launch(pickandplace, False)
+    launch(reach, False)
+    launch(slide, False)
     
     

@@ -23,9 +23,9 @@
 \section{Introduction}
 
       \begin{frame}{Problem statement}
-            \begin{block}{Real-world environments}
+            \begin{block}{Robotics environments}
                   \begin{itemize}
-                        \item Multi goal: value functions take as input also the goal
+                        \item Complex and different goals
                         \item Sparse rewards
                         \item Continuous action space
                   \end{itemize}  
@@ -33,19 +33,45 @@
 
             $\Downarrow$ \centering \\
 
-            \begin{block}{}
+            \begin{block}{Problems with exploration and reward shaping}
+                  \begin{itemize}
+                        \item Goal may be too complex and observation space is big: we may never get reward 1
+                        \item Classical off-policy algorithms don't valorize much the failed episodes
+                  \end{itemize}  
+            \end{block}
 
+            $\Downarrow$ \centering \\
+
+            Solution: Enhancing the Replay Buffer
+      \end{frame}
+
+      \begin{frame}{Fetch}
+            \begin{itemize}
+                  \item Based on the 7-DoF Fetch Manipulator arm, with a two-fingered parallel gripper
+                  \item Tasks: Reach, Push, Slide and Pick-and-Place
+                  \item Action: Box(-1.0, 1.0, (4,), float32) $\rightsquigarrow$ Displacement in meters of the EE 
+                  \item Observation: dictionary with info about the robot’s end effector state and goal
+                        \begin{itemize}
+                              \item Observation: ndarray of shape (25,) $\rightsquigarrow$ kinematic info of the block object and EE
+                              \item Desired goal: ndarray of shape (3,) $\rightsquigarrow$ desired position of the EE or the block
+                              \item Achieved goal: ndarray of shape (3,) $\rightsquigarrow$ current position of the EE or the block
+                        \end{itemize}
+                  \item Reward: if we use sparse rewards -1 for every timestep and 0 for reaching the goal
+                  \item Termination: episodes have no termination since they have infinite horizon. Thus, they are truncated after T steps (by default 50)
+            \end{itemize}
+      \end{frame}
+
+\section{Algorithm comparison}
+
+      \begin{frame}[fragile]{DDPG}
+            \framesubtitle{The base of all}
+            \begin{block}{Intuition}
+                  \verb|\documentclass{beamer}|\\
+            \end{block}
+            \begin{block}{Drawbacks}
+                  \verb|\documentclass{beamer}|\\
             \end{block}
       \end{frame}
-
-      \begin{frame}
-            \begin{itemize}
-                  \item Vanilla off-policy algorithms are not suited for multi-goal reinforcement learning with sparse reward
-                  \item Since the goal is not fixed, we may never get reward 1
-                  \item Problem with exploration
-            \end{itemize}  
-      \end{frame}
-
 
       \begin{frame}[fragile]{HER}
             \framesubtitle{Sampling future goals}
@@ -68,15 +94,6 @@
             \end{block}
       \end{frame}
 
-\section{Environment}
-
-      \begin{frame}{Why Robotics Environments}
-            
-      \end{frame}
-
-      \begin{frame}{Fetch}
-
-      \end{frame}
 
 \section{Implementation}
 

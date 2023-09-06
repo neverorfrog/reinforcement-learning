@@ -1,13 +1,15 @@
 from collections import deque
 from copy import deepcopy
-import inspect
+
+import pandas as pd
+from utils import *
 import os
 from normalizer import Normalizer
 from matplotlib import pyplot as plt
 import numpy as np
 import gymnasium as gym
 from networks import *
-from common.plotting import ProgressBoard
+from plotting import ProgressBoard
 import torch
 import torch.nn as nn
 from buffer import *
@@ -33,16 +35,6 @@ VANILLA HER:
 '''PICKANDPLACE
 
 '''
-
-class Parameters:
-    def save_parameters(self, ignore=[]):
-        """Save function arguments into class attributes"""
-        frame = inspect.currentframe().f_back
-        _, _, _, local_vars = inspect.getargvalues(frame)
-        self.hparams = {k:v for k, v in local_vars.items()
-                        if k not in set(ignore+['self']) and not k.startswith('_')}
-        for k, v in self.hparams.items():
-            setattr(self, k, v)
             
 class FetchAgent(Parameters):
     def __init__(self, name, env: gym.Env, board: ProgressBoard = None, window = 500, gamma = 0.98, 
@@ -78,7 +70,6 @@ class FetchAgent(Parameters):
         # Experience Replay Buffer
         T = self.max_episodes * self.env_params['max_steps']
         self.memory = ReplayBuffer(self.env_params, max_timesteps=T, reward_function=env.unwrapped.compute_reward)
-        self.cache = ReplayCache(env_params = self.env_params)
         
         # normalizer
         self.o_norm = Normalizer(
@@ -86,7 +77,7 @@ class FetchAgent(Parameters):
             default_clip_range = self.norm_clip
         )
         self.g_norm = Normalizer(
-            size=self.env_params['action_dim'], 
+            size=self.env_params['goal_dim'], 
             default_clip_range = self.norm_clip
         )
         
@@ -125,7 +116,7 @@ class FetchAgent(Parameters):
           
     def store_episode(self):
         # empty episode temporary memory
-        self.cache.reset()
+        cache = ReplayCache(env_params = self.env_params)
         # starting point
         obs_dict = self.env.reset()[0]
         # Episode playing
@@ -133,25 +124,27 @@ class FetchAgent(Parameters):
             action = self.select_action(obs_dict['observation'],obs_dict['desired_goal'])
             new_obs_dict, _, _, _, _ = self.env.step(action)
             #Storing in the temporary memory
-            self.cache.store_transition(t, obs_dict, action, new_obs_dict)
+            cache.store_transition(t, obs_dict, action, new_obs_dict)
             #Preparing for next step
             obs_dict = new_obs_dict
             self.timestep += 1
                                   
         # storing in the memory the entire episode
-        self.memory.store(self.cache)
+        self.memory.store(cache)
+        self.update_normalizer(cache)
     
     def select_action(self,obs,goal,explore = True):
         with torch.no_grad():
-            action = self.actor(self.normalize_og(obs, goal)).detach().numpy()
-            exit("OK")
+            obs = self.to_torch(self.o_norm.normalize(obs))
+            goal = self.to_torch(self.g_norm.normalize(goal))
+            action = self.actor(obs, goal).detach().numpy()
             if explore:
                 action += self.env_params['action_bound'] * self.noise_eps * np.random.randn(self.env_params['action_dim'])
             action = np.clip(action, -self.env_params['action_bound'], self.env_params['action_bound'])
         return action
     
     def learning_step(self): 
-        #Sampling of the minibatch
+        #Sampling of the minibatch (with preprocessed observations and goals)
         observations, goals, new_observations, actions, rewards, weights = self.sample_batch()
         
         #Value Optimization
@@ -201,15 +194,20 @@ class FetchAgent(Parameters):
         else:
             transitions = self.memory.sample_uniformly()
             weights = 1
-            
-        # preprocess
-        observations = torch.clip(transitions['observation'], -self.obs_clip, self.obs_obs)
-        exit(observations)
-        observations = self.to_torch(transitions['observation'])
-        goals = self.to_torch(transitions['goal'])
-        new_observations = self.to_torch(transitions['new_observation'])
+           
+        #no preprocessing for these 
         actions = self.to_torch(transitions['action'])
         rewards = self.to_torch(transitions['reward']).reshape(-1,1)
+        
+        # clipping observations
+        observations = np.clip(transitions['observation'], -self.obs_clip, self.obs_clip)
+        new_observations = np.clip(transitions['new_observation'], -self.obs_clip, self.obs_clip)
+        goals = np.clip(transitions['goal'], -self.obs_clip, self.obs_clip)
+        
+        #normalizing observations
+        observations = self.to_torch(self.o_norm.normalize(observations))
+        new_observations = self.to_torch(self.o_norm.normalize(new_observations))
+        goals = self.to_torch(self.g_norm.normalize(goals))
 
         return observations, goals, new_observations, actions, rewards, weights
     
@@ -223,6 +221,19 @@ class FetchAgent(Parameters):
             for target, online in zip(self.target_actor.parameters(), self.actor.parameters()):
                 target.data.mul_(polyak)
                 target.data.add_((1 - polyak) * online.data)
+                
+    # update the normalizer
+    def update_normalizer(self, episode):
+        observations, goals = self.memory.sample_episode(episode)
+        # pre process the obs and g
+        observations = np.clip(observations, -self.obs_clip, self.obs_clip)
+        goals = np.clip(goals, -self.obs_clip, self.obs_clip)
+        # update
+        self.o_norm.update(observations)
+        self.g_norm.update(goals)
+        # recompute the stats
+        self.o_norm.recompute_stats()
+        self.g_norm.recompute_stats()
                 
     def evaluate(self, render = False):
         # starting point
@@ -268,16 +279,38 @@ class FetchAgent(Parameters):
         ret.device = device
         return ret
     
-    #pre-process the inputs
-    def normalize_og(self, obs, g):
-        obs = self.to_torch(self.o_norm.normalize(obs))
-        g = self.to_torch(self.g_norm.normalize(g))
-        return obs, g
-    
     def to_torch(self, array, copy=False):
         if copy:
             return torch.tensor(array, dtype = torch.float32).to(device)
         return torch.as_tensor(array, dtype = torch.float32).to(device)
+    
+    
+SEEDS = [1,2,3]
+
+def meltplot(env_name = 'FetchReach-v2', prioritized = True):
+    success_rates = []
+    maxlen = 0
+    for seed in SEEDS:
+        env = gym.make(env_name)
+        if prioritized:
+            agent = FetchAgent(f"HGR_{env_name}_{seed}", env)
+        else:
+            agent = FetchAgent(f"HER_{env_name}_{seed}", env)
+        path = os.path.join("models",agent.name)
+        success_rate = torch.load(open(os.path.join(path,"success.pt"),"rb"))
+        if len(success_rate) > maxlen: maxlen = len(success_rate)
+        success_rates.append(success_rate.tolist())
+    for i in range(len(SEEDS)):
+        lastelem = success_rates[i][-1]
+        difference = (maxlen - len(success_rates[i]))
+        coda = [lastelem]*difference
+        success_rates[i].extend(coda)
+    data = np.array(success_rates)
+    df1 = pd.DataFrame(success_rates).melt()
+    df1.rename(columns={"variable": "episode", "value": "mean success"}, inplace=True)
+    # sns.set(style="darkgrid", context="talk", palette="rainbow")
+    # sns.lineplot(x="episode", y="mean success", data=df1).set(title="HGR")
+    # plt.show(block = True)
     
 from enum import Enum
 class Mode(Enum):
@@ -288,21 +321,23 @@ def launch(env_name = 'FetchReach-v2', mode = None, prioritized = True):
     if mode == Mode.TRAIN:
         seeds = [0]
         for seed in seeds:
+            set_global_seeds(seed)
             env = gym.make(env_name)
             if prioritized:
-                agent = FetchAgent(f"HGR_{env_name}_{seed}", env, max_episodes = 15000, window = 100)
+                agent = FetchAgent(f"HGR_{env_name}_norm", env, max_episodes = 500, window = 100)
             else:
-                agent = FetchAgent(f"HER_{env_name}_{seed}", env, max_episodes = 15000, window = 100)
+                agent = FetchAgent(f"HER_{env_name}_norm", env, max_episodes = 500, window = 100)
             agent.prioritized = prioritized
             agent.train()    
             agent.save() #Done training and saving the model
             
     if mode == Mode.TEST:
+        set_global_seeds(0)
         env = gym.make(env_name, render_mode = "human")
         if prioritized:
-            agent = FetchAgent(f"HGR_{env_name}_0", env)
+            agent = FetchAgent(f"HGR_{env_name}_norm", env)
         else:
-            agent = FetchAgent(f"HER_{env_name}_0", env)
+            agent = FetchAgent(f"HER_{env_name}_norm", env)
         agent.load()
         agent.plot_success()
         for _ in range(10):
@@ -316,7 +351,7 @@ if __name__ == "__main__":
     # launch(pickandplace, Mode.TRAIN, prioritized = True)
     # launch(push, Mode.TRAIN, prioritized = False)
     # launch(push, Mode.TRAIN, prioritized = True)
-    launch(reach, Mode.TRAIN, prioritized = False)
+    launch(pickandplace, Mode.TRAIN, prioritized = True)
     # launch(reach, Mode.TRAIN, prioritized = True)
     # launch(pickandplace, Mode.TEST, prioritized=True)
     
