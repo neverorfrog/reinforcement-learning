@@ -1,8 +1,11 @@
 from collections import deque
 from copy import deepcopy
+import pandas as pd
+import seaborn as sns
 from utils import *
 import os
-from matplotlib import pyplot as plt
+from matplotlib import axes, pyplot as plt
+import matplotlib.patches as mpatches
 import numpy as np
 import gymnasium as gym
 from networks import *
@@ -236,7 +239,7 @@ class FetchAgent(Parameters):
         return torch.as_tensor(array, dtype = torch.float32).to(device)
     
     
-SEEDS = [42,0]    
+SEEDS = [123,42]    
 def launch(env_name = 'FetchReach-v2', prioritized = True):
     for seed in SEEDS:
         set_global_seeds(seed)
@@ -244,7 +247,7 @@ def launch(env_name = 'FetchReach-v2', prioritized = True):
         if prioritized:
             agent = FetchAgent(f"HGR_{env_name}_{seed}", env, max_episodes = 20000, window = 1000)
         else:
-            agent = FetchAgent(f"HER_{env_name}_{seed}", env, max_episodes = 20000, window = 1000)
+            agent = FetchAgent(f"HER_{env_name}_{seed}", env, max_episodes = 30000, window = 1000)
         agent.prioritized = prioritized
         agent.train()    
         agent.save() #Done training and saving the model
@@ -262,16 +265,43 @@ def test(env_name = 'FetchReach-v2', prioritized = True):
         for _ in range(10):
             agent.evaluate(render = True)
             
+def meanplot(env_name = 'FetchReach-v2', prioritized = True):
+    success_rates = []
+    maxlen = 0
+    for seed in SEEDS:
+        env = gym.make(env_name)
+        if prioritized:
+            agent = FetchAgent(f"HGR_{env_name}_{seed}", env)
+        else:
+            agent = FetchAgent(f"HER_{env_name}_{seed}", env)
+        path = os.path.join("models",agent.name)
+        success_rate = torch.load(open(os.path.join(path,"success.pt"),"rb"))
+        if len(success_rate) > maxlen: maxlen = len(success_rate)
+        success_rates.append(success_rate.tolist())
+    lens = [len(sr) for sr in success_rates]
+    srs = np.ma.empty((np.max(lens),len(success_rates)))
+    srs.mask = True
+    for idx, l in enumerate(success_rates):
+        srs[:len(l),idx] = l
+    toplot, error = srs.mean(axis=-1, dtype = np.float16), srs.std(axis = -1, dtype = np.float128)
+    sns.set()
+    xaxis = (np.arange(len(toplot))+1) * 100
+    plt.plot(xaxis, toplot, color='green')
+    plt.errorbar(xaxis, toplot, yerr=error, lw = 0, fillstyle = 'full')
+    plt.show(block = True)
+
+            
 if __name__ == "__main__":
     reach = 'FetchReach-v2'
     push = 'FetchPush-v2'
     pickandplace = 'FetchPickAndPlace-v2'
     slide = 'FetchSlide-v2'
-    launch(pickandplace, True)
-    launch(reach, True)
-    launch(slide,True)
     launch(pickandplace, False)
-    launch(reach, False)
-    launch(slide, False)
+    # launch(reach, True)
+    # launch(slide,True)
+    # launch(pickandplace, False)
+    # launch(reach, False)
+    # launch(slide, False)
+    # meanplot(pickandplace, True)
     
     
