@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.9.1)  7 SEP 2023 12:24
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.9.1)  7 SEP 2023 21:50
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -542,57 +542,153 @@ Package: amsthm 2020/05/29 v2.20.6
 \beamer@dimb=\dimen293
 ) (/usr/local/texlive/2023/texmf-dist/tex/latex/beamer/beamerouterthemedefault.sty))) (/usr/local/texlive/2023/texmf-dist/tex/latex/mfnfss/oldgerm.sty
 Package: oldgerm 2000/08/02 v2.1k LaTeX2e package for Old German fonts
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/algorithmicx/algpseudocode.sty
+Package: algpseudocode 
+ (/usr/local/texlive/2023/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2022/04/13 v1.1d Standard LaTeX ifthen package (DPC)
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/algorithmicx/algorithmicx.sty
+Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
+
+Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
+\c@ALG@line=\count333
+\c@ALG@rem=\count334
+\c@ALG@nested=\count335
+\ALG@tlm=\skip65
+\ALG@thistlm=\skip66
+\c@ALG@Lnr=\count336
+\c@ALG@blocknr=\count337
+\c@ALG@storecount=\count338
+\c@ALG@tmpcounter=\count339
+\ALG@tmplength=\skip67
+)
+Document Style - pseudocode environments for use with the `algorithmicx' style
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/algorithms/algorithm.sty
+Invalid UTF-8 byte or sequence at line 11 replaced by U+FFFD.
+Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating environment
+ (/usr/local/texlive/2023/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count340
+\float@exts=\toks46
+\float@box=\box77
+\@float@everytoks=\toks47
+\@floatcapt=\box78
+)
+\@float@every@algorithm=\toks48
+\c@algorithm=\count341
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/animate/animate.sty
+Package: animate 2023/06/18 PDF & SVG animations from files and inline graphics
+ (/usr/local/texlive/2023/texmf-dist/tex/latex/oberdiek/ifdraft.sty
+Package: ifdraft 2016/05/16 v1.4 Detect class options draft and final (HO)
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count342
+\calc@Bcount=\count343
+\calc@Adimen=\dimen294
+\calc@Bdimen=\dimen295
+\calc@Askip=\skip68
+\calc@Bskip=\skip69
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count344
+\calc@Cskip=\skip70
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/media9/pdfbase.sty
+Package: pdfbase 2022/08/04 v0.55 driver independent access to low-level PDF features
+ (/usr/local/texlive/2023/texmf-dist/tex/latex/l3backend/l3backend-xetex.def
+File: l3backend-xetex.def 2023-04-19 L3 backend support: XeTeX
+\g__graphics_track_int=\count345
+\l__pdf_internal_box=\box79
+\g__pdf_backend_object_int=\count346
+\g__pdf_backend_annotation_int=\count347
+\g__pdf_backend_link_int=\count348
+)
+\g_pbs_page_int=\count349
+\g_pbs_obj_int=\count350
+\g_pbs_oc_int=\count351
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/zref/zref-abspage.sty
+Package: zref-abspage 2022-04-07 v2.34 Module abspage for zref (HO)
+ (/usr/local/texlive/2023/texmf-dist/tex/latex/zref/zref-base.sty
+Package: zref-base 2022-04-07 v2.34 Module base for zref (HO)
+ (/usr/local/texlive/2023/texmf-dist/tex/generic/etexcmds/etexcmds.sty
+Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
+)
+Package zref Info: New property list: main on input line 767.
+Package zref Info: New property: default on input line 768.
+Package zref Info: New property: page on input line 769.
+)
+\c@abspage=\count352
+Package zref Info: New property: abspage on input line 65.
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/ocgx2/ocgbase.sty
+Package: ocgbase 2022/08/04 v0.22 support package for ocgx2.sty
+\g_ocgbase_nd_int=\count353
+)
+\@anim@box=\box80
+\@anim@measbox=\box81
+\@anim@tmpdima=\dimen296
+\@anim@tmpdimb=\dimen297
+\@anim@num=\count354
+\@anim@curframe=\count355
+\@anim@curframe@zb=\count356
+\@anim@resizeflags=\count357
+\@anim@skipfram=\count358
+\@anim@mulframecnt=\count359
+\@anim@@tmlnfile=\read3
+\@anim@tmpcnt=\count360
+\c@@anim@ltxcnt=\count361
+\@anim@curlayer=\count362
+\@anim@lineno=\count363
+\@anim@curfield=\count364
+\@anim@@resizeflags=\count365
 ) (./beamerthemesintef.sty
 Package: beamerthemesintef 2021/11/02
  (/usr/local/texlive/2023/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty (/usr/local/texlive/2023/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
 Package: pgf 2023-01-15 v3.1.10 (3.1.10)
  (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
 File: pgfmoduleshapes.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfnodeparttextbox=\box77
+\pgfnodeparttextbox=\box82
 ) (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
 File: pgfmoduleplot.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (/usr/local/texlive/2023/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty
 Package: pgfcomp-version-0-65 2023-01-15 v3.1.10 (3.1.10)
-\pgf@nodesepstart=\dimen294
-\pgf@nodesepend=\dimen295
+\pgf@nodesepstart=\dimen298
+\pgf@nodesepend=\dimen299
 ) (/usr/local/texlive/2023/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18.sty
 Package: pgfcomp-version-1-18 2023-01-15 v3.1.10 (3.1.10)
 )) (/usr/local/texlive/2023/texmf-dist/tex/latex/pgf/utilities/pgffor.sty (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
 Package: pgffor 2023-01-15 v3.1.10 (3.1.10)
-\pgffor@iter=\dimen296
-\pgffor@skip=\dimen297
-\pgffor@stack=\toks46
-\pgffor@toks=\toks47
+\pgffor@iter=\dimen300
+\pgffor@skip=\dimen301
+\pgffor@stack=\toks49
+\pgffor@toks=\toks50
 )) (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
 Package: tikz 2023-01-15 v3.1.10 (3.1.10)
  (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex
 File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@plot@mark@count=\count333
-\pgfplotmarksize=\dimen298
+\pgf@plot@mark@count=\count366
+\pgfplotmarksize=\dimen302
 )
-\tikz@lastx=\dimen299
-\tikz@lasty=\dimen300
-\tikz@lastxsaved=\dimen301
-\tikz@lastysaved=\dimen302
-\tikz@lastmovetox=\dimen303
-\tikz@lastmovetoy=\dimen304
-\tikzleveldistance=\dimen305
-\tikzsiblingdistance=\dimen306
-\tikz@figbox=\box78
-\tikz@figbox@bg=\box79
-\tikz@tempbox=\box80
-\tikz@tempbox@bg=\box81
-\tikztreelevel=\count334
-\tikznumberofchildren=\count335
-\tikznumberofcurrentchild=\count336
-\tikz@fig@count=\count337
+\tikz@lastx=\dimen303
+\tikz@lasty=\dimen304
+\tikz@lastxsaved=\dimen305
+\tikz@lastysaved=\dimen306
+\tikz@lastmovetox=\dimen307
+\tikz@lastmovetoy=\dimen308
+\tikzleveldistance=\dimen309
+\tikzsiblingdistance=\dimen310
+\tikz@figbox=\box83
+\tikz@figbox@bg=\box84
+\tikz@tempbox=\box85
+\tikz@tempbox@bg=\box86
+\tikztreelevel=\count367
+\tikznumberofchildren=\count368
+\tikznumberofcurrentchild=\count369
+\tikz@fig@count=\count370
  (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
 File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfmatrixcurrentrow=\count338
-\pgfmatrixcurrentcolumn=\count339
-\pgf@matrix@numberofcolumns=\count340
+\pgfmatrixcurrentrow=\count371
+\pgfmatrixcurrentcolumn=\count372
+\pgf@matrix@numberofcolumns=\count373
 )
-\tikz@expandcount=\count341
+\tikz@expandcount=\count374
  (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ))) (/usr/local/texlive/2023/texmf-dist/tex/latex/caladea/caladea.sty
@@ -604,42 +700,35 @@ Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
 ) (/usr/local/texlive/2023/texmf-dist/tex/latex/xkeyval/xkeyval.sty
 Package: xkeyval 2022/06/16 v2.9 package option processing (HA)
  (/usr/local/texlive/2023/texmf-dist/tex/generic/xkeyval/xkeyval.tex (/usr/local/texlive/2023/texmf-dist/tex/generic/xkeyval/xkvutils.tex
-\XKV@toks=\toks48
-\XKV@tempa@toks=\toks49
+\XKV@toks=\toks51
+\XKV@tempa@toks=\toks52
 )
-\XKV@depth=\count342
+\XKV@depth=\count375
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 )) (/usr/local/texlive/2023/texmf-dist/tex/latex/base/textcomp.sty
 Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
 ) (/usr/local/texlive/2023/texmf-dist/tex/latex/fontspec/fontspec.sty (/usr/local/texlive/2023/texmf-dist/tex/latex/l3packages/xparse/xparse.sty (/usr/local/texlive/2023/texmf-dist/tex/latex/l3kernel/expl3.sty
 Package: expl3 2023-08-29 L3 programming layer (loader) 
- (/usr/local/texlive/2023/texmf-dist/tex/latex/l3backend/l3backend-xetex.def
-File: l3backend-xetex.def 2023-04-19 L3 backend support: XeTeX
-\g__graphics_track_int=\count343
-\l__pdf_internal_box=\box82
-\g__pdf_backend_object_int=\count344
-\g__pdf_backend_annotation_int=\count345
-\g__pdf_backend_link_int=\count346
-))
+)
 Package: xparse 2023-02-02 L3 Experimental document command parser
 )
 Package: fontspec 2022/01/15 v2.8a Font selection for XeLaTeX and LuaLaTeX
  (/usr/local/texlive/2023/texmf-dist/tex/latex/fontspec/fontspec-xetex.sty
 Package: fontspec-xetex 2022/01/15 v2.8a Font selection for XeLaTeX and LuaLaTeX
-\l__fontspec_script_int=\count347
-\l__fontspec_language_int=\count348
-\l__fontspec_strnum_int=\count349
-\l__fontspec_tmp_int=\count350
-\l__fontspec_tmpa_int=\count351
-\l__fontspec_tmpb_int=\count352
-\l__fontspec_tmpc_int=\count353
-\l__fontspec_em_int=\count354
-\l__fontspec_emdef_int=\count355
-\l__fontspec_strong_int=\count356
-\l__fontspec_strongdef_int=\count357
-\l__fontspec_tmpa_dim=\dimen307
-\l__fontspec_tmpb_dim=\dimen308
-\l__fontspec_tmpc_dim=\dimen309
+\l__fontspec_script_int=\count376
+\l__fontspec_language_int=\count377
+\l__fontspec_strnum_int=\count378
+\l__fontspec_tmp_int=\count379
+\l__fontspec_tmpa_int=\count380
+\l__fontspec_tmpb_int=\count381
+\l__fontspec_tmpc_int=\count382
+\l__fontspec_em_int=\count383
+\l__fontspec_emdef_int=\count384
+\l__fontspec_strong_int=\count385
+\l__fontspec_strongdef_int=\count386
+\l__fontspec_tmpa_dim=\dimen311
+\l__fontspec_tmpb_dim=\dimen312
+\l__fontspec_tmpc_dim=\dimen313
  (/usr/local/texlive/2023/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
 ) (/usr/local/texlive/2023/texmf-dist/tex/latex/fontspec/fontspec.cfg)))
@@ -838,30 +927,30 @@ Package: sintefcolor 2021/03/04
 )) (/usr/local/texlive/2023/texmf-dist/tex/latex/beamer/beamerfontthemeserif.sty) (./presentation.aux)
 \openout1 = `presentation.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 20.
-LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 20.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 24.
+LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 24.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -897,7 +986,7 @@ LaTeX Font Info:    ... okay on input line 20.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 20.
+Package hyperref Info: Link coloring OFF on input line 24.
 (./presentation.out) (./presentation.out)
 \@outlinefile=\write5
 \openout5 = `presentation.out'.
@@ -905,41 +994,41 @@ Package hyperref Info: Link coloring OFF on input line 20.
 \symnumbers=\mathgroup6
 \sympureletters=\mathgroup7
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/cmr/m/n --> TU/Caladea(0)/m/n on input line 20.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 20.
+(Font)                  OT1/cmr/m/n --> TU/Caladea(0)/m/n on input line 24.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 24.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> TU/Caladea(0)/b/n on input line 20.
+(Font)                  OT1/cmr/bx/n --> TU/Caladea(0)/b/n on input line 24.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmr/bx/n --> TU/Caladea(0)/b/n on input line 20.
-LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 20.
+(Font)                  OT1/cmr/bx/n --> TU/Caladea(0)/b/n on input line 24.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 24.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> TU/Carlito(0)/m/n on input line 20.
+(Font)                  OT1/cmss/m/n --> TU/Carlito(0)/m/n on input line 24.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> TU/Carlito(0)/m/n on input line 20.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 20.
+(Font)                  OT1/cmss/bx/n --> TU/Carlito(0)/m/n on input line 24.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 24.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> TU/Caladea(0)/m/it on input line 20.
+(Font)                  OT1/cmr/m/it --> TU/Caladea(0)/m/it on input line 24.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> TU/Caladea(0)/m/it on input line 20.
-LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 20.
+(Font)                  OT1/cmr/bx/it --> TU/Caladea(0)/m/it on input line 24.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 24.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 20.
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 24.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 20.
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 24.
 LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
-(Font)                  TU/Caladea(0)/m/n --> TU/Caladea(0)/b/n on input line 20.
+(Font)                  TU/Caladea(0)/m/n --> TU/Caladea(0)/b/n on input line 24.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  TU/Caladea(0)/m/it --> TU/Caladea(0)/b/it on input line 20.
+(Font)                  TU/Caladea(0)/m/it --> TU/Caladea(0)/b/it on input line 24.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
-(Font)                  OT1/cmr/bx/n --> TU/Caladea(0)/b/n on input line 20.
+(Font)                  OT1/cmr/bx/n --> TU/Caladea(0)/b/n on input line 24.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  TU/Caladea(0)/b/n --> TU/Caladea(0)/b/n on input line 20.
+(Font)                  TU/Caladea(0)/b/n --> TU/Caladea(0)/b/n on input line 24.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  TU/Carlito(0)/m/n --> TU/Carlito(0)/b/n on input line 20.
+(Font)                  TU/Carlito(0)/m/n --> TU/Carlito(0)/b/n on input line 24.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  TU/Caladea(0)/m/it --> TU/Caladea(0)/b/it on input line 20.
+(Font)                  TU/Caladea(0)/m/it --> TU/Caladea(0)/b/it on input line 24.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  TU/lmtt/m/n --> TU/lmtt/b/n on input line 20.
+(Font)                  TU/lmtt/m/n --> TU/lmtt/b/n on input line 24.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/translator/translator-basic-dictionary-English.dict
 Dictionary: translator-basic-dictionary, Language: English 
 ) (/usr/local/texlive/2023/texmf-dist/tex/latex/translator/translator-bibliography-dictionary-English.dict
@@ -959,76 +1048,76 @@ Package fontspec Info: Adjusting the maths setup (use [no-math] to avoid
 
 \symlegacymaths=\mathgroup8
 LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
-(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 20.
-LaTeX Font Info:    Redeclaring math accent \acute on input line 20.
-LaTeX Font Info:    Redeclaring math accent \grave on input line 20.
-LaTeX Font Info:    Redeclaring math accent \ddot on input line 20.
-LaTeX Font Info:    Redeclaring math accent \tilde on input line 20.
-LaTeX Font Info:    Redeclaring math accent \bar on input line 20.
-LaTeX Font Info:    Redeclaring math accent \breve on input line 20.
-LaTeX Font Info:    Redeclaring math accent \check on input line 20.
-LaTeX Font Info:    Redeclaring math accent \hat on input line 20.
-LaTeX Font Info:    Redeclaring math accent \dot on input line 20.
-LaTeX Font Info:    Redeclaring math accent \mathring on input line 20.
-LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 20.
-LaTeX Font Info:    Redeclaring math symbol \Delta on input line 20.
-LaTeX Font Info:    Redeclaring math symbol \Theta on input line 20.
-LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 20.
-LaTeX Font Info:    Redeclaring math symbol \Xi on input line 20.
-LaTeX Font Info:    Redeclaring math symbol \Pi on input line 20.
-LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 20.
-LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 20.
-LaTeX Font Info:    Redeclaring math symbol \Phi on input line 20.
-LaTeX Font Info:    Redeclaring math symbol \Psi on input line 20.
-LaTeX Font Info:    Redeclaring math symbol \Omega on input line 20.
-LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 20.
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 20.
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 24.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 24.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 24.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 24.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 24.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 24.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 24.
+LaTeX Font Info:    Redeclaring math accent \check on input line 24.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 24.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 24.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 24.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 24.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 24.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 24.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 24.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 24.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 24.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 24.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 24.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 24.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 24.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 24.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 24.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 24.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 20.
+(Font)              `operators' in the math version `normal' on input line 24.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> TU/Caladea(0)/m/n on input line 20.
+(Font)                  OT1/cmr/m/n --> TU/Caladea(0)/m/n on input line 24.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 20.
+(Font)              `operators' in the math version `bold' on input line 24.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> TU/Caladea(0)/m/n on input line 20.
+(Font)                  OT1/cmr/bx/n --> TU/Caladea(0)/m/n on input line 24.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  TU/Caladea(0)/m/n --> TU/Caladea(0)/m/n on input line 20.
-LaTeX Font Info:    Redeclaring math alphabet \mathrm on input line 20.
+(Font)                  TU/Caladea(0)/m/n --> TU/Caladea(0)/m/n on input line 24.
+LaTeX Font Info:    Redeclaring math alphabet \mathrm on input line 24.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  TU/Caladea(0)/m/it --> TU/Caladea(0)/m/it on input line 20.
+(Font)                  TU/Caladea(0)/m/it --> TU/Caladea(0)/m/it on input line 24.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  TU/Caladea(0)/b/n --> TU/Caladea(0)/b/n on input line 20.
+(Font)                  TU/Caladea(0)/b/n --> TU/Caladea(0)/b/n on input line 24.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  TU/Carlito(0)/m/n --> TU/Carlito(0)/m/n on input line 20.
+(Font)                  TU/Carlito(0)/m/n --> TU/Carlito(0)/m/n on input line 24.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  TU/lmtt/m/n --> TU/lmtt/m/n on input line 20.
+(Font)                  TU/lmtt/m/n --> TU/lmtt/m/n on input line 24.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  TU/Caladea(0)/m/n --> TU/Caladea(0)/b/n on input line 20.
+(Font)                  TU/Caladea(0)/m/n --> TU/Caladea(0)/b/n on input line 24.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  TU/Caladea(0)/b/it --> TU/Caladea(0)/b/it on input line 20.
+(Font)                  TU/Caladea(0)/b/it --> TU/Caladea(0)/b/it on input line 24.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  TU/Carlito(0)/b/n --> TU/Carlito(0)/b/n on input line 20.
+(Font)                  TU/Carlito(0)/b/n --> TU/Carlito(0)/b/n on input line 24.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  TU/lmtt/b/n --> TU/lmtt/b/n on input line 20.
+(Font)                  TU/lmtt/b/n --> TU/lmtt/b/n on input line 24.
  (./presentation.nav)
 LaTeX Font Info:    Font shape `TU/Carlito(0)/m/n' will be
-(Font)              scaled to size 6.0pt on input line 20.
+(Font)              scaled to size 6.0pt on input line 24.
 LaTeX Font Info:    Font shape `TU/Carlito(0)/m/n' will be
-(Font)              scaled to size 8.0pt on input line 20.
+(Font)              scaled to size 8.0pt on input line 24.
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
 LaTeX Font Info:    Font shape `TU/Carlito(0)/m/n' will be
-(Font)              scaled to size 14.4pt on input line 21.
+(Font)              scaled to size 14.4pt on input line 25.
 LaTeX Font Info:    Font shape `TU/Carlito(0)/b/n' will be
-(Font)              scaled to size 14.4pt on input line 21.
+(Font)              scaled to size 14.4pt on input line 25.
 LaTeX Font Info:    Font shape `TU/Carlito(0)/b/n' will be
-(Font)              scaled to size 9.0pt on input line 21.
+(Font)              scaled to size 9.0pt on input line 25.
 LaTeX Font Info:    Font shape `TU/Carlito(0)/m/n' will be
-(Font)              scaled to size 9.0pt on input line 21.
+(Font)              scaled to size 9.0pt on input line 25.
 LaTeX Font Info:    Font shape `TU/Carlito(0)/b/n' will be
-(Font)              scaled to size 8.0pt on input line 21.
+(Font)              scaled to size 8.0pt on input line 25.
 File: assets/background.png Graphic file (type bmp)
 <assets/background.png>
  [1
@@ -1059,7 +1148,7 @@ LaTeX Font Info:    Font shape `TU/Caladea(0)/m/it' will be
 (Font)              scaled to size 6.0pt on input line 1.
 )
 LaTeX Font Info:    Font shape `TU/Carlito(0)/m/n' will be
-(Font)              scaled to size 4.0pt on input line 23.
+(Font)              scaled to size 4.0pt on input line 27.
 File: assets/logo_RGB_negative.png Graphic file (type bmp)
 <assets/logo_RGB_negative.png>
  [2
@@ -1068,9 +1157,9 @@ File: assets/logo_RGB_negative.png Graphic file (type bmp)
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
 LaTeX Font Info:    Font shape `TU/Carlito(0)/m/n' will be
-(Font)              scaled to size 12.0pt on input line 46.
+(Font)              scaled to size 12.0pt on input line 50.
 LaTeX Font Info:    Font shape `TU/Carlito(0)/b/n' will be
-(Font)              scaled to size 12.0pt on input line 46.
+(Font)              scaled to size 12.0pt on input line 50.
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
  [3
@@ -1079,19 +1168,19 @@ File: assets/logo_RGB.png Graphic file (type bmp)
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
 LaTeX Font Info:    Font shape `TU/Carlito(0)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 62.
+(Font)              scaled to size 10.0pt on input line 66.
 LaTeX Font Info:    Font shape `TU/Caladea(0)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 62.
+(Font)              scaled to size 10.0pt on input line 66.
 LaTeX Font Info:    Font shape `TU/Caladea(0)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 62.
+(Font)              scaled to size 7.0pt on input line 66.
 LaTeX Font Info:    Font shape `TU/Caladea(0)/m/n' will be
-(Font)              scaled to size 5.0pt on input line 62.
+(Font)              scaled to size 5.0pt on input line 66.
 LaTeX Font Info:    Font shape `TU/Caladea(0)/m/it' will be
-(Font)              scaled to size 10.0pt on input line 62.
+(Font)              scaled to size 10.0pt on input line 66.
 LaTeX Font Info:    Font shape `TU/Caladea(0)/m/it' will be
-(Font)              scaled to size 7.0pt on input line 62.
+(Font)              scaled to size 7.0pt on input line 66.
 LaTeX Font Info:    Font shape `TU/Caladea(0)/m/it' will be
-(Font)              scaled to size 5.0pt on input line 62.
+(Font)              scaled to size 5.0pt on input line 66.
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
  [4
@@ -1112,53 +1201,10 @@ File: assets/logo_RGB.png Graphic file (type bmp)
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
  (./presentation.vrb
-
-./presentation.vrb:13: LaTeX Error: Command \end{itemize} invalid in math mode.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.13                         \end{itemize}
-                                          
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-./presentation.vrb:13: LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.13                         \end{itemize}
-                                          
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-./presentation.vrb:13: LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.13                         \end{itemize}
-                                          
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-./presentation.vrb:13: Missing $ inserted.
-<inserted text> 
-                $
-l.13                         \end{itemize}
-                                          
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
+LaTeX Font Info:    Font shape `TU/Carlito(0)/b/n' will be
+(Font)              scaled to size 10.0pt on input line 5.
+LaTeX Font Info:    Font shape `TU/Carlito(0)/b/n' will be
+(Font)              scaled to size 10.95pt on input line 9.
 )
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
@@ -1167,16 +1213,14 @@ File: assets/logo_RGB.png Graphic file (type bmp)
 ]
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
+\openout4 = `presentation.vrb'.
+
+File: assets/logo_RGB.png Graphic file (type bmp)
+<assets/logo_RGB.png>
+ (./presentation.vrb)
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
  [7
-
-]
-File: assets/logo_RGB.png Graphic file (type bmp)
-<assets/logo_RGB.png>
-File: assets/logo_RGB.png Graphic file (type bmp)
-<assets/logo_RGB.png>
- [8
 
 ]
 File: assets/logo_RGB_negative.png Graphic file (type bmp)
@@ -1184,6 +1228,13 @@ File: assets/logo_RGB_negative.png Graphic file (type bmp)
  (./presentation.toc)
 File: assets/logo_RGB_negative.png Graphic file (type bmp)
 <assets/logo_RGB_negative.png>
+ [8
+
+]
+File: assets/logo_RGB.png Graphic file (type bmp)
+<assets/logo_RGB.png>
+File: assets/logo_RGB.png Graphic file (type bmp)
+<assets/logo_RGB.png>
  [9
 
 ]
@@ -1223,25 +1274,223 @@ File: assets/logo_RGB.png Graphic file (type bmp)
  [12
 
 ]
+File: assets/logo_RGB.png Graphic file (type bmp)
+<assets/logo_RGB.png>
+\openout4 = `presentation.vrb'.
+
+File: assets/logo_RGB.png Graphic file (type bmp)
+<assets/logo_RGB.png>
+ (./presentation.vrb)
+File: assets/logo_RGB.png Graphic file (type bmp)
+<assets/logo_RGB.png>
+ [13
+
+]
+File: assets/logo_RGB.png Graphic file (type bmp)
+<assets/logo_RGB.png>
+File: assets/logo_RGB.png Graphic file (type bmp)
+<assets/logo_RGB.png>
+ [14
+
+]
 File: assets/logo_RGB_negative.png Graphic file (type bmp)
 <assets/logo_RGB_negative.png>
  (./presentation.toc)
 File: assets/logo_RGB_negative.png Graphic file (type bmp)
 <assets/logo_RGB_negative.png>
- [13
+ [15
+
+]
+File: assets/logo_RGB.png Graphic file (type bmp)
+<assets/logo_RGB.png>
+\openout4 = `presentation.vrb'.
+
+File: assets/logo_RGB.png Graphic file (type bmp)
+<assets/logo_RGB.png>
+ (./presentation.vrb
+File: videos/reach/reach-0.png Graphic file (type bmp)
+<videos/reach/reach-0.png>
+ <a0,fr0>
+File: videos/reach/reach-1.png Graphic file (type bmp)
+<videos/reach/reach-1.png>
+ <a0,fr1>
+File: videos/reach/reach-2.png Graphic file (type bmp)
+<videos/reach/reach-2.png>
+ <a0,fr2>
+File: videos/reach/reach-3.png Graphic file (type bmp)
+<videos/reach/reach-3.png>
+ <a0,fr3>
+File: videos/reach/reach-4.png Graphic file (type bmp)
+<videos/reach/reach-4.png>
+ <a0,fr4>
+File: videos/reach/reach-5.png Graphic file (type bmp)
+<videos/reach/reach-5.png>
+ <a0,fr5>
+File: videos/reach/reach-6.png Graphic file (type bmp)
+<videos/reach/reach-6.png>
+ <a0,fr6>
+File: videos/reach/reach-7.png Graphic file (type bmp)
+<videos/reach/reach-7.png>
+ <a0,fr7>
+File: videos/reach/reach-8.png Graphic file (type bmp)
+<videos/reach/reach-8.png>
+ <a0,fr8>
+File: videos/reach/reach-9.png Graphic file (type bmp)
+<videos/reach/reach-9.png>
+ <a0,fr9>
+File: videos/reach/reach-10.png Graphic file (type bmp)
+<videos/reach/reach-10.png>
+ <a0,fr10>
+File: videos/reach/reach-11.png Graphic file (type bmp)
+<videos/reach/reach-11.png>
+ <a0,fr11>
+File: videos/reach/reach-12.png Graphic file (type bmp)
+<videos/reach/reach-12.png>
+ <a0,fr12>
+File: videos/reach/reach-13.png Graphic file (type bmp)
+<videos/reach/reach-13.png>
+ <a0,fr13>
+File: videos/reach/reach-14.png Graphic file (type bmp)
+<videos/reach/reach-14.png>
+ <a0,fr14>
+File: videos/reach/reach-15.png Graphic file (type bmp)
+<videos/reach/reach-15.png>
+ <a0,fr15>
+File: videos/reach/reach-16.png Graphic file (type bmp)
+<videos/reach/reach-16.png>
+ <a0,fr16>
+File: videos/reach/reach-17.png Graphic file (type bmp)
+<videos/reach/reach-17.png>
+ <a0,fr17>
+File: videos/reach/reach-18.png Graphic file (type bmp)
+<videos/reach/reach-18.png>
+ <a0,fr18>
+File: videos/reach/reach-19.png Graphic file (type bmp)
+<videos/reach/reach-19.png>
+ <a0,fr19>
+File: videos/reach/reach-20.png Graphic file (type bmp)
+<videos/reach/reach-20.png>
+ <a0,fr20>
+File: videos/reach/reach-21.png Graphic file (type bmp)
+<videos/reach/reach-21.png>
+ <a0,fr21>
+File: videos/reach/reach-22.png Graphic file (type bmp)
+<videos/reach/reach-22.png>
+ <a0,fr22>
+File: videos/reach/reach-23.png Graphic file (type bmp)
+<videos/reach/reach-23.png>
+ <a0,fr23>
+File: videos/reach/reach-24.png Graphic file (type bmp)
+<videos/reach/reach-24.png>
+ <a0,fr24>
+File: videos/reach/reach-25.png Graphic file (type bmp)
+<videos/reach/reach-25.png>
+ <a0,fr25>
+File: videos/reach/reach-26.png Graphic file (type bmp)
+<videos/reach/reach-26.png>
+ <a0,fr26>
+File: videos/reach/reach-27.png Graphic file (type bmp)
+<videos/reach/reach-27.png>
+ <a0,fr27>
+File: videos/reach/reach-28.png Graphic file (type bmp)
+<videos/reach/reach-28.png>
+ <a0,fr28>
+File: videos/reach/reach-29.png Graphic file (type bmp)
+<videos/reach/reach-29.png>
+ <a0,fr29>
+File: videos/reach/reach-30.png Graphic file (type bmp)
+<videos/reach/reach-30.png>
+ <a0,fr30>
+File: videos/reach/reach-31.png Graphic file (type bmp)
+<videos/reach/reach-31.png>
+ <a0,fr31>
+File: videos/reach/reach-32.png Graphic file (type bmp)
+<videos/reach/reach-32.png>
+ <a0,fr32>
+File: videos/reach/reach-33.png Graphic file (type bmp)
+<videos/reach/reach-33.png>
+ <a0,fr33>
+File: videos/reach/reach-34.png Graphic file (type bmp)
+<videos/reach/reach-34.png>
+ <a0,fr34>
+File: videos/reach/reach-35.png Graphic file (type bmp)
+<videos/reach/reach-35.png>
+ <a0,fr35>
+File: videos/reach/reach-36.png Graphic file (type bmp)
+<videos/reach/reach-36.png>
+ <a0,fr36>
+File: videos/reach/reach-37.png Graphic file (type bmp)
+<videos/reach/reach-37.png>
+ <a0,fr37>
+File: videos/reach/reach-38.png Graphic file (type bmp)
+<videos/reach/reach-38.png>
+ <a0,fr38>
+File: videos/reach/reach-39.png Graphic file (type bmp)
+<videos/reach/reach-39.png>
+ <a0,fr39>
+File: videos/reach/reach-40.png Graphic file (type bmp)
+<videos/reach/reach-40.png>
+ <a0,fr40>
+File: videos/reach/reach-41.png Graphic file (type bmp)
+<videos/reach/reach-41.png>
+ <a0,fr41>
+File: videos/reach/reach-42.png Graphic file (type bmp)
+<videos/reach/reach-42.png>
+ <a0,fr42>
+File: videos/reach/reach-43.png Graphic file (type bmp)
+<videos/reach/reach-43.png>
+ <a0,fr43>
+File: videos/reach/reach-44.png Graphic file (type bmp)
+<videos/reach/reach-44.png>
+ <a0,fr44>
+File: videos/reach/reach-45.png Graphic file (type bmp)
+<videos/reach/reach-45.png>
+ <a0,fr45>
+File: videos/reach/reach-46.png Graphic file (type bmp)
+<videos/reach/reach-46.png>
+ <a0,fr46>
+File: videos/reach/reach-47.png Graphic file (type bmp)
+<videos/reach/reach-47.png>
+ <a0,fr47>
+File: videos/reach/reach-48.png Graphic file (type bmp)
+<videos/reach/reach-48.png>
+ <a0,fr48>
+File: videos/reach/reach-49.png Graphic file (type bmp)
+<videos/reach/reach-49.png>
+ <a0,fr49>
+File: videos/reach/reach-50.png Graphic file (type bmp)
+<videos/reach/reach-50.png>
+ <a0,fr50> <a0,fr51>)
+File: assets/logo_RGB.png Graphic file (type bmp)
+<assets/logo_RGB.png>
+ [16
+
+]
+File: assets/logo_RGB.png Graphic file (type bmp)
+<assets/logo_RGB.png>
+File: assets/logo_RGB.png Graphic file (type bmp)
+<assets/logo_RGB.png>
+ [17
+
+]
+File: assets/logo_RGB.png Graphic file (type bmp)
+<assets/logo_RGB.png>
+File: assets/logo_RGB.png Graphic file (type bmp)
+<assets/logo_RGB.png>
+ [18
 
 ]
 File: assets/logo_RGB_negative.png Graphic file (type bmp)
 <assets/logo_RGB_negative.png>
 LaTeX Font Info:    Font shape `TU/Carlito(0)/m/n' will be
-(Font)              scaled to size 24.88pt on input line 135.
+(Font)              scaled to size 24.88pt on input line 218.
 LaTeX Font Info:    Font shape `TU/Carlito(0)/m/sl' in size <14.4> not available
-(Font)              Font shape `TU/Carlito(0)/m/it' tried instead on input line 135.
+(Font)              Font shape `TU/Carlito(0)/m/it' tried instead on input line 218.
 LaTeX Font Info:    Font shape `TU/Carlito(0)/m/it' will be
-(Font)              scaled to size 14.4pt on input line 135.
+(Font)              scaled to size 14.4pt on input line 218.
 File: assets/logo_RGB_negative.png Graphic file (type bmp)
 <assets/logo_RGB_negative.png>
- [14
+ [19
 
 ]
 \tf@nav=\write6
@@ -1253,7 +1502,12 @@ File: assets/logo_RGB_negative.png Graphic file (type bmp)
 \tf@snm=\write8
 \openout8 = `presentation.snm'.
 
- (./presentation.aux)
+
+
+LaTeX Warning: Hook 'shipout/lastpage' executed on wrong page (15 not 19).
+               Rerun to correct this.
+
+(./presentation.aux)
  ***********
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-08-29>
@@ -1262,12 +1516,12 @@ Package rerunfilecheck Info: File `presentation.out' has not changed.
 (rerunfilecheck)             Checksum: 06586382ACEF7DAFAF5F094CD1EA5AD5;355.
  ) 
 Here is how much of TeX's memory you used:
- 27475 strings out of 475591
- 589437 string characters out of 5773842
- 1921438 words of memory out of 5000000
- 48208 multiletter control sequences out of 15000+600000
- 565112 words of font info for 105 fonts, out of 8000000 for 9000
+ 30553 strings out of 475591
+ 658982 string characters out of 5773842
+ 1929438 words of memory out of 5000000
+ 51181 multiletter control sequences out of 15000+600000
+ 565120 words of font info for 106 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 128i,13n,133p,458b,939s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 128i,13n,133p,458b,943s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on presentation.pdf (14 pages).
+Output written on presentation.pdf (19 pages).

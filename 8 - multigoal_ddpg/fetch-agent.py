@@ -14,6 +14,7 @@ import torch
 import torch.nn as nn
 from buffer import *
 from tqdm import tqdm
+from noher_agent import DDPG
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 torch.autograd.set_detect_anomaly(True)
 np.seterr(all="raise")
@@ -32,7 +33,7 @@ class FetchAgent(Parameters):
                            'goal_dim': observation['desired_goal'].shape[0], 
                            'action_dim': env.action_space.shape[0], 
                            'action_bound': env.action_space.high[0],
-                           'max_steps': env._max_episode_steps}
+                           'max_steps': 50}
 
         # Networks
         self.actor: Actor = Actor(self.env_params).to(device)
@@ -174,6 +175,7 @@ class FetchAgent(Parameters):
 
         return observations, goals, new_observations, actions, rewards, weights
     
+    #Polyak averaging of target networks
     def update_target_networks(self, polyak=None):
         polyak = self.polyak if polyak is None else polyak
         with torch.no_grad():
@@ -184,7 +186,7 @@ class FetchAgent(Parameters):
             for target, online in zip(self.target_actor.parameters(), self.actor.parameters()):
                 target.data.mul_(polyak)
                 target.data.add_((1 - polyak) * online.data)
-                
+     
     def evaluate(self, render = False):
         # starting point
         obs_dict = self.env.reset()[0]
@@ -198,13 +200,11 @@ class FetchAgent(Parameters):
             new_obs_dict, _, _, _, info = self.env.step(action)
             new_observation = new_obs_dict['observation']
             if render: 
-                img = self.env.render()
-                self.imgs.append(img)
+                self.env.render()
             #Preparing for next step
             observation = new_observation
         success = 1 if info['is_success'] else 0
         if render: print(f"SUCCESS: {success}")
-        path = os.path.join("models",self.name)
         return success      
                    
     def save(self):
@@ -239,7 +239,7 @@ class FetchAgent(Parameters):
         return torch.as_tensor(array, dtype = torch.float32).to(device)
     
     
-SEEDS = [123,42]    
+SEEDS = [123]    
 def launch(env_name = 'FetchReach-v2', prioritized = True):
     for seed in SEEDS:
         set_global_seeds(seed)
@@ -247,61 +247,96 @@ def launch(env_name = 'FetchReach-v2', prioritized = True):
         if prioritized:
             agent = FetchAgent(f"HGR_{env_name}_{seed}", env, max_episodes = 20000, window = 1000)
         else:
-            agent = FetchAgent(f"HER_{env_name}_{seed}", env, max_episodes = 30000, window = 1000)
+            agent = FetchAgent(f"HER_{env_name}_{seed}", env, max_episodes = 40000, window = 1000)
         agent.prioritized = prioritized
         agent.train()    
         agent.save() #Done training and saving the model
  
-def test(env_name = 'FetchReach-v2', prioritized = True):
+from gymnasium.wrappers import RecordVideo           
+def test(env_name = 'FetchReach-v2', prioritized = True, record = False):
     for seed in SEEDS:
         set_global_seeds(seed)
-        env = gym.make(env_name, render_mode = "human")
+        env = gym.make(env_name, render_mode = "rgb_array")
+        if record:
+            path = os.path.join("videos",env_name)
+            env = RecordVideo(env, video_folder=path,disable_logger=True)
         if prioritized:
             agent = FetchAgent(f"HGR_{env_name}_{seed}", env)
         else:
             agent = FetchAgent(f"HER_{env_name}_{seed}", env)
         agent.plot_success()
         agent.load()
-        for _ in range(10):
+        for _ in range(5):
             agent.evaluate(render = True)
-            
-def meanplot(env_name = 'FetchReach-v2', prioritized = True):
+
+from enum import Enum
+
+# class syntax
+class Type(Enum):
+    NOHER = 1
+    HER = 2
+    HGR = 3
+          
+def meanplot(env_name = 'FetchReach-v2', type = Type.HGR):
     success_rates = []
     maxlen = 0
     for seed in SEEDS:
         env = gym.make(env_name)
-        if prioritized:
+        if type == Type.HGR:
             agent = FetchAgent(f"HGR_{env_name}_{seed}", env)
-        else:
+        elif type == Type.HER:
             agent = FetchAgent(f"HER_{env_name}_{seed}", env)
+        else:
+            agent = DDPG(f"DDPG_{env_name}_{seed}", env)
         path = os.path.join("models",agent.name)
         success_rate = torch.load(open(os.path.join(path,"success.pt"),"rb"))
         if len(success_rate) > maxlen: maxlen = len(success_rate)
-        success_rates.append(success_rate.tolist())
+        if not isinstance(success_rate, list): success_rate = success_rate.tolist()
+        success_rates.append(success_rate)
     lens = [len(sr) for sr in success_rates]
     srs = np.ma.empty((np.max(lens),len(success_rates)))
     srs.mask = True
     for idx, l in enumerate(success_rates):
         srs[:len(l),idx] = l
     toplot, error = srs.mean(axis=-1, dtype = np.float16), srs.std(axis = -1, dtype = np.float128)
-    sns.set()
-    xaxis = (np.arange(len(toplot))+1) * 100
-    plt.plot(xaxis, toplot, color='green')
-    plt.errorbar(xaxis, toplot, yerr=error, lw = 0, fillstyle = 'full')
-    plt.show(block = True)
+    return toplot
 
-            
+def plot_tasks(task):
+    sns.set()
+    
+    toplot = meanplot(task, Type.HER)
+    xaxis = (np.arange(len(toplot))+1) * 100
+    plt.plot(xaxis, toplot, color='red')
+    
+    toplot = meanplot(task, Type.HGR)
+    xaxis = (np.arange(len(toplot))+1) * 100
+    plt.plot(xaxis, toplot, color='orange')
+    
+    # toplot = meanplot(task, Type.NOHER)
+    # # xaxis = (np.arange(len(toplot))+1) * 100
+    # plt.plot(xaxis, toplot[:len(xaxis)], color='blue')
+    
+    plt.legend(["HER", "HGR","NOHER"])
+    plt.show(block = True)
+    
+
 if __name__ == "__main__":
     reach = 'FetchReach-v2'
     push = 'FetchPush-v2'
     pickandplace = 'FetchPickAndPlace-v2'
     slide = 'FetchSlide-v2'
-    launch(pickandplace, False)
+    # test(pickandplace, False)
     # launch(reach, True)
     # launch(slide,True)
     # launch(pickandplace, False)
     # launch(reach, False)
     # launch(slide, False)
-    # meanplot(pickandplace, True)
+    
+    plot_tasks(pickandplace)
+    
+    # env_name = reach
+    # env = gym.make(env_name)
+    # seed = 123
+    # agent = DDPG(f"DDPG_{env_name}_{seed}", env)
     
     

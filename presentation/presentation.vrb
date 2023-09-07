@@ -1,8 +1,4 @@
-\frametitle{HGR}
-\framesubtitle{Prioritizing future goals}
-            \begin{block}{Intuition}
-                  \verb|\documentclass{beamer}|\\
-            \end{block}
-            \begin{block}{Enhancements over Vanilla HER}
-                  \verb|\documentclass{beamer}|\\
-            \end{block}
+\frametitle{Reach}
+\begin{figure}
+                  \animategraphics[width=0.3\textwidth,loop,autoplay]{120}{videos/reach/reach-}{0}{51}
+            \end{figure}

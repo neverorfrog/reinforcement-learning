@@ -1,5 +1,9 @@
 \documentclass{beamer}
 \usepackage{amsfonts,amsmath,oldgerm}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{amssymb}
+\usepackage{animate}
 \usetheme{sintef}
 
 \newcommand{\testcolor}[1]{\colorbox{#1}{\textcolor{#1}{test}}~\texttt{#1}}
@@ -63,73 +67,152 @@
 
 \section{DDPG}
 
-      \begin{frame}[fragile]{Architecture}
+      \begin{frame}[fragile]{Architecture - 1}
             \begin{itemize}
                   \item Two neural networks in performing actor-critic policy gradient
-                  \begin{columns}
-                        \column{0.5\textwidth}
-                        
-                        \column{0.5\textwidth}
-                        
-                    \end{columns} 
                         \begin{itemize}
-                              \item Actor inference: observed state $\rightarrow$ action maximising the action-value function
-                              \item Critic inference: state and action $\rightarrow value of the action-value function
+                              \item \textbf{Actor} $\mu_{\theta}(s_i)$: observed state $\rightarrow$ action maximising the action-value function
+                              \item \textbf{Critic} $Q_{\phi}(s_i,\mu_{\theta}(s_i))$: state and action $\rightarrow$ value of the action-value function
                         \end{itemize}
+                  \item Experience is collected according to the behavior policy $\pi_b = \mu_{\theta}(s_i) + \mathcal{N}$
+                  \item Transitions are stored in a \textbf{replay buffer}
+                  \item Every learning step, a batch $B = \{(s_i,a_i,d_i,r_i,s'_i)\}$ is sampled 
             \end{itemize}
       \end{frame}
 
-      \begin{frame}{Implementation}
-      \end{frame}
-
-      \begin{frame}{Drawbacks in the Fetch Environment}
+      \begin{frame}[fragile]{Architecture - 2}
             \begin{itemize}
-                  \item 
+                  \item Critic optimization through Bellman equation by minimizing
+                        \begin{equation}
+                              L(\phi) \approx \frac{1}{|B|} \sum_{i=1}^{|B|} \underbrace{\left[ r_i + \gamma Q_{\phi^-}(s'_i,\mu_{\theta^-}(s'_i)) - Q_{\phi}(s_i,a_i)\right]^2}_{\text{Temporal Difference Error}}
+                        \end{equation}
+                  \item Actor optimization through policy gradient theorem by maximising
+                        \begin{equation}
+                              J(\theta) \approx \frac{1}{|B|} \sum_{i=1}^{|B|} Q_{\phi}(s_i,\mu_{\theta}(s_i))
+                        \end{equation}
+                  \item \textbf{Target networks} $\mu_{\theta^-}$ and $Q_{\phi^-}$ for stability, updated with polyak averaging
+                        \begin{itemize}
+                              \item $Q_{\phi^-} \gets \rho Q_{\phi^-}+ (1-\rho)Q_{\phi}$
+                              \item $\mu_{\theta^-} \gets \rho\mu_{\theta^-} + (1-\rho)\mu_{\theta}$
+                        \end{itemize}
             \end{itemize}
       \end{frame}
 
 
 \section{Replay buffer}
 
+      \begin{frame}{Structure}
+            \begin{itemize}
+                  \item Matrix with $M$ columns and $T$ rows, with $T$ the max number of steps in one episode
+                  \item The element $(i,j)$ contains the $j_{th}$ transition of the $i_{th}$ episode
+                  \item A transition is defined as $(s_i,a_i,achieved_i,desired_i,r_i,s'_i)$
+                  \begin{itemize}
+                        \item $achieved_i$ is the current state as if the goal was reached
+                        \item $desired_i$ is the actual final goal of the episode
+                        \item The reward is computed with $desired_i$
+                  \end{itemize}
+            \end{itemize}
+            \begin{block}{Training steps in Fetch}
+                  \begin{itemize}
+                        \item Play an episode and store it in a row of the buffer
+                        \item Sample |B| transitions, each from a sampled episode
+                        \item Sample a future achieved goal to substitute into the transition
+                        \item Do a gradient step
+                  \end{itemize}
+            \end{block}
+
+            
+      \end{frame}
+
       \begin{frame}[fragile]{HER}
-            \framesubtitle{Intuition}
             \begin{itemize}
                   \item The intention is to valorize also failed episodes (majority in robotics environments)
-                  \item Done by storing episodes multiple times, substituting the desired goal with another from the same episode, treating the episode as if it was successful
-                  \item Formally speaking, for each episode ($t = 0 ... 50$) we do the following steps
+                  \item Done by storing episodes multiple times, substituting the desired goal with a \textbf{Hindsight Goal}, treating the episode as if it was successful
+                  \item For each episode ($t = 0 ... 50$) the following steps are done (within DDPG)
                         \begin{itemize}
-                              \item store $\left( s_t||g, a_t, r_t, s_{t+1}||g\right)$
-                              \item sample a set of additional achieved goals $G$ from the current episode
-                              \item store $\left( s_t||g', a_t, r_t, s_{t+1}||g'\right)$ for every $g' \in G$
+                              \item Store every transition $\left( s_t||g, a_t, r_t, s_{t+1}||g\right)$ of the episode
+                              \item Sample a set of additional achieved goals $G$ from the current episode
+                              \item Store $\left( s_t||g', a_t, r_t, s_{t+1}||g'\right)$ for every $g' \in G$
+                              \item Perform gradient descent, feeding also the goals into the neural networks
                         \end{itemize}
                   \item Different strategies can be adopted to sample goals
                         \begin{itemize}
-                              \item Final
-                              \item Future
-                              \item Random
+                              \item Final: final state
+                              \item Future: any future state of the episode
+                              \item Random: any state of the buffer
                         \end{itemize}
             \end{itemize}
       \end{frame}
 
       \begin{frame}[fragile]{HER}
-            \framesubtitle{Implementation}
-
+      \framesubtitle{Pseudocode of how transitions are sampled with future strategy}
+            \begin{algorithmic}[1]
+                  \State $p_{future} \gets 1-\frac{1}{1+k}$ \Comment{k the number of additionally stored episodes: $p_{future} \propto k$} 
+                  \State $i_{ep} \gets \text{episodes indices uniformly sampled among the stored ones}$
+                  \State $i_{t} \gets \text{transitions indices uniformly sampled from 0 to } T$
+                  \State $i_{HER} \gets \text{indices of "resampled" future transitions, according to } p_{future}$
+                  \State $i_{future} \gets \text{future transitions indices uniformly sampled from t to } T$
+                  \State Substitute $goals[i_{HER}] \text{with a future goal indexed by } i_{future}$
+                  \State Recompute the reward of changed transitions
+            \end{algorithmic}
       \end{frame}
-
-
 
       \begin{frame}[fragile]{HGR}
             \framesubtitle{Prioritizing future goals}
-            \begin{block}{Intuition}
-                  \verb|\documentclass{beamer}|\\
-            \end{block}
-            \begin{block}{Enhancements over Vanilla HER}
-                  \verb|\documentclass{beamer}|\\
-            \end{block}
+            \begin{itemize}
+                  \item For the $j_{th}$ transition, a transition to be the hindsight goal is sampled according to
+                  \begin{equation}
+                        P'(j,i) = \frac{|\delta_{ji}|^{\alpha'}}{\sum_{j=0}^{T-2} \sum_{i=j+1}^{T-1}|\delta_{ji}|^{\alpha'}} , \text{ with } j+1 \leq i \leq T-1
+                  \end{equation}
+                  \item Priorities: matrix of shape $\left(M, \frac{(T-1)\cdot T}{2}\right)$, with $M$ the buffer size in episodes
+
+                  \item New transitions stored with maximal priority, to let them be replayed at least once
+            \end{itemize}
+      \end{frame}
+
+      \begin{frame}[fragile]{HGR}
+            \framesubtitle{Prioritizing episodes}
+            \begin{itemize}
+                  \item Episodes are sampled according to the probability
+                  \begin{equation}
+                        P(n) = \frac{|\delta^{(n)}|^{\alpha}}{\sum_{n}|\delta^{(n)}|^{\alpha}}
+                  \end{equation} where $|\delta^{(n)}|$ is the average TD Error of an episode
+                  \item Sumtree for efficiently sampling from this probability
+                  \begin{itemize}
+                        \item Priorities in the leaves
+                        \item Every node contains the sum of its children
+                  \end{itemize}
+            \end{itemize}
+      \end{frame}
+
+      \begin{frame}{HGR}
+            \framesubtitle{Annealing the bias}
+            \begin{itemize}
+                  \item Importance sampling weights helps to scale down the sample’s gradient when it is updated frequently and remains the same when it is rarely updated
+                  \begin{equation}
+                        w_{ji}^{(n)} = \left( \frac{1}{N_e}\frac{1}{P(n)}\right) ^{\beta} \cdot \left( \frac{2}{(T-1)\cdot T} \cdot \frac{1}{P'(j,i)}\right) ^ {\beta'}
+                  \end{equation}
+                  \item In order to alway scale the gradients down we set $w_{ji}^{(n)} = \frac{w_{ji}^{(n)}}{max(w_{ji}^{(n)})}$
+            \end{itemize}
+            
       \end{frame}
 
 
 \section{Results}
+
+      \begin{frame}[fragile]{Reach}
+            \begin{figure}
+                  \animategraphics[width=0.3\textwidth,loop,autoplay]{120}{videos/reach/reach-}{0}{51}
+            \end{figure}
+      \end{frame}
+
+      \begin{frame}{Push}
+            
+      \end{frame}
+
+      \begin{frame}{Pick-and-Place}
+            
+      \end{frame}
 
 \backmatter
 \end{document}
