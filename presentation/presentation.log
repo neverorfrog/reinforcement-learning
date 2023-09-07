@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.9.1)  7 SEP 2023 21:50
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.9.1)  7 SEP 2023 22:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1233,9 +1233,13 @@ File: assets/logo_RGB_negative.png Graphic file (type bmp)
 ]
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
+
+Overfull \vbox (1.81921pt too high) detected at line 125
+ []
+
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
- [9
+[9
 
 ]
 File: assets/logo_RGB.png Graphic file (type bmp)
@@ -1299,6 +1303,13 @@ File: assets/logo_RGB_negative.png Graphic file (type bmp)
 File: assets/logo_RGB_negative.png Graphic file (type bmp)
 <assets/logo_RGB_negative.png>
  [15
+
+]
+File: assets/logo_RGB.png Graphic file (type bmp)
+<assets/logo_RGB.png>
+File: assets/logo_RGB.png Graphic file (type bmp)
+<assets/logo_RGB.png>
+ [16
 
 ]
 File: assets/logo_RGB.png Graphic file (type bmp)
@@ -1460,37 +1471,380 @@ File: videos/reach/reach-49.png Graphic file (type bmp)
  <a0,fr49>
 File: videos/reach/reach-50.png Graphic file (type bmp)
 <videos/reach/reach-50.png>
- <a0,fr50> <a0,fr51>)
+ <a0,fr50> <a0,fr51>
+File: figures/reach.png Graphic file (type bmp)
+<figures/reach.png>
+
+Overfull \hbox (19.91814pt too wide) in paragraph at lines 9--10
+ [] 
+ []
+
+)
+Overfull \vbox (9.62328pt too high) detected at line 224
+ []
+
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
- [16
+[17
 
 ]
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
-File: assets/logo_RGB.png Graphic file (type bmp)
-<assets/logo_RGB.png>
- [17
-
-]
-File: assets/logo_RGB.png Graphic file (type bmp)
-<assets/logo_RGB.png>
+File: videos/push/push-0.png Graphic file (type bmp)
+<videos/push/push-0.png>
+ <a1,fr0>
+File: videos/push/push-1.png Graphic file (type bmp)
+<videos/push/push-1.png>
+ <a1,fr1>
+File: videos/push/push-2.png Graphic file (type bmp)
+<videos/push/push-2.png>
+ <a1,fr2>
+File: videos/push/push-3.png Graphic file (type bmp)
+<videos/push/push-3.png>
+ <a1,fr3>
+File: videos/push/push-4.png Graphic file (type bmp)
+<videos/push/push-4.png>
+ <a1,fr4>
+File: videos/push/push-5.png Graphic file (type bmp)
+<videos/push/push-5.png>
+ <a1,fr5>
+File: videos/push/push-6.png Graphic file (type bmp)
+<videos/push/push-6.png>
+ <a1,fr6>
+File: videos/push/push-7.png Graphic file (type bmp)
+<videos/push/push-7.png>
+ <a1,fr7>
+File: videos/push/push-8.png Graphic file (type bmp)
+<videos/push/push-8.png>
+ <a1,fr8>
+File: videos/push/push-9.png Graphic file (type bmp)
+<videos/push/push-9.png>
+ <a1,fr9>
+File: videos/push/push-10.png Graphic file (type bmp)
+<videos/push/push-10.png>
+ <a1,fr10>
+File: videos/push/push-11.png Graphic file (type bmp)
+<videos/push/push-11.png>
+ <a1,fr11>
+File: videos/push/push-12.png Graphic file (type bmp)
+<videos/push/push-12.png>
+ <a1,fr12>
+File: videos/push/push-13.png Graphic file (type bmp)
+<videos/push/push-13.png>
+ <a1,fr13>
+File: videos/push/push-14.png Graphic file (type bmp)
+<videos/push/push-14.png>
+ <a1,fr14>
+File: videos/push/push-15.png Graphic file (type bmp)
+<videos/push/push-15.png>
+ <a1,fr15>
+File: videos/push/push-16.png Graphic file (type bmp)
+<videos/push/push-16.png>
+ <a1,fr16>
+File: videos/push/push-17.png Graphic file (type bmp)
+<videos/push/push-17.png>
+ <a1,fr17>
+File: videos/push/push-18.png Graphic file (type bmp)
+<videos/push/push-18.png>
+ <a1,fr18>
+File: videos/push/push-19.png Graphic file (type bmp)
+<videos/push/push-19.png>
+ <a1,fr19>
+File: videos/push/push-20.png Graphic file (type bmp)
+<videos/push/push-20.png>
+ <a1,fr20>
+File: videos/push/push-21.png Graphic file (type bmp)
+<videos/push/push-21.png>
+ <a1,fr21>
+File: videos/push/push-22.png Graphic file (type bmp)
+<videos/push/push-22.png>
+ <a1,fr22>
+File: videos/push/push-23.png Graphic file (type bmp)
+<videos/push/push-23.png>
+ <a1,fr23>
+File: videos/push/push-24.png Graphic file (type bmp)
+<videos/push/push-24.png>
+ <a1,fr24>
+File: videos/push/push-25.png Graphic file (type bmp)
+<videos/push/push-25.png>
+ <a1,fr25>
+File: videos/push/push-26.png Graphic file (type bmp)
+<videos/push/push-26.png>
+ <a1,fr26>
+File: videos/push/push-27.png Graphic file (type bmp)
+<videos/push/push-27.png>
+ <a1,fr27>
+File: videos/push/push-28.png Graphic file (type bmp)
+<videos/push/push-28.png>
+ <a1,fr28>
+File: videos/push/push-29.png Graphic file (type bmp)
+<videos/push/push-29.png>
+ <a1,fr29>
+File: videos/push/push-30.png Graphic file (type bmp)
+<videos/push/push-30.png>
+ <a1,fr30>
+File: videos/push/push-31.png Graphic file (type bmp)
+<videos/push/push-31.png>
+ <a1,fr31>
+File: videos/push/push-32.png Graphic file (type bmp)
+<videos/push/push-32.png>
+ <a1,fr32>
+File: videos/push/push-33.png Graphic file (type bmp)
+<videos/push/push-33.png>
+ <a1,fr33>
+File: videos/push/push-34.png Graphic file (type bmp)
+<videos/push/push-34.png>
+ <a1,fr34>
+File: videos/push/push-35.png Graphic file (type bmp)
+<videos/push/push-35.png>
+ <a1,fr35>
+File: videos/push/push-36.png Graphic file (type bmp)
+<videos/push/push-36.png>
+ <a1,fr36>
+File: videos/push/push-37.png Graphic file (type bmp)
+<videos/push/push-37.png>
+ <a1,fr37>
+File: videos/push/push-38.png Graphic file (type bmp)
+<videos/push/push-38.png>
+ <a1,fr38>
+File: videos/push/push-39.png Graphic file (type bmp)
+<videos/push/push-39.png>
+ <a1,fr39>
+File: videos/push/push-40.png Graphic file (type bmp)
+<videos/push/push-40.png>
+ <a1,fr40>
+File: videos/push/push-41.png Graphic file (type bmp)
+<videos/push/push-41.png>
+ <a1,fr41>
+File: videos/push/push-42.png Graphic file (type bmp)
+<videos/push/push-42.png>
+ <a1,fr42>
+File: videos/push/push-43.png Graphic file (type bmp)
+<videos/push/push-43.png>
+ <a1,fr43>
+File: videos/push/push-44.png Graphic file (type bmp)
+<videos/push/push-44.png>
+ <a1,fr44>
+File: videos/push/push-45.png Graphic file (type bmp)
+<videos/push/push-45.png>
+ <a1,fr45>
+File: videos/push/push-46.png Graphic file (type bmp)
+<videos/push/push-46.png>
+ <a1,fr46>
+File: videos/push/push-47.png Graphic file (type bmp)
+<videos/push/push-47.png>
+ <a1,fr47>
+File: videos/push/push-48.png Graphic file (type bmp)
+<videos/push/push-48.png>
+ <a1,fr48>
+File: videos/push/push-49.png Graphic file (type bmp)
+<videos/push/push-49.png>
+ <a1,fr49>
+File: videos/push/push-50.png Graphic file (type bmp)
+<videos/push/push-50.png>
+ <a1,fr50>
+File: figures/push.png Graphic file (type bmp)
+<figures/push.png>
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
  [18
 
 ]
+File: assets/logo_RGB.png Graphic file (type bmp)
+<assets/logo_RGB.png>
+File: videos/pickandplace/pickandplace-0.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-0.png>
+ <a2,fr0>
+File: videos/pickandplace/pickandplace-1.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-1.png>
+ <a2,fr1>
+File: videos/pickandplace/pickandplace-2.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-2.png>
+ <a2,fr2>
+File: videos/pickandplace/pickandplace-3.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-3.png>
+ <a2,fr3>
+File: videos/pickandplace/pickandplace-4.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-4.png>
+ <a2,fr4>
+File: videos/pickandplace/pickandplace-5.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-5.png>
+ <a2,fr5>
+File: videos/pickandplace/pickandplace-6.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-6.png>
+ <a2,fr6>
+File: videos/pickandplace/pickandplace-7.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-7.png>
+ <a2,fr7>
+File: videos/pickandplace/pickandplace-8.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-8.png>
+ <a2,fr8>
+File: videos/pickandplace/pickandplace-9.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-9.png>
+ <a2,fr9>
+File: videos/pickandplace/pickandplace-10.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-10.png>
+ <a2,fr10>
+File: videos/pickandplace/pickandplace-11.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-11.png>
+ <a2,fr11>
+File: videos/pickandplace/pickandplace-12.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-12.png>
+ <a2,fr12>
+File: videos/pickandplace/pickandplace-13.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-13.png>
+ <a2,fr13>
+File: videos/pickandplace/pickandplace-14.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-14.png>
+ <a2,fr14>
+File: videos/pickandplace/pickandplace-15.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-15.png>
+ <a2,fr15>
+File: videos/pickandplace/pickandplace-16.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-16.png>
+ <a2,fr16>
+File: videos/pickandplace/pickandplace-17.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-17.png>
+ <a2,fr17>
+File: videos/pickandplace/pickandplace-18.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-18.png>
+ <a2,fr18>
+File: videos/pickandplace/pickandplace-19.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-19.png>
+ <a2,fr19>
+File: videos/pickandplace/pickandplace-20.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-20.png>
+ <a2,fr20>
+File: videos/pickandplace/pickandplace-21.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-21.png>
+ <a2,fr21>
+File: videos/pickandplace/pickandplace-22.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-22.png>
+ <a2,fr22>
+File: videos/pickandplace/pickandplace-23.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-23.png>
+ <a2,fr23>
+File: videos/pickandplace/pickandplace-24.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-24.png>
+ <a2,fr24>
+File: videos/pickandplace/pickandplace-25.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-25.png>
+ <a2,fr25>
+File: videos/pickandplace/pickandplace-26.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-26.png>
+ <a2,fr26>
+File: videos/pickandplace/pickandplace-27.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-27.png>
+ <a2,fr27>
+File: videos/pickandplace/pickandplace-28.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-28.png>
+ <a2,fr28>
+File: videos/pickandplace/pickandplace-29.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-29.png>
+ <a2,fr29>
+File: videos/pickandplace/pickandplace-30.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-30.png>
+ <a2,fr30>
+File: videos/pickandplace/pickandplace-31.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-31.png>
+ <a2,fr31>
+File: videos/pickandplace/pickandplace-32.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-32.png>
+ <a2,fr32>
+File: videos/pickandplace/pickandplace-33.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-33.png>
+ <a2,fr33>
+File: videos/pickandplace/pickandplace-34.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-34.png>
+ <a2,fr34>
+File: videos/pickandplace/pickandplace-35.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-35.png>
+ <a2,fr35>
+File: videos/pickandplace/pickandplace-36.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-36.png>
+ <a2,fr36>
+File: videos/pickandplace/pickandplace-37.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-37.png>
+ <a2,fr37>
+File: videos/pickandplace/pickandplace-38.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-38.png>
+ <a2,fr38>
+File: videos/pickandplace/pickandplace-39.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-39.png>
+ <a2,fr39>
+File: videos/pickandplace/pickandplace-40.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-40.png>
+ <a2,fr40>
+File: videos/pickandplace/pickandplace-41.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-41.png>
+ <a2,fr41>
+File: videos/pickandplace/pickandplace-42.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-42.png>
+ <a2,fr42>
+File: videos/pickandplace/pickandplace-43.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-43.png>
+ <a2,fr43>
+File: videos/pickandplace/pickandplace-44.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-44.png>
+ <a2,fr44>
+File: videos/pickandplace/pickandplace-45.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-45.png>
+ <a2,fr45>
+File: videos/pickandplace/pickandplace-46.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-46.png>
+ <a2,fr46>
+File: videos/pickandplace/pickandplace-47.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-47.png>
+ <a2,fr47>
+File: videos/pickandplace/pickandplace-48.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-48.png>
+ <a2,fr48>
+File: videos/pickandplace/pickandplace-49.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-49.png>
+ <a2,fr49>
+File: videos/pickandplace/pickandplace-50.png Graphic file (type bmp)
+<videos/pickandplace/pickandplace-50.png>
+ <a2,fr50>
+File: figures/pickandplace.png Graphic file (type bmp)
+<figures/pickandplace.png>
+File: assets/logo_RGB.png Graphic file (type bmp)
+<assets/logo_RGB.png>
+ [19
+
+]
+File: assets/logo_RGB_negative.png Graphic file (type bmp)
+<assets/logo_RGB_negative.png>
+ (./presentation.toc)
+File: assets/logo_RGB_negative.png Graphic file (type bmp)
+<assets/logo_RGB_negative.png>
+ [20
+
+]
+File: assets/logo_RGB.png Graphic file (type bmp)
+<assets/logo_RGB.png>
+File: assets/logo_RGB.png Graphic file (type bmp)
+<assets/logo_RGB.png>
+ [21
+
+]
+File: assets/logo_RGB.png Graphic file (type bmp)
+<assets/logo_RGB.png>
+File: assets/logo_RGB.png Graphic file (type bmp)
+<assets/logo_RGB.png>
+ [22
+
+]
 File: assets/logo_RGB_negative.png Graphic file (type bmp)
 <assets/logo_RGB_negative.png>
 LaTeX Font Info:    Font shape `TU/Carlito(0)/m/n' will be
-(Font)              scaled to size 24.88pt on input line 218.
+(Font)              scaled to size 24.88pt on input line 270.
 LaTeX Font Info:    Font shape `TU/Carlito(0)/m/sl' in size <14.4> not available
-(Font)              Font shape `TU/Carlito(0)/m/it' tried instead on input line 218.
+(Font)              Font shape `TU/Carlito(0)/m/it' tried instead on input line 270.
 LaTeX Font Info:    Font shape `TU/Carlito(0)/m/it' will be
-(Font)              scaled to size 14.4pt on input line 218.
+(Font)              scaled to size 14.4pt on input line 270.
 File: assets/logo_RGB_negative.png Graphic file (type bmp)
 <assets/logo_RGB_negative.png>
- [19
+ [23
 
 ]
 \tf@nav=\write6
@@ -1502,26 +1856,21 @@ File: assets/logo_RGB_negative.png Graphic file (type bmp)
 \tf@snm=\write8
 \openout8 = `presentation.snm'.
 
-
-
-LaTeX Warning: Hook 'shipout/lastpage' executed on wrong page (15 not 19).
-               Rerun to correct this.
-
-(./presentation.aux)
+ (./presentation.aux)
  ***********
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-08-29>
  ***********
 Package rerunfilecheck Info: File `presentation.out' has not changed.
-(rerunfilecheck)             Checksum: 06586382ACEF7DAFAF5F094CD1EA5AD5;355.
+(rerunfilecheck)             Checksum: 2002071F760C1F7CA33E5502DD45E2E8;453.
  ) 
 Here is how much of TeX's memory you used:
- 30553 strings out of 475591
- 658982 string characters out of 5773842
- 1929438 words of memory out of 5000000
- 51181 multiletter control sequences out of 15000+600000
+ 32661 strings out of 475591
+ 729921 string characters out of 5773842
+ 1931438 words of memory out of 5000000
+ 53179 multiletter control sequences out of 15000+600000
  565120 words of font info for 106 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 128i,13n,133p,458b,943s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 128i,13n,133p,458b,1011s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on presentation.pdf (19 pages).
+Output written on presentation.pdf (23 pages).

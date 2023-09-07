@@ -114,9 +114,9 @@
             \end{itemize}
             \begin{block}{Training steps in Fetch}
                   \begin{itemize}
-                        \item Play an episode and store it in a row of the buffer
+                        \item For each step in the episode, select an action, clip it to the action space and observe the result of applying it
+                        \item Store the episode in a row of the buffer
                         \item Sample |B| transitions, each from a sampled episode
-                        \item Sample a future achieved goal to substitute into the transition
                         \item Do a gradient step
                   \end{itemize}
             \end{block}
@@ -128,20 +128,16 @@
             \begin{itemize}
                   \item The intention is to valorize also failed episodes (majority in robotics environments)
                   \item Done by storing episodes multiple times, substituting the desired goal with a \textbf{Hindsight Goal}, treating the episode as if it was successful
-                  \item For each episode ($t = 0 ... 50$) the following steps are done (within DDPG)
-                        \begin{itemize}
-                              \item Store every transition $\left( s_t||g, a_t, r_t, s_{t+1}||g\right)$ of the episode
-                              \item Sample a set of additional achieved goals $G$ from the current episode
-                              \item Store $\left( s_t||g', a_t, r_t, s_{t+1}||g'\right)$ for every $g' \in G$
-                              \item Perform gradient descent, feeding also the goals into the neural networks
-                        \end{itemize}
-                  \item Different strategies can be adopted to sample goals
-                        \begin{itemize}
-                              \item Final: final state
-                              \item Future: any future state of the episode
-                              \item Random: any state of the buffer
-                        \end{itemize}
             \end{itemize}
+            \begin{block}{Additional steps for HER in DDPG}
+                  \begin{itemize}
+                        \item Store every transition $\left( s_t||g, a_t, r_t, s_{t+1}||g\right)$ of the episode
+                        \item Sample a set of additional achieved goals $G$ from the current episode
+                        \item Store $\left( s_t||g', a_t, r_t, s_{t+1}||g'\right)$ for every $g' \in G$
+                        \item Perform gradient descent, feeding also the goals into the neural networks
+                  \end{itemize}
+            \end{block}
+            Different strategies can be adopted to sample goals: final, future, random
       \end{frame}
 
       \begin{frame}[fragile]{HER}
@@ -192,7 +188,8 @@
                   \begin{equation}
                         w_{ji}^{(n)} = \left( \frac{1}{N_e}\frac{1}{P(n)}\right) ^{\beta} \cdot \left( \frac{2}{(T-1)\cdot T} \cdot \frac{1}{P'(j,i)}\right) ^ {\beta'}
                   \end{equation}
-                  \item In order to alway scale the gradients down we set $w_{ji}^{(n)} = \frac{w_{ji}^{(n)}}{max(w_{ji}^{(n)})}$
+                  \item In order to always scale the gradients down we set $w_{ji}^{(n)} = \frac{w_{ji}^{(n)}}{max(w_{ji}^{(n)})}$
+                  \item Mintree for storing minimum weight, for efficiently retrieving inverse of max weight
             \end{itemize}
             
       \end{frame}
@@ -200,18 +197,73 @@
 
 \section{Results}
 
+      \begin{frame}{Training setup}
+            \begin{itemize}
+                  \item Normal noise with standard deviation 0.2
+                  \item $\gamma = 0.98$
+                  \item Learning rates 0.001, polyak 0.95
+                  \item buffer capacity $1\cdot 10^6$, batch size 256
+                  \item gradient steps 50
+                  \item $\alpha = \alpha' = 0.6$
+                  \item $\beta_0 = \beta' = 0.4$
+                  \item $\beta$ organized with linear schedule from $\beta_0$ to 1
+            \end{itemize}
+      \end{frame}
+
       \begin{frame}[fragile]{Reach}
-            \begin{figure}
-                  \animategraphics[width=0.3\textwidth,loop,autoplay]{120}{videos/reach/reach-}{0}{51}
-            \end{figure}
+            \begin{columns}
+                  \column{0.5\textwidth}
+                        \centering
+                        \animategraphics[width=0.8\columnwidth,loop,controls,autoplay]{10}{videos/reach/reach-}{0}{51}
+                  \column{0.5\textwidth}
+                  \begin{figure}
+                        \centering
+                        \includegraphics[width=1.1\columnwidth]{figures/reach.png}
+                  \end{figure}
+            \end{columns}
       \end{frame}
 
       \begin{frame}{Push}
-            
+            \begin{columns}
+                  \column{0.5\textwidth}
+                        \centering
+                        \animategraphics[width=0.8\columnwidth,loop, controls, autoplay]{10}{videos/push/push-}{0}{50}
+                  \column{0.5\textwidth}
+                  \begin{figure}
+                        \centering
+                        \includegraphics[width=\columnwidth]{figures/push.png}
+                  \end{figure}
+            \end{columns}
       \end{frame}
 
       \begin{frame}{Pick-and-Place}
-            
+            \begin{columns}
+                  \column{0.5\textwidth}
+                        \centering
+                        \animategraphics[width=0.8\columnwidth,loop,controls, autoplay]{10}{videos/pickandplace/pickandplace-}{0}{50}
+                  \column{0.5\textwidth}
+                  \begin{figure}
+                        \centering
+                        \includegraphics[width=\columnwidth]{figures/pickandplace.png}
+                  \end{figure}
+            \end{columns}
+      \end{frame}
+
+\section{Conclusions}
+      \begin{frame}{Final considerations}
+            \begin{itemize}
+                  \item Sampling additional goals solves the exploration problem in multi-goal sparse reward environments
+                  \item Prioritizing episodes and goals makes sampling even more effective and thus significantly reduces training time and the amount of collected experience
+            \end{itemize}
+      \end{frame}
+
+      \begin{frame}{Resources}
+            \begin{itemize}
+                  \item T. M. Luu, C. D. Yoo: HGR on Replay Buffer for Sparse Reward Environment
+                  \item Marcin Andrychowicz et al. : Hindsight Experience Replay
+                  \item Tom Schaul et al. : Prioritized Experience Replay
+                  \item \href{https://spinningup.openai.com/en/latest/algorithms/ddpg.html}{OpenAI Spinning Up}
+            \end{itemize}
       \end{frame}
 
 \backmatter

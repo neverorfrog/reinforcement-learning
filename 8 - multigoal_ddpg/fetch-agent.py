@@ -270,8 +270,6 @@ def test(env_name = 'FetchReach-v2', prioritized = True, record = False):
             agent.evaluate(render = True)
 
 from enum import Enum
-
-# class syntax
 class Type(Enum):
     NOHER = 1
     HER = 2
@@ -312,10 +310,11 @@ def plot_tasks(task):
     xaxis = (np.arange(len(toplot))+1) * 100
     plt.plot(xaxis, toplot, color='orange')
     
-    # toplot = meanplot(task, Type.NOHER)
-    # # xaxis = (np.arange(len(toplot))+1) * 100
-    # plt.plot(xaxis, toplot[:len(xaxis)], color='blue')
+    toplot = meanplot(task, Type.NOHER)
+    plt.plot(xaxis, toplot[:len(xaxis)], color='blue')
     
+    plt.xlabel("timesteps")
+    plt.ylabel("mean success rate")
     plt.legend(["HER", "HGR","NOHER"])
     plt.show(block = True)
     
@@ -324,7 +323,6 @@ if __name__ == "__main__":
     reach = 'FetchReach-v2'
     push = 'FetchPush-v2'
     pickandplace = 'FetchPickAndPlace-v2'
-    slide = 'FetchSlide-v2'
     # test(pickandplace, False)
     # launch(reach, True)
     # launch(slide,True)
@@ -332,11 +330,6 @@ if __name__ == "__main__":
     # launch(reach, False)
     # launch(slide, False)
     
-    plot_tasks(pickandplace)
-    
-    # env_name = reach
-    # env = gym.make(env_name)
-    # seed = 123
-    # agent = DDPG(f"DDPG_{env_name}_{seed}", env)
+    plot_tasks(reach)
     
     
