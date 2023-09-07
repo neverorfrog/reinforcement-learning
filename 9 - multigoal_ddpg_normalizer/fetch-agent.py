@@ -300,11 +300,22 @@ def meltplot(env_name = 'FetchReach-v2', prioritized = True):
         success_rate = torch.load(open(os.path.join(path,"success.pt"),"rb"))
         if len(success_rate) > maxlen: maxlen = len(success_rate)
         success_rates.append(success_rate.tolist())
+    srs = np.empty([maxlen * len(SEEDS), 3])
     for i in range(len(SEEDS)):
+        #all equal length
         lastelem = success_rates[i][-1]
         difference = (maxlen - len(success_rates[i]))
         coda = [lastelem]*difference
         success_rates[i].extend(coda)
+        #into the dataframe
+        srs[i*maxlen:(i+1)*maxlen,2] = np.array(success_rates[i])
+        srs[i*maxlen:(i+1)*maxlen,1] = np.arange(1,maxlen+1) * 100
+        srs[i*maxlen:(i+1)*maxlen,0] = np.array([SEEDS[i]]*maxlen)
+    sns.set()
+    df1 = pd.DataFrame(np.array(srs, dtype = int), columns=["seed","timestep","success"])
+    sns.set(style="darkgrid", context="talk", palette="rainbow")
+    sns.lineplot(data=df1, x="timestep", y="success")
+    plt.show()
     data = np.array(success_rates)
     df1 = pd.DataFrame(success_rates).melt()
     df1.rename(columns={"variable": "episode", "value": "mean success"}, inplace=True)

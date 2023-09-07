@@ -61,28 +61,62 @@
             \end{itemize}
       \end{frame}
 
-\section{Algorithm comparison}
+\section{DDPG}
 
-      \begin{frame}[fragile]{DDPG}
-            \framesubtitle{The base of all}
-            \begin{block}{Intuition}
-                  \verb|\documentclass{beamer}|\\
-            \end{block}
-            \begin{block}{Drawbacks}
-                  \verb|\documentclass{beamer}|\\
-            \end{block}
+      \begin{frame}[fragile]{Architecture}
+            \begin{itemize}
+                  \item Two neural networks in performing actor-critic policy gradient
+                  \begin{columns}
+                        \column{0.5\textwidth}
+                        
+                        \column{0.5\textwidth}
+                        
+                    \end{columns} 
+                        \begin{itemize}
+                              \item Actor inference: observed state $\rightarrow$ action maximising the action-value function
+                              \item Critic inference: state and action $\rightarrow value of the action-value function
+                        \end{itemize}
+            \end{itemize}
+      \end{frame}
+
+      \begin{frame}{Implementation}
+      \end{frame}
+
+      \begin{frame}{Drawbacks in the Fetch Environment}
+            \begin{itemize}
+                  \item 
+            \end{itemize}
+      \end{frame}
+
+
+\section{Replay buffer}
+
+      \begin{frame}[fragile]{HER}
+            \framesubtitle{Intuition}
+            \begin{itemize}
+                  \item The intention is to valorize also failed episodes (majority in robotics environments)
+                  \item Done by storing episodes multiple times, substituting the desired goal with another from the same episode, treating the episode as if it was successful
+                  \item Formally speaking, for each episode ($t = 0 ... 50$) we do the following steps
+                        \begin{itemize}
+                              \item store $\left( s_t||g, a_t, r_t, s_{t+1}||g\right)$
+                              \item sample a set of additional achieved goals $G$ from the current episode
+                              \item store $\left( s_t||g', a_t, r_t, s_{t+1}||g'\right)$ for every $g' \in G$
+                        \end{itemize}
+                  \item Different strategies can be adopted to sample goals
+                        \begin{itemize}
+                              \item Final
+                              \item Future
+                              \item Random
+                        \end{itemize}
+            \end{itemize}
       \end{frame}
 
       \begin{frame}[fragile]{HER}
-            \framesubtitle{Sampling future goals}
-            To start working with \texttt{sintefbeamer}
-            \begin{block}{Intuition}
-                  \verb|\documentclass{beamer}|\\
-            \end{block}
-            \begin{block}{Drawbacks}
-                  \verb|\documentclass{beamer}|\\
-            \end{block}
+            \framesubtitle{Implementation}
+
       \end{frame}
+
+
 
       \begin{frame}[fragile]{HGR}
             \framesubtitle{Prioritizing future goals}
@@ -92,17 +126,6 @@
             \begin{block}{Enhancements over Vanilla HER}
                   \verb|\documentclass{beamer}|\\
             \end{block}
-      \end{frame}
-
-
-\section{Implementation}
-
-      \begin{frame}{Learning Algorithm}
-                  
-      \end{frame}
-
-      \begin{frame}{Replay Buffer}
-                  
       \end{frame}
 
 

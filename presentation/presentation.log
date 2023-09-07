@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.9.1)  6 SEP 2023 23:34
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.9.1)  7 SEP 2023 12:24
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1111,7 +1111,55 @@ File: assets/logo_RGB.png Graphic file (type bmp)
 
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
- (./presentation.vrb)
+ (./presentation.vrb
+
+./presentation.vrb:13: LaTeX Error: Command \end{itemize} invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.13                         \end{itemize}
+                                          
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+./presentation.vrb:13: LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.13                         \end{itemize}
+                                          
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+./presentation.vrb:13: LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.13                         \end{itemize}
+                                          
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./presentation.vrb:13: Missing $ inserted.
+<inserted text> 
+                $
+l.13                         \end{itemize}
+                                          
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+)
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
  [6
@@ -1119,11 +1167,6 @@ File: assets/logo_RGB.png Graphic file (type bmp)
 ]
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
-\openout4 = `presentation.vrb'.
-
-File: assets/logo_RGB.png Graphic file (type bmp)
-<assets/logo_RGB.png>
- (./presentation.vrb)
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
  [7
@@ -1131,11 +1174,6 @@ File: assets/logo_RGB.png Graphic file (type bmp)
 ]
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
-\openout4 = `presentation.vrb'.
-
-File: assets/logo_RGB.png Graphic file (type bmp)
-<assets/logo_RGB.png>
- (./presentation.vrb)
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
  [8
@@ -1151,6 +1189,11 @@ File: assets/logo_RGB_negative.png Graphic file (type bmp)
 ]
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
+\openout4 = `presentation.vrb'.
+
+File: assets/logo_RGB.png Graphic file (type bmp)
+<assets/logo_RGB.png>
+ (./presentation.vrb)
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
  [10
@@ -1158,9 +1201,26 @@ File: assets/logo_RGB.png Graphic file (type bmp)
 ]
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
+\openout4 = `presentation.vrb'.
+
+File: assets/logo_RGB.png Graphic file (type bmp)
+<assets/logo_RGB.png>
+ (./presentation.vrb)
 File: assets/logo_RGB.png Graphic file (type bmp)
 <assets/logo_RGB.png>
  [11
+
+]
+File: assets/logo_RGB.png Graphic file (type bmp)
+<assets/logo_RGB.png>
+\openout4 = `presentation.vrb'.
+
+File: assets/logo_RGB.png Graphic file (type bmp)
+<assets/logo_RGB.png>
+ (./presentation.vrb)
+File: assets/logo_RGB.png Graphic file (type bmp)
+<assets/logo_RGB.png>
+ [12
 
 ]
 File: assets/logo_RGB_negative.png Graphic file (type bmp)
@@ -1168,20 +1228,20 @@ File: assets/logo_RGB_negative.png Graphic file (type bmp)
  (./presentation.toc)
 File: assets/logo_RGB_negative.png Graphic file (type bmp)
 <assets/logo_RGB_negative.png>
- [12
+ [13
 
 ]
 File: assets/logo_RGB_negative.png Graphic file (type bmp)
 <assets/logo_RGB_negative.png>
 LaTeX Font Info:    Font shape `TU/Carlito(0)/m/n' will be
-(Font)              scaled to size 24.88pt on input line 112.
+(Font)              scaled to size 24.88pt on input line 135.
 LaTeX Font Info:    Font shape `TU/Carlito(0)/m/sl' in size <14.4> not available
-(Font)              Font shape `TU/Carlito(0)/m/it' tried instead on input line 112.
+(Font)              Font shape `TU/Carlito(0)/m/it' tried instead on input line 135.
 LaTeX Font Info:    Font shape `TU/Carlito(0)/m/it' will be
-(Font)              scaled to size 14.4pt on input line 112.
+(Font)              scaled to size 14.4pt on input line 135.
 File: assets/logo_RGB_negative.png Graphic file (type bmp)
 <assets/logo_RGB_negative.png>
- [13
+ [14
 
 ]
 \tf@nav=\write6
@@ -1199,15 +1259,15 @@ LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-08-29>
  ***********
 Package rerunfilecheck Info: File `presentation.out' has not changed.
-(rerunfilecheck)             Checksum: A1D390E909B39C48E771C73A2DFB806C;440.
+(rerunfilecheck)             Checksum: 06586382ACEF7DAFAF5F094CD1EA5AD5;355.
  ) 
 Here is how much of TeX's memory you used:
- 27469 strings out of 475591
- 589329 string characters out of 5773842
+ 27475 strings out of 475591
+ 589437 string characters out of 5773842
  1921438 words of memory out of 5000000
- 48204 multiletter control sequences out of 15000+600000
+ 48208 multiletter control sequences out of 15000+600000
  565112 words of font info for 105 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  128i,13n,133p,458b,939s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on presentation.pdf (13 pages).
+Output written on presentation.pdf (14 pages).
