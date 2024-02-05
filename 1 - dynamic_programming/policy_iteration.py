@@ -8,11 +8,10 @@ we are folllowing
 function by applying the Bellman optimality operator
 '''
 
-
 def policy_iteration(env, gamma=0.99, iters=100):
 
     # Initializing the policy
-    policy = np.zeros(env.num_states, dtype=np.int)
+    policy = np.zeros(env.num_states, dtype=np.int32)
     values = np.zeros(env.num_states, dtype=np.float32)
     
     # Looping for iters iterations to find the optimal policy
@@ -82,7 +81,3 @@ def policy_iteration(env, gamma=0.99, iters=100):
             break
 
     return policy.reshape(env.height, env.width)
-
-
-if __name__ == "__main__":
-    print("hi")

@@ -132,10 +132,7 @@ class GridWorld(gym.Env):
             print('|')
         print('\n')
         
-    def renderpolicy(self, policy):
-        '''
-            render the policy
-        '''
+    def render_policy(self, policy):
         for r in range(self.height):
             for c in range(self.width):
                 print(f"| {self.symbols[policy[r,c]]} ", end='')
@@ -165,8 +162,6 @@ class GridWorld(gym.Env):
         offset = state[0] * self.width 
         return offset + state[1]
     
-    
-       
 class NonDeterministicGridWorld(GridWorld):
     def __init__(self, width, height, p=0.8):
         super(NonDeterministicGridWorld, self).__init__(width, height)
@@ -219,11 +214,3 @@ class NonDeterministicGridWorld(GridWorld):
         #    prob_next_state[cell[0], cell[1]] /= sump
         prob_next_state[s[0], s[1]] = 1 - sump
         return prob_next_state
-    
-    
-
-if __name__ == "__main__":
-    env = GridWorld(5,5)    
-    env.render()
-    
-    
