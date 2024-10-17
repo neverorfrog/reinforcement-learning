@@ -1,19 +1,14 @@
 import numpy as np
 import gymnasium as gym
-from common.plotting import ProgressBoard
 from encoder import *
 from estimator import Estimator
-from common.utils import *
-from common.plotting import *
+from utils import EpsGreedyPolicy
 
-class Agent(HyperParameters):
-    def __init__(self, name, env, Q, board: ProgressBoard = None, 
-                 alpha=0.005, alpha_decay=0.9999, gamma=0.9999, eps=1., eps_decay=0.99):
-        self.save_hyperparameters()
+class Agent():
+    def __init__(self, name, env, Q, alpha=0.005, alpha_decay=0.9999, gamma=0.9999, eps=1., eps_decay=0.99):
         self.name = name
         self.env = env
         self.Q = Q
-        self.board = board
         self.behavior_policy = EpsGreedyPolicy(self.Q, self.eps, env.action_space.n)
         
     def train(self, n_episodes=200, max_steps_per_episode=200):
@@ -31,7 +26,6 @@ class Agent(HyperParameters):
         self.eps = max(0.2, self.eps*self.eps_decay)
         self.alpha = self.alpha*self.alpha_decay
         testreward = self.evaluate(episodes = 1, render = False)
-        self.board.draw(episode, testreward, self.name)
         
         
     def evaluate(self, env = None, render:bool = True, episodes = 3, max_steps: int = 120):
@@ -62,8 +56,8 @@ class Agent(HyperParameters):
     
     
 class Qlearning(Agent):
-    def __init__(self, env, Q: Estimator, board: ProgressBoard = None, alpha=0.005, alpha_decay=0.9999, gamma=0.9999, eps=1., eps_decay=0.99):
-        super().__init__("qlearning", env, Q, board, alpha, alpha_decay, gamma, eps, eps_decay)
+    def __init__(self, env, Q: Estimator, alpha=0.005, alpha_decay=0.9999, gamma=0.9999, eps=1., eps_decay=0.99):
+        super().__init__("qlearning", env, Q, alpha, alpha_decay, gamma, eps, eps_decay)
         self.encoder = RBFFeatureEncoder(env)
         
     def step_update(self, state):
@@ -80,8 +74,8 @@ class Qlearning(Agent):
         return new_state, reward, terminated
 
 class TDLambda(Agent):
-    def __init__(self, env, Q: Estimator, board: ProgressBoard = None, alpha=0.005, alpha_decay=0.9999, gamma=0.9999, eps=1., eps_decay=0.99, lambda_ = 0.9):
-        super().__init__("tdlambda", env, Q, board, alpha, alpha_decay, gamma, eps, eps_decay)
+    def __init__(self, env, Q: Estimator, alpha=0.005, alpha_decay=0.9999, gamma=0.9999, eps=1., eps_decay=0.99, lambda_ = 0.9):
+        super().__init__("tdlambda", env, Q, alpha, alpha_decay, gamma, eps, eps_decay)
         self.encoder = RBFFeatureEncoder(env)
         self.shape = (self.env.action_space.n, self.encoder.size)
         self.traces = np.zeros(self.shape)
@@ -108,13 +102,11 @@ class TDLambda(Agent):
     
 
 if __name__ == "__main__":
-    # env = gym.make('CliffWalking-v0')
     env = gym.make("MountainCar-v0", render_mode = "rgb_array")
     n_episodes = 90
-    board = ProgressBoard(n_episodes, n = max(n_episodes / 100, 1))
     encoder = RBFFeatureEncoder(env)
     Q = Estimator(env, encoder)
-    agent = TDLambda(env, Q, board)
+    agent = TDLambda(env, Q)
     agent.train(n_episodes)
     
     testenv = gym.make("MountainCar-v0", render_mode = "human")

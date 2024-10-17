@@ -2,8 +2,6 @@ from collections import deque
 from torch.distributions.categorical import Categorical
 import numpy as np
 import gymnasium as gym
-from common.plotting import ProgressBoard
-from common.utils import *
 import torch
 import torch.nn as nn
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -27,13 +25,9 @@ class Policy(nn.Module):
         return self.net(x)
 
 
-class REINFORCE(HyperParameters):
-    def __init__(self, name, env: gym.Env, board: ProgressBoard = None, 
+class REINFORCE():
+    def __init__(self, name, env: gym.Env, 
                  eps = 1e-6, gamma=0.999, max_steps = 200, max_episodes = 500, reward_threshold = 400):
-        
-        #Hyperparameters
-        self.save_hyperparameters()
-        
         #Network
         self.policy = Policy(env.observation_space.shape[0], env.action_space.n)
         self.optimizer = torch.optim.Adam(self.policy.parameters(), 0.001)
@@ -136,6 +130,5 @@ class REINFORCE(HyperParameters):
 if __name__ == "__main__":
     env = gym.make('CartPole-v1', render_mode = "rgb_array")     
     num_ep = 200
-    board = ProgressBoard(num_ep, n = max(num_ep / 10, 1))
     agent = REINFORCE("hi", env)
     agent.train()

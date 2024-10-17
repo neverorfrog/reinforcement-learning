@@ -170,7 +170,6 @@ class DDPG(HyperParameters):
         meanreward = np.mean(self.rewards)
         meanloss = np.mean(self.losses)
         print(f'\rEpisode {self.ep} Mean Reward: {meanreward:.2f} Ep_Reward: {self.ep_reward} Mean Loss: {meanloss:.2f}\t\t')
-        # self.board.draw(self.ep, meanreward, self.name)
         if self.ep >= self.max_episodes:
             self.training = False
             print("\nEpisode limit reached")

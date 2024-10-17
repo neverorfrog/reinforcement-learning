@@ -8,12 +8,12 @@ from gridworld import *
 '''
     
 def value_iteration(env):
-    gamma = 0.99
+    gamma = 0.9
     iters = 100
 
     # initialize values
-    values = np.zeros((env.num_states))
-    best_actions = np.zeros((env.num_states), dtype=int)
+    values = np.zeros((env.num_states), dtype=float)
+    policy = np.zeros((env.num_states), dtype=int)
     STATES = np.zeros((env.num_states, 2), dtype=np.uint8)
     REWARDS = env.reward_probabilities()
     i = 0
@@ -25,6 +25,10 @@ def value_iteration(env):
 
     for i in range(iters):
         v_old = values.copy()
+        
+        #Termination condition
+        policy_stable = True
+        
         for s in range(env.num_states):
             state = STATES[s]
 
@@ -41,9 +45,14 @@ def value_iteration(env):
                 if va > max_va:
                     max_va = va
                     best_a = a
+                    
             values[s] = max_va
-            best_actions[s] = best_a
+            if policy[s] != best_a:  # checking for termination
+                policy_stable = False
+                policy[s] = best_a  # policy improvement
+                
+        if policy_stable == True:
+            print(f"Optimal policy reached in {i} iterations")
+            break
     
-    print(i)
-
-    return best_actions.reshape((env.height, env.width))
+    return policy.reshape((env.height, env.width))

@@ -6,14 +6,27 @@ from matplotlib_inline import backend_inline
 from utils import *
 
 
-class ProgressBoard(Parameters):
+class ProgressBoard():
     """The board that plots data points in animation."""
     
-    def __init__(self,episodes,plot_rate, jupyter = False,xlabel=None,ylabel=None, xlim=[0,1000],
-                 ylim=[0,1], xscale='linear', yscale='linear',
+    def __init__(self,episodes,plot_rate, jupyter = False, xlim=[0,85],
+                 ylim=[-25,-10], xscale='linear', yscale='linear',
                  ls=['-', '--', '-.', ':'], colors=['C0', 'C1', 'C2', 'C3'],
-                 fig=None, axes=None, figsize=(6, 4), display=True, figname = None):
-        self.save_parameters()
+                 figsize=(6, 4), display=True, figname = None):
+        
+        self.episodes = episodes
+        self.plot_rate = plot_rate
+        self.jupyter = jupyter
+        self.xlim = xlim
+        self.ylim = ylim
+        self.xscale = xscale
+        self.yscale = yscale
+        self.ls = ls
+        self.colors = colors
+        self.figsize = figsize
+        self.display = display
+        self.figname = figname
+        
         self.fig = plt.figure(figsize=self.figsize)
         self.xlabel = 'episode'
         self.ylabel = 'reward'

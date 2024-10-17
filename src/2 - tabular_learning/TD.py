@@ -1,9 +1,8 @@
 import random
 import numpy as np
-from common.plotting import *
 import gymnasium as gym
-from common.utils import *
-
+from utils import make_epsilon_greedy_policy
+from plotting import ProgressBoard
 
 def sarsa(env: gym.Env, episodes: int, alpha: float = 0.7, eps: float = 0.1, gamma: float = 0.99, board: ProgressBoard = None):
     # Initializing the policy randomly (Q incarnates the policy right now because we choos the action maximising the action-value)
@@ -50,7 +49,7 @@ def qlearning(env: gym.Env, episodes: int, alpha: float = 0.7, eps: float = 0.1,
     num_states = env.observation_space.n
     num_actions = env.action_space.n
     Q = np.zeros((num_states, num_actions))
-    policy = make_epsilon_greedy_policy(Q, eps, env.action_space.n)
+    policy = make_epsilon_greedy_policy(Q, eps, env.action_space.n) # behavioral policy
         
     for episode in range(episodes):
         state = env.reset()[0] #initialize S: state from reset is a tuple
@@ -59,12 +58,11 @@ def qlearning(env: gym.Env, episodes: int, alpha: float = 0.7, eps: float = 0.1,
         
         while not terminated:
             #Behavior Policy: Step in the MDP based on epsilon greedy action (OFFPOLICY)
-            # action = env.action_space.sample() if (random.random() < eps) else np.argmax(Q[state,:]) 
             action = np.random.choice(np.arange(num_actions), p = policy(state))
             new_state, reward, terminated, _, _ = env.step(action)
             total_reward += reward
             
-            #Target Policy: Update rule to train in just one update rule (like value iteration)            
+            #Target Policy: Update rule to learn in just one update rule (like value iteration)            
             target = reward + (1-terminated) * gamma * np.max(Q[new_state])
             error = target - Q[state,action]
             Q[state,action] += alpha * error
@@ -83,7 +81,6 @@ def qlearning(env: gym.Env, episodes: int, alpha: float = 0.7, eps: float = 0.1,
 
 def expected_sarsa(env: gym.Env, episodes: int, alpha: float = 0.7, eps: float = 0.1, gamma: float = 0.99, board: ProgressBoard = None):
     # Initializing the policy randomly (Q incarnates the policy right now because we choos the action maximising the action-value)
-    if board is None: board = ProgressBoard(episodes, n = 1)
     num_states = env.observation_space.n
     num_actions = env.action_space.n
     Q = np.zeros((num_states, num_actions))
@@ -120,7 +117,6 @@ def expected_sarsa(env: gym.Env, episodes: int, alpha: float = 0.7, eps: float =
 
 def double_qlearning(env: gym.Env, episodes: int, alpha: float = 0.7, eps: float = 0.1, gamma: float = 0.99, board: ProgressBoard = None):
     # Initializing the policy randomly (Q incarnates the policy right now because we choos the action maximising the action-value)
-    if board is None: board = ProgressBoard(episodes, n = 1)
     num_states = env.observation_space.n
     num_actions = env.action_space.n
     Q1 = np.zeros((num_states, num_actions))
@@ -161,7 +157,7 @@ def double_qlearning(env: gym.Env, episodes: int, alpha: float = 0.7, eps: float
     return policy
 
 
-def sarsa_lambda(env, alpha=0.2, gamma=0.99, lambda_= 0.8, initial_epsilon=1.0, n_episodes=5000):
+def sarsa_lambda(env, alpha=0.2, gamma=0.99, lambda_= 0.8, initial_epsilon=1.0, n_episodes=5000, board: ProgressBoard = None):
 
     ####### Hyperparameters
     # alpha = learning rate
@@ -180,7 +176,7 @@ def sarsa_lambda(env, alpha=0.2, gamma=0.99, lambda_= 0.8, initial_epsilon=1.0, 
     received_first_reward = False
 
 
-    for ep in range(n_episodes+1):
+    for episode in range(n_episodes+1):
 
         E = np.zeros((env.observation_space.n, env.action_space.n))
 
@@ -214,6 +210,11 @@ def sarsa_lambda(env, alpha=0.2, gamma=0.99, lambda_= 0.8, initial_epsilon=1.0, 
         # update current epsilon
         if received_first_reward:
             epsilon = 0.99 * epsilon
+        
+        #Logging
+        target_policy = np.argmax(Q, axis = 1)
+        testreward = test_policy(env, target_policy, episodes = 1)
+        board.draw(episode, testreward, "qlearning")
             
     policy = np.argmax(Q, axis = 1)
     

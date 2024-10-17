@@ -3,16 +3,13 @@ from copy import deepcopy
 import numpy as np
 import gymnasium as gym
 from network import DQN
-from common.plotting import ProgressBoard
-from common.utils import *
 import torch
 import torch.nn as nn
-from common.buffers import UniformBuffer
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
-class DeepQAgent(HyperParameters):
-    def __init__(self, name, env: gym.Env, board: ProgressBoard, 
+class DeepQAgent():
+    def __init__(self, name, env: gym.Env, 
                  gamma=0.9999, eps=0.999, eps_decay=0.99,
                  max_steps = 200, max_episodes = 500, reward_threshold = 400):
         
@@ -150,7 +147,6 @@ class DeepQAgent(HyperParameters):
         meanreward = np.mean(self.rewards)
         meanloss = np.mean(self.losses)
         print(f'\rEpisode {self.ep} Mean Reward: {meanreward:.2f} Ep_Reward: {self.ep_reward} Mean Loss: {meanloss:.2f}\t\t')
-        # self.board.draw(self.ep, meanreward, self.name)
         if self.ep >= self.max_episodes:
             self.training = False
             print("\nEpisode limit reached")
@@ -217,9 +213,9 @@ class DeepQAgent(HyperParameters):
   
      
 class ControlDeepQAgent(DeepQAgent):
-    def __init__(self, name, env: gym.Env, board: ProgressBoard, 
+    def __init__(self, name, env: gym.Env, 
             gamma=0.99, eps=1., eps_decay=0.99):
-        super().__init__(name, env, board)  
+        super().__init__(name, env)  
         
     #Most proabably to be redefined in subclasses    
     def get_dims(self, env: gym.Env):
@@ -232,8 +228,7 @@ if __name__ == "__main__":
     # env = gym.make("MountainCar-v0")   
     n = 200
     
-    board = ProgressBoard(n, n = max(n / 10, 1))
-    agent = ControlDeepQAgent("hi", env, board)
+    agent = ControlDeepQAgent("hi", env)
     agent.train()
     
     # testenv = gym.make("MountainCar-v0", render_mode = "human")

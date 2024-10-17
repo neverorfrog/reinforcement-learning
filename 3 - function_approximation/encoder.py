@@ -1,5 +1,4 @@
 import numpy as np
-from common.utils import *
 
 class RBFFeatureEncoder:
     def __init__(self, env): # modify
