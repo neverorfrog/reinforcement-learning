@@ -18,13 +18,26 @@ np.random.seed(SEED)
 Vanilla DDP: 756 episodes 1000 reward 411 mean reward
 '''
 
-class DDPG(HyperParameters):
+class DDPG():
     def __init__(self, name, env: gym.Env, window = 50,
                  polyak = 0.995, pi_lr = 0.0001, q_lr = 0.0001, target_update_freq = 1, update_freq = 1, 
-                 eps = 1.0, eps_decay = 0.95, batch_size = 64, gamma=0.99, max_episodes=500, reward_threshold=400):
+                 eps = 1.0, eps_decay = 0.99, batch_size = 64, gamma=0.99, max_episodes=200, reward_threshold=400):
 
         # Hyperparameters
-        self.save_hyperparameters()
+        self.name = name
+        self.env = env
+        self.window = window
+        self.polyak = polyak
+        self.pi_lr = pi_lr
+        self.q_lr = q_lr
+        self.target_update_freq = target_update_freq
+        self.update_freq = update_freq
+        self.eps = eps
+        self.eps_decay = eps_decay
+        self.batch_size = batch_size
+        self.gamma = gamma
+        self.max_episodes = max_episodes
+        self.reward_threshold = reward_threshold
         
         # env params for networks and buffer
         observation = env.reset()[0]
@@ -185,12 +198,10 @@ class DDPG(HyperParameters):
             
             while not terminated and not truncated:
                 action = self.select_action(observation, noise_weight = 0)
-                print(action)
-                exit()
                 observation, reward, terminated, truncated, _ = env.step(action)
                 observation = torch.FloatTensor(observation)
                 total_reward += reward
-                # if render: self.env.render()
+                if render: self.env.render()
                 
             if render: print("\tTotal Reward:", total_reward)
             mean_reward = mean_reward + (1/i)*(total_reward - mean_reward)
@@ -211,16 +222,21 @@ class DDPG(HyperParameters):
                 observation = self.env.reset()[0]
             
     def save(self):
-        path = os.path.join("models",self.name)
-        if not os.path.exists(path): os.mkdir(path)
+        here = os.path.dirname(os.path.abspath(__file__))
+        path = os.path.join(here,"models",self.name)
+        
+        os.makedirs(path, exist_ok=True)
+        
         torch.save(self.actor.state_dict(), open(os.path.join(path,"actor.pt"), "wb"))
-        torch.save(self.actor.state_dict(), open(os.path.join(path,"critic.pt"), "wb"))
+        torch.save(self.critic.state_dict(), open(os.path.join(path,"critic.pt"), "wb"))
         print("MODELS SAVED!")
 
     def load(self):
-        path = os.path.join("models",self.name)
-        self.actor.load_state_dict(torch.load(open(os.path.join(path,"actor.pt"),"rb")))
-        self.critic.load_state_dict(torch.load(open(os.path.join(path,"critic.pt"),"rb")))
+        here = os.path.dirname(os.path.abspath(__file__))
+        path = os.path.join(here, "models", self.name)
+        
+        self.actor.load_state_dict(torch.load(open(os.path.join(path, "actor.pt"), "rb"), weights_only=True))
+        self.critic.load_state_dict(torch.load(open(os.path.join(path, "critic.pt"), "rb"), weights_only=True))
         print("MODELS LOADED!")
 
     def to(self, device):
@@ -231,16 +247,18 @@ class DDPG(HyperParameters):
 
 def pendulum(num_ep = 500):
     env = gym.make('InvertedPendulum-v4')
-    agent = DDPG("ddpg_inverted_pendulum", env, max_episodes = num_ep)
+    agent = DDPG("ddpg_pendulum", env, max_episodes = num_ep)
     return agent
          
 if __name__ == "__main__":
     agent = pendulum()
     train = True
-    test = False
+    test = True
     if train:
         agent.train()
-        # agent.save()
+        agent.save()
     if test:
+        env = gym.make('InvertedPendulum-v4', render_mode = 'human')
         agent.load()
+        agent.env = env
         agent.evaluate(num_ep = 10)

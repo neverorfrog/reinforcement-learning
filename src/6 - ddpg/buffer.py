@@ -1,10 +1,7 @@
-from collections import namedtuple, deque
 import random
 import torch
 import numpy as np
 device = torch.device("cpu")
-import math
-from common.utils import HyperParameters
 
 random.seed(123)
 np.random.seed(123)
