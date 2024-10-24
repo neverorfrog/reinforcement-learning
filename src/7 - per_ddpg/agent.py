@@ -5,7 +5,6 @@ import pprint
 import numpy as np
 import gymnasium as gym
 from networks import *
-from common.utils import HyperParameters
 import torch
 import torch.nn as nn
 from buffer import *
@@ -21,14 +20,27 @@ DDPG (alpha and beta = 0): 756 episodes 1000 reward 411 mean reward
 DDPG + PER: 387 episodes 1000 reward 407 mean reward
 '''
 
-class DDPG(HyperParameters):
+class DDPG:
     def __init__(self, name, env: gym.Env, window = 50, polyak = 0.995, pi_lr = 0.0001, 
                  q_lr = 0.0001, target_update_freq = 1, update_freq = 1, 
                  eps = 1.0, eps_decay = 0.95, batch_size = 64, gamma=0.99, 
                  max_episodes=500, reward_threshold=400):
 
         # Hyperparameters
-        self.save_hyperparameters()
+        self.name = name
+        self.env = env
+        self.window = window
+        self.polyak = polyak
+        self.q_lr = q_lr
+        self.pi_lr = pi_lr
+        self.target_update_freq = target_update_freq
+        self.update_freq = update_freq
+        self.eps = eps
+        self.eps_decay = eps_decay
+        self.batch_size = batch_size
+        self.gamma = gamma
+        self.max_episodes = max_episodes
+        self.reward_threshold = reward_threshold
         
         # env params for networks and buffer
         observation = env.reset()[0]

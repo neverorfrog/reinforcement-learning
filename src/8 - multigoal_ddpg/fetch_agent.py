@@ -1,11 +1,9 @@
 from collections import deque
 from copy import deepcopy
-import pandas as pd
 import seaborn as sns
 from utils import *
 import os
-from matplotlib import axes, pyplot as plt
-import matplotlib.patches as mpatches
+from matplotlib import pyplot as plt
 import numpy as np
 import gymnasium as gym
 from networks import *
@@ -14,7 +12,6 @@ import torch
 import torch.nn as nn
 from buffer import *
 from tqdm import tqdm
-from noher_agent import DDPG
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 torch.autograd.set_detect_anomaly(True)
 np.seterr(all="raise")
@@ -25,7 +22,22 @@ class FetchAgent(Parameters):
                  action_l2 = 1., batch_size = 256, gradient_steps=50, success_threshold = 0.98, max_episodes=500):
 
         # Hyperparameters
-        self.save_parameters()
+        self.name = name
+        self.board = board
+        self.window = window
+        self.gamma = gamma
+        self.prioritized = prioritized
+        self.polyak = polyak
+        self.noise_eps = noise_eps
+        self.learning_rate = learning_rate
+        self.logging_rate = logging_rate
+        self.action_l2 = action_l2
+        self.batch_size = batch_size
+        self.gradient_steps = gradient_steps
+        self.success_threshold = success_threshold
+        self.max_episodes = max_episodes
+        self.eps = eps
+        
         
         # env params for networks and buffer
         observation = env.reset()[0]
@@ -271,9 +283,8 @@ def test(env_name = 'FetchReach-v2', prioritized = True, record = False):
 
 from enum import Enum
 class Type(Enum):
-    NOHER = 1
-    HER = 2
-    HGR = 3
+    HER = 1
+    HGR = 2
           
 def meanplot(env_name = 'FetchReach-v2', type = Type.HGR):
     success_rates = []
@@ -284,8 +295,6 @@ def meanplot(env_name = 'FetchReach-v2', type = Type.HGR):
             agent = FetchAgent(f"HGR_{env_name}_{seed}", env)
         elif type == Type.HER:
             agent = FetchAgent(f"HER_{env_name}_{seed}", env)
-        else:
-            agent = DDPG(f"DDPG_{env_name}_{seed}", env)
         path = os.path.join("models",agent.name)
         success_rate = torch.load(open(os.path.join(path,"success.pt"),"rb"))
         if len(success_rate) > maxlen: maxlen = len(success_rate)
@@ -310,26 +319,7 @@ def plot_tasks(task):
     xaxis = (np.arange(len(toplot))+1) * 100
     plt.plot(xaxis, toplot, color='orange')
     
-    toplot = meanplot(task, Type.NOHER)
-    plt.plot(xaxis, toplot[:len(xaxis)], color='blue')
-    
     plt.xlabel("timesteps")
     plt.ylabel("mean success rate")
-    plt.legend(["HER", "HGR","NOHER"])
-    plt.show(block = True)
-    
-
-if __name__ == "__main__":
-    reach = 'FetchReach-v2'
-    push = 'FetchPush-v2'
-    pickandplace = 'FetchPickAndPlace-v2'
-    # test(pickandplace, False)
-    # launch(reach, True)
-    # launch(slide,True)
-    # launch(pickandplace, False)
-    # launch(reach, False)
-    # launch(slide, False)
-    
-    plot_tasks(reach)
-    
-    
+    plt.legend(["HER", "HGR"])
+    plt.show(block = True)    

@@ -10,7 +10,9 @@ class EpsGreedyPolicy:
         
     def action_probs(self, state):
         action_p = np.ones(self.num_actions, dtype=float) * self.eps / self.num_actions
-        with torch.no_grad(): best_action = torch.argmax(self.Q(state))
+        with torch.no_grad(): 
+            q_values = torch.from_numpy(self.Q(state))
+            best_action = torch.argmax(q_values).item()
         action_p[best_action] += (1.0 - self.eps)
         return action_p
         

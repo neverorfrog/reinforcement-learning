@@ -5,6 +5,7 @@ import gymnasium as gym
 from network import DQN
 import torch
 import torch.nn as nn
+from buffer import UniformBuffer
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
@@ -14,7 +15,14 @@ class DeepQAgent():
                  max_steps = 200, max_episodes = 500, reward_threshold = 400):
         
         #Hyperparameters
-        self.save_hyperparameters()
+        self.name = name
+        self.env = env
+        self.gamma = gamma
+        self.eps = eps
+        self.eps_decay = eps_decay
+        self.max_steps = max_steps
+        self.max_episodes = max_episodes
+        self.reward_threshold = reward_threshold
         
         #Network
         in_dim, out_dim = self.get_dims(env)
@@ -223,14 +231,3 @@ class ControlDeepQAgent(DeepQAgent):
         out_dim = env.action_space.n
         return in_dim, out_dim
     
-if __name__ == "__main__":
-    env = gym.make('CartPole-v1', render_mode = "rgb_array")     
-    # env = gym.make("MountainCar-v0")   
-    n = 200
-    
-    agent = ControlDeepQAgent("hi", env)
-    agent.train()
-    
-    # testenv = gym.make("MountainCar-v0", render_mode = "human")
-    testenv = gym.make('CartPole-v1', render_mode = "human")
-    agent.evaluate(testenv, render = True, episodes = 10, max_steps=200)

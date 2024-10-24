@@ -243,22 +243,3 @@ class DDPG():
         ret = super().to(device)
         ret.device = device
         return ret 
-    
-
-def pendulum(num_ep = 500):
-    env = gym.make('InvertedPendulum-v4')
-    agent = DDPG("ddpg_pendulum", env, max_episodes = num_ep)
-    return agent
-         
-if __name__ == "__main__":
-    agent = pendulum()
-    train = True
-    test = True
-    if train:
-        agent.train()
-        agent.save()
-    if test:
-        env = gym.make('InvertedPendulum-v4', render_mode = 'human')
-        agent.load()
-        agent.env = env
-        agent.evaluate(num_ep = 10)

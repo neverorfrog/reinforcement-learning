@@ -2,13 +2,14 @@ import random
 import torch
 import numpy as np
 device = torch.device("cpu")
-from common.utils import HyperParameters
 import math
 
-class PrioritizedBuffer(HyperParameters):
+class PrioritizedBuffer:
     
-    def __init__(self,env_params, capacity = int(2**10), alpha=0.6,epsilon=1.,beta=0.5):        
-        self.save_hyperparameters()
+    def __init__(self,env_params, capacity = int(2**10), alpha=0.6,epsilon=1.,beta=0.5):    
+        self.capacity = capacity
+        self.alpha = alpha
+        self.beta = beta
         self.size = 0
         self.index = 0
         self.buffer = {'observation': np.empty([capacity, env_params['obs_dim']]),
